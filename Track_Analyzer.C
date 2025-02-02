@@ -115,8 +115,8 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 
 
     // 1-d and 2-d histograms to store trk info
-    TH2D* htrkpteta = new TH2D("htrkpteta","htrkpteta",1000,0.,1000.,50,-1.,1.);
-    TH1D* hinvyield = new TH1D("hinvyield","hinvyield",1000,0.,1000.);
+    TH2D* htrkpteta = new TH2D("htrkpteta","htrkpteta",1000,0.,500.,50,-1.,1.);
+    TH1D* hinvyield = new TH1D("hinvyield","hinvyield",1000,0.,500.);
     TH1D* hNtrk     = new TH1D("hNtrk","hNtrk",1000,0,1000);
     
 
@@ -207,18 +207,18 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 	
 	Int_t nTrk=0;
 	//float trkPt[10000];
-	std::vector<Float_t>*    trkPt;
-        std::vector<Float_t>* 	 trkPtError;
-	std::vector<Float_t>*    trkEta;
-	std::vector<Float_t>*    trkPhi;
-	std::vector<Int_t>*      trkNHits;
-	std::vector<Float_t>*    trkNormChi2;
-	std::vector<Bool_t>*     highPurity;
-	std::vector<Float_t>*    pfEnergy;
-	std::vector<Float_t>*    pfEcal;
-	std::vector<Float_t>*    pfHcal;
-	std::vector<Float_t>*    trkDzErrAssociatedVtx;
-	std::vector<Float_t>*    trkDxyErrAssociatedVtx;
+	std::vector<Float_t>*    trkPt = nullptr;
+        std::vector<Float_t>* 	 trkPtError= nullptr;
+	std::vector<Float_t>*    trkEta= nullptr;
+	std::vector<Float_t>*    trkPhi= nullptr;
+	std::vector<Int_t>*      trkNHits= nullptr;
+	std::vector<Float_t>*    trkNormChi2= nullptr;
+	std::vector<Bool_t>*     highPurity= nullptr;
+	std::vector<Float_t>*    pfEnergy= nullptr;
+	std::vector<Float_t>*    pfEcal= nullptr;
+	std::vector<Float_t>*    pfHcal= nullptr;
+	std::vector<Float_t>*    trkDzErrAssociatedVtx= nullptr;
+	std::vector<Float_t>*    trkDxyErrAssociatedVtx= nullptr;
         
 	trk_tree->SetBranchStatus("trkPt", 1);
 	trk_tree->SetBranchAddress("trkPt", &trkPt);    
@@ -241,6 +241,11 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 	trk_tree->SetBranchStatus("trkPtError",1);
 	trk_tree->SetBranchAddress("trkPtError",&trkPtError);
 
+	trk_tree->SetBranchStatus("trkDzErrAssociatedVtx",1);
+        trk_tree->SetBranchAddress("trkDzErrAssociatedVtx",&trkDzErrAssociatedVtx);
+
+	trk_tree->SetBranchStatus("trkDxyErrAssociatedVtx",1);
+        trk_tree->SetBranchAddress("trkDxyErrAssociatedVtx",&trkDxyErrAssociatedVtx);
 	
 	hea_tree->GetEntry(i);
 	//return;
@@ -250,7 +255,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 	//jet_tree->GetEntry(i);
 	//return;
 	trk_tree->GetEntry(i);
-	return;
+	//return;
 	//Event Cuts ***************************************************************
 	if(vz <= -15. || vz >= 15.) continue; // vertex cut
 	          
@@ -267,53 +272,64 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 	//Start Analyzing tracks *************************************************
 	for (int j = 0; j < nTrk; j++)  // Track loop start
 	  {
-	    return;
+	    //return;
 	    Float_t trk_pt  =  trkPt->at(j);
 	    Float_t trk_eta =  trkEta->at(j);
 	    Float_t trk_phi =  trkPhi->at(j);
-	    Int_t   trk_NHits=  trkNHits->at(j);
+	    //Int_t   trk_NHits=  trkNHits->at(j);
 	    Bool_t  isHighPurity= highPurity->at(j);
 	    Float_t trk_pt_error= trkPtError->at(j);
 	    Float_t trk_dzerror= trkDzErrAssociatedVtx->at(j);
 	    Float_t trk_dxyerror= trkDxyErrAssociatedVtx->at(j);
-            
+
+	    
 	    Float_t invyield_wt= (1./(4*TMath::Pi()*trk_pt)); //weight for the invariant yield
+
+	    
+	    //    return;
 	    // Apply track cuts***************************************************
             if(!isHighPurity) continue;
 	    if(abs(trk_eta) > 1.0) continue;
 	    if(!HLT_ZeroBias_v13) continue;
-	    if(trk_dzerror < 3.0) continue;
-	    if(trk_dxyerror < 3.0) continue;
+	    if(trk_dzerror > 3.0) continue;
+	    if(trk_dxyerror > 3.0) continue;
 
+	    //	    return;
 	    htrkpteta->Fill(trk_pt,trk_eta);
 	    hinvyield->Fill(trk_pt,invyield_wt);
+	    //	    return;
+
+	    cout<<trk_pt<<"  "<<trk_eta<<" "<<endl;
 	    
 
-	    
 
 
-	} // events loop end
-	delete hea_tree;      
-	delete hlt_tree;      
-	delete ski_tree;
-	delete jet_tree;
-	delete trk_tree;
+	  } // events loop end
+
       }		
 
-	TFile *fout = new TFile(outputFileName, "RECREATE");
+    delete hea_tree;      
+    delete hlt_tree;      
+    delete ski_tree;
+    delete jet_tree;
+    delete trk_tree;
+	
+   
+    TFile *fout = new TFile(outputFileName, "RECREATE");
         
-	hEvents->Write();
-	hNtrk->Write();
-        hZvtx->Write();
-        hEvents->Write();
-	  
+    hEvents->Write();
+    hNtrk->Write();
+    hZvtx->Write();
+    htrkpteta->Write();
+    hinvyield->Write();
+    //	return;
       
 
   
-  fout->Write();
-  fout->Close();
-  delete fout;
-  cout<<"finished";
+    fout->Write();
+    fout->Close();
+    delete fout;
+    cout<<"finished";
 
 
  
