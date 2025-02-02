@@ -299,7 +299,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 	    hinvyield->Fill(trk_pt,invyield_wt);
 	    //	    return;
 
-	    cout<<trk_pt<<"  "<<trk_eta<<" "<<endl;
+	    //cout<<trk_pt<<"  "<<trk_eta<<" "<<endl;
 	    
 
 
