@@ -4,7 +4,7 @@
 #include <TH1.h>  // ROOT 1D histograms
 #include <TH1D.h>
 #include "TH3.h"
-
+#include <vector>
 #include <TH2.h>         // ROOT 2D histograms
 #include <TCanvas.h>     // ROOT canvas for plotting
 #include <TGraph.h>      // ROOT graph
@@ -18,10 +18,46 @@
 #include <TChain.h>      // ROOT chain for combining TTree(s)
 #include <TString.h>     // ROOT string class
 #include <iostream>      // C++ standard I/O
+#include "TROOT.h"
+#include "TTree.h"
+#include "TChain.h"
+#include "TFile.h"
+#include "TH1.h"
+#include "TH2.h"
+#include "TH3.h"
+#include "TF1.h"
+#include "TVector3.h"
+#include <TRandom1.h>
+#include <TRandom2.h>
+#include <TRandom3.h>
+#include <vector>
+#include <TLorentzVector.h>
+#include "THnSparse.h"
+#include <cstring>
+#include <ctime>
+#include <iostream>
+#include <cmath>
+#include <math.h>
+#include <fstream>
+#include <vector>
+#include <map>
+#include "TFrame.h"
+#include "TBenchmark.h"
+#include "TSystem.h"
+#include "TGraph.h"
+#include "TGraphErrors.h"
+#include "TProfile2D.h"
+#include "TDatime.h"
+#include <stdlib.h>
+#include <algorithm>	
+#include "TApplication.h"
+#include "Rtypes.h"
+#include "TObject.h"
+#include "TDirectoryFile.h"
 using namespace std;
 
 
-void Tree_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t pthat_value)
+void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t pthat_value)
 {
   
     TH1::SetDefaultSumw2();
@@ -95,6 +131,7 @@ void Tree_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t 
 	
     for(int i = 0; i < nevents; i++)
       {
+	
 	if (i%100000==0) cout<<i<<" events passed "<<endl;    
 	
 
@@ -138,13 +175,13 @@ void Tree_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t 
 	Int_t pVertexFilterCutGplus;
 	Int_t pVertexFilterCutVtx1;
 
-	ski_tree->SetBranchStatus("HBHENoiseFilterResultRun2Loose", 1);
-	ski_tree->SetBranchAddress("HBHENoiseFilterResultRun2Loose", &HBHENoiseFilterResultRun2Loose);
+	//	ski_tree->SetBranchStatus("HBHENoiseFilterResultRun2Loose", 1);
+	//ski_tree->SetBranchAddress("HBHENoiseFilterResultRun2Loose", &HBHENoiseFilterResultRun2Loose);
 
 	ski_tree->SetBranchStatus("pprimaryVertexFilter", 1);
 	ski_tree->SetBranchAddress("pprimaryVertexFilter", &pprimaryVertexFilter);
 
-	ski_tree->SetBranchStatus("pBeamScrapingFilter", 1);
+	/*ski_tree->SetBranchStatus("pBeamScrapingFilter", 1);
 	ski_tree->SetBranchAddress("pBeamScrapingFilter", &pBeamScrapingFilter);
 
 	ski_tree->SetBranchStatus("phfCoincFilter",1);
@@ -159,25 +196,30 @@ void Tree_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t 
 	ski_tree->SetBranchStatus("pVertexFilterCutVtx1",1);
 	ski_tree->SetBranchAddress("pVertexFilterCutVtx1",&pVertexFilterCutVtx1);
 
-       
+	*/
        
 	jet_tree->SetBranchStatus("*", 0);
 
 	//trk tree information ****************************************************
 
-	const int nmax = 1000;
-	Int_t nTrk=0;
-	Float_t trkPt[nmax];
-	Float_t trkPtError[nmax];
-	Float_t trkEta[nmax];
-        Float_t trkPhi[nmax];
-	Int_t trkNHits[nmax];
-	Float_t trkNormChi2[nmax];
-	Bool_t highPurity;
-	Float_t pfEnergy[nmax];
-	Float_t pfEcal[nmax];
-	Float_t pfHcal[nmax];
+	trk_tree->SetBranchStatus("*",0);
+	const int nmax = 10000;
 	
+	Int_t nTrk=0;
+	//float trkPt[10000];
+	std::vector<Float_t>*    trkPt;
+        std::vector<Float_t>* 	 trkPtError;
+	std::vector<Float_t>*    trkEta;
+	std::vector<Float_t>*    trkPhi;
+	std::vector<Int_t>*      trkNHits;
+	std::vector<Float_t>*    trkNormChi2;
+	std::vector<Bool_t>*     highPurity;
+	std::vector<Float_t>*    pfEnergy;
+	std::vector<Float_t>*    pfEcal;
+	std::vector<Float_t>*    pfHcal;
+	std::vector<Float_t>*    trkDzErrAssociatedVtx;
+	std::vector<Float_t>*    trkDxyErrAssociatedVtx;
+        
 	trk_tree->SetBranchStatus("trkPt", 1);
 	trk_tree->SetBranchAddress("trkPt", &trkPt);    
 
@@ -196,13 +238,19 @@ void Tree_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t 
 	trk_tree->SetBranchStatus("highPurity", 1);
         trk_tree->SetBranchAddress("highPurity", &highPurity);
 
+	trk_tree->SetBranchStatus("trkPtError",1);
+	trk_tree->SetBranchAddress("trkPtError",&trkPtError);
 
+	
 	hea_tree->GetEntry(i);
+	//return;
 	hlt_tree->GetEntry(i);
+	//	return;
 	ski_tree->GetEntry(i);
 	//jet_tree->GetEntry(i);
+	//return;
 	trk_tree->GetEntry(i);
-
+	return;
 	//Event Cuts ***************************************************************
 	if(vz <= -15. || vz >= 15.) continue; // vertex cut
 	          
@@ -214,27 +262,34 @@ void Tree_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t 
         Float_t ptHatw=1;
 	hNtrk->Fill(nTrk,ptHatw);
 	hZvtx->Fill(vz,ptHatw);
-	hEvents->Fill(1,pthatw);
+	hEvents->Fill(1,ptHatw);
 
 	//Start Analyzing tracks *************************************************
 	for (int j = 0; j < nTrk; j++)  // Track loop start
-	  {  
-	    Float_t trk_pt  =  trkPt[j];
-	    Float_t trk_eta =  trkEta[j];
-	    Float_t trk_phi =  trkPhi[j];
-	    Int_t   trkNHits=  trkNHits[j];
-	    Bool_t  isHighPurity= highPurity[j];
-
+	  {
+	    return;
+	    Float_t trk_pt  =  trkPt->at(j);
+	    Float_t trk_eta =  trkEta->at(j);
+	    Float_t trk_phi =  trkPhi->at(j);
+	    Int_t   trk_NHits=  trkNHits->at(j);
+	    Bool_t  isHighPurity= highPurity->at(j);
+	    Float_t trk_pt_error= trkPtError->at(j);
+	    Float_t trk_dzerror= trkDzErrAssociatedVtx->at(j);
+	    Float_t trk_dxyerror= trkDxyErrAssociatedVtx->at(j);
+            
 	    Float_t invyield_wt= (1./(4*TMath::Pi()*trk_pt)); //weight for the invariant yield
 	    // Apply track cuts***************************************************
             if(!isHighPurity) continue;
-	    if(abs(trk_eta)>1.0) continue;
+	    if(abs(trk_eta) > 1.0) continue;
 	    if(!HLT_ZeroBias_v13) continue;
+	    if(trk_dzerror < 3.0) continue;
+	    if(trk_dxyerror < 3.0) continue;
 
 	    htrkpteta->Fill(trk_pt,trk_eta);
 	    hinvyield->Fill(trk_pt,invyield_wt);
 	    
-	       
+
+	    
 
 
 	} // events loop end
@@ -243,7 +298,7 @@ void Tree_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t 
 	delete ski_tree;
 	delete jet_tree;
 	delete trk_tree;
-		
+      }		
 
 	TFile *fout = new TFile(outputFileName, "RECREATE");
         
@@ -252,7 +307,7 @@ void Tree_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t 
         hZvtx->Write();
         hEvents->Write();
 	  
-   }
+      
 
   
   fout->Write();
@@ -275,7 +330,7 @@ int main(int argc, char** argv){
 				
                                 int pileup=atoi(argv[6]);
 				
-				Tree_Analyzer(firstArgument,outfile,mc,pthat_value,is_Pbgoing,pileup);
+				Track_Analyzer(firstArgument,outfile,mc,pthat_value);
 }
 
 
