@@ -163,6 +163,9 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 	hlt_tree->SetBranchStatus("HLT_ZeroBias_v13", 1);
         hlt_tree->SetBranchAddress("HLT_ZeroBias_v13", &HLT_ZeroBias_v13);
 
+	hlt_tree->SetBranchStatus("HLT_AK4PFJet120_v8", 1);
+        hlt_tree->SetBranchAddress("HLT_AK4PFJet120_v8", &HLT_AK4PFJet120_v8);
+
 	//Skim tree information***************************************************
 
 	ski_tree->SetBranchStatus("*", 0);
@@ -263,6 +266,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
  
       	if(nTrk <= 0) continue; // if there are no tracks in the event
 
+	if(!HLT_ZeroBias_v13) continue; //Trigger cut
 	//Fill Event histograms ***************************************************
         Float_t ptHatw=1;
 	hNtrk->Fill(nTrk,ptHatw);
@@ -290,7 +294,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 	    // Apply track cuts***************************************************
             if(!isHighPurity) continue;
 	    if(abs(trk_eta) > 1.0) continue;
-	    if(!HLT_ZeroBias_v13) continue;
+	    
 	    if(trk_dzerror > 3.0) continue;
 	    if(trk_dxyerror > 3.0) continue;
 
