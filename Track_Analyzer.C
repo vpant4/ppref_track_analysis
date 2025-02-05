@@ -120,7 +120,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
     // 1-d and 2-d histograms to store trk info
     TH2D* htrkpteta = new TH2D("htrkpteta","htrkpteta",1000,0.,500.,50,-1.,1.);
     TH1D* hinvyield = new TH1D("hinvyield","hinvyield",nptbins,pTbins);
-    TH1D* hNtrk     = new TH1D("hNtrk","hNtrk",1000,0,1000);
+    TH1D* hNtrk     = new TH1D("hNtrk","hNtrk",nptbins,pTbins);
     
 
     
@@ -297,7 +297,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 	    // Apply track cuts***************************************************
             if(!isHighPurity) continue;
 	    if(abs(trk_eta) > 1.0) continue;
-	    if(pt<0.1) continue;
+	    if(trk_pt<0.1) continue;
 	    if(trk_dzerror > 3.0) continue;
 	    if(trk_dxyerror > 3.0) continue;
 
