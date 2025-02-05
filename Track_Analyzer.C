@@ -106,7 +106,10 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
   	
 
     //Define the relevant histograms*********************************************
-    
+
+    //variable pT bins
+    double pTbins[]={0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2,1.3,1.4,1.6,1.8,2.0,2.2,2.4,3.2,4.0,4.8,5.6,6.4,7.2,9.6,12.,14.4,19.2,24.,28.8,35.2,41.6,48,60.8,73.6,86.4,103.6,120.8,140.,165.,250.,400.,600.,1000.};
+    int nptbins=sizeof(pTbins) / sizeof(pTbins[0]) - 1;
     //Event level histograms
     TH1D* hEvents = new TH1D("hEvents", "", 10, 0, 10);
     TH1D* hpthat = new TH1D("hpthat", "", 200, 0, 600.);
@@ -116,7 +119,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 
     // 1-d and 2-d histograms to store trk info
     TH2D* htrkpteta = new TH2D("htrkpteta","htrkpteta",1000,0.,500.,50,-1.,1.);
-    TH1D* hinvyield = new TH1D("hinvyield","hinvyield",1000,0.,500.);
+    TH1D* hinvyield = new TH1D("hinvyield","hinvyield",nptbins,pTbins);
     TH1D* hNtrk     = new TH1D("hNtrk","hNtrk",1000,0,1000);
     
 
@@ -294,7 +297,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 	    // Apply track cuts***************************************************
             if(!isHighPurity) continue;
 	    if(abs(trk_eta) > 1.0) continue;
-	    
+	    if(pt<0.1) continue;
 	    if(trk_dzerror > 3.0) continue;
 	    if(trk_dxyerror > 3.0) continue;
 
