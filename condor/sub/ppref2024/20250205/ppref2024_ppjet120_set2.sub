@@ -1,0 +1,128 @@
+universe = vanilla
+executable = /afs/cern.ch/user/v/vpant/pprefanalysis/sub.sh
++JobFlavour           = "longlunch"
+getenv     = True
+requirements =((OpSysAndVer =?= "AlmaLinux9") && (CERNEnvironment =?= "qa"))
+RequestCpus = 1
+transfer_input_files  = voms_proxy.txt
+environment = "X509_USER_PROXY=voms_proxy.txt"
+arguments             = input/ppref2024/20250205/ppjet120_set2_1.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/ppjet120_set2_1.root 0 0
+output                = condor/log/ppref2024/20250205/ppjet120_set2_1.out
+error                 = condor/log/ppref2024/20250205/ppjet120_set2_1.err
+log                   = condor/log/ppref2024/20250205/ppjet120_set2_1.log
+queue 
+
+arguments             = input/ppref2024/20250205/ppjet120_set2_2.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/ppjet120_set2_2.root 0 0
+output                = condor/log/ppref2024/20250205/ppjet120_set2_2.out
+error                 = condor/log/ppref2024/20250205/ppjet120_set2_2.err
+log                   = condor/log/ppref2024/20250205/ppjet120_set2_2.log
+queue 
+
+arguments             = input/ppref2024/20250205/ppjet120_set2_3.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/ppjet120_set2_3.root 0 0
+output                = condor/log/ppref2024/20250205/ppjet120_set2_3.out
+error                 = condor/log/ppref2024/20250205/ppjet120_set2_3.err
+log                   = condor/log/ppref2024/20250205/ppjet120_set2_3.log
+queue 
+
+arguments             = input/ppref2024/20250205/ppjet120_set2_4.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/ppjet120_set2_4.root 0 0
+output                = condor/log/ppref2024/20250205/ppjet120_set2_4.out
+error                 = condor/log/ppref2024/20250205/ppjet120_set2_4.err
+log                   = condor/log/ppref2024/20250205/ppjet120_set2_4.log
+queue 
+
+arguments             = input/ppref2024/20250205/ppjet120_set2_5.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/ppjet120_set2_5.root 0 0
+output                = condor/log/ppref2024/20250205/ppjet120_set2_5.out
+error                 = condor/log/ppref2024/20250205/ppjet120_set2_5.err
+log                   = condor/log/ppref2024/20250205/ppjet120_set2_5.log
+queue 
+
+arguments             = input/ppref2024/20250205/ppjet120_set2_6.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/ppjet120_set2_6.root 0 0
+output                = condor/log/ppref2024/20250205/ppjet120_set2_6.out
+error                 = condor/log/ppref2024/20250205/ppjet120_set2_6.err
+log                   = condor/log/ppref2024/20250205/ppjet120_set2_6.log
+queue 
+
+arguments             = input/ppref2024/20250205/ppjet120_set2_7.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/ppjet120_set2_7.root 0 0
+output                = condor/log/ppref2024/20250205/ppjet120_set2_7.out
+error                 = condor/log/ppref2024/20250205/ppjet120_set2_7.err
+log                   = condor/log/ppref2024/20250205/ppjet120_set2_7.log
+queue 
+
+arguments             = input/ppref2024/20250205/ppjet120_set2_8.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/ppjet120_set2_8.root 0 0
+output                = condor/log/ppref2024/20250205/ppjet120_set2_8.out
+error                 = condor/log/ppref2024/20250205/ppjet120_set2_8.err
+log                   = condor/log/ppref2024/20250205/ppjet120_set2_8.log
+queue 
+
+arguments             = input/ppref2024/20250205/ppjet120_set2_9.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/ppjet120_set2_9.root 0 0
+output                = condor/log/ppref2024/20250205/ppjet120_set2_9.out
+error                 = condor/log/ppref2024/20250205/ppjet120_set2_9.err
+log                   = condor/log/ppref2024/20250205/ppjet120_set2_9.log
+queue 
+
+arguments             = input/ppref2024/20250205/ppjet120_set2_10.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/ppjet120_set2_10.root 0 0
+output                = condor/log/ppref2024/20250205/ppjet120_set2_10.out
+error                 = condor/log/ppref2024/20250205/ppjet120_set2_10.err
+log                   = condor/log/ppref2024/20250205/ppjet120_set2_10.log
+queue 
+
+arguments             = input/ppref2024/20250205/ppjet120_set2_11.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/ppjet120_set2_11.root 0 0
+output                = condor/log/ppref2024/20250205/ppjet120_set2_11.out
+error                 = condor/log/ppref2024/20250205/ppjet120_set2_11.err
+log                   = condor/log/ppref2024/20250205/ppjet120_set2_11.log
+queue 
+
+arguments             = input/ppref2024/20250205/ppjet120_set2_12.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/ppjet120_set2_12.root 0 0
+output                = condor/log/ppref2024/20250205/ppjet120_set2_12.out
+error                 = condor/log/ppref2024/20250205/ppjet120_set2_12.err
+log                   = condor/log/ppref2024/20250205/ppjet120_set2_12.log
+queue 
+
+arguments             = input/ppref2024/20250205/ppjet120_set2_13.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/ppjet120_set2_13.root 0 0
+output                = condor/log/ppref2024/20250205/ppjet120_set2_13.out
+error                 = condor/log/ppref2024/20250205/ppjet120_set2_13.err
+log                   = condor/log/ppref2024/20250205/ppjet120_set2_13.log
+queue 
+
+arguments             = input/ppref2024/20250205/ppjet120_set2_14.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/ppjet120_set2_14.root 0 0
+output                = condor/log/ppref2024/20250205/ppjet120_set2_14.out
+error                 = condor/log/ppref2024/20250205/ppjet120_set2_14.err
+log                   = condor/log/ppref2024/20250205/ppjet120_set2_14.log
+queue 
+
+arguments             = input/ppref2024/20250205/ppjet120_set2_15.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/ppjet120_set2_15.root 0 0
+output                = condor/log/ppref2024/20250205/ppjet120_set2_15.out
+error                 = condor/log/ppref2024/20250205/ppjet120_set2_15.err
+log                   = condor/log/ppref2024/20250205/ppjet120_set2_15.log
+queue 
+
+arguments             = input/ppref2024/20250205/ppjet120_set2_16.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/ppjet120_set2_16.root 0 0
+output                = condor/log/ppref2024/20250205/ppjet120_set2_16.out
+error                 = condor/log/ppref2024/20250205/ppjet120_set2_16.err
+log                   = condor/log/ppref2024/20250205/ppjet120_set2_16.log
+queue 
+
+arguments             = input/ppref2024/20250205/ppjet120_set2_17.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/ppjet120_set2_17.root 0 0
+output                = condor/log/ppref2024/20250205/ppjet120_set2_17.out
+error                 = condor/log/ppref2024/20250205/ppjet120_set2_17.err
+log                   = condor/log/ppref2024/20250205/ppjet120_set2_17.log
+queue 
+
+arguments             = input/ppref2024/20250205/ppjet120_set2_18.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/ppjet120_set2_18.root 0 0
+output                = condor/log/ppref2024/20250205/ppjet120_set2_18.out
+error                 = condor/log/ppref2024/20250205/ppjet120_set2_18.err
+log                   = condor/log/ppref2024/20250205/ppjet120_set2_18.log
+queue 
+
+arguments             = input/ppref2024/20250205/ppjet120_set2_19.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/ppjet120_set2_19.root 0 0
+output                = condor/log/ppref2024/20250205/ppjet120_set2_19.out
+error                 = condor/log/ppref2024/20250205/ppjet120_set2_19.err
+log                   = condor/log/ppref2024/20250205/ppjet120_set2_19.log
+queue 
+
+arguments             = input/ppref2024/20250205/ppjet120_set2_20.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/ppjet120_set2_20.root 0 0
+output                = condor/log/ppref2024/20250205/ppjet120_set2_20.out
+error                 = condor/log/ppref2024/20250205/ppjet120_set2_20.err
+log                   = condor/log/ppref2024/20250205/ppjet120_set2_20.log
+queue 
+

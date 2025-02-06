@@ -1,0 +1,110 @@
+Submit jobs at 
+PWD: /afs/cern.ch/user/v/vpant/pprefanalysis
+
+Processing Track_Analyzer.C("input/ppref2024/20250205/pprefzerobiasplusforward2_set4_15.txt","/eos/user/v/vpant/ppref2024/ppref2024outputfiles/pprefzerobiasplusforward2_set4_15.root",0,0)...
+List of input files founded! --> input/ppref2024/20250205/pprefzerobiasplusforward2_set4_15.txt
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3700.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3700.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3701.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3701.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3702.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3702.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3703.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3703.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3704.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3704.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3705.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3705.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3706.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3706.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3707.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3707.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3708.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3708.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3709.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3709.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3710.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3710.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3711.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3711.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3712.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3712.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3713.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3713.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3714.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3714.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3715.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3715.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3716.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3716.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3717.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3717.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3718.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3718.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3719.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3719.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3720.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3720.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3721.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3721.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3722.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3722.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3723.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3723.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3724.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3724.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3725.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3725.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3726.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3726.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3727.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3727.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3728.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3728.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3729.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3729.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3730.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3730.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3731.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3731.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3732.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3732.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3733.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3733.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3734.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3734.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3735.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3735.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3736.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3736.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3737.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3737.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3738.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3738.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3739.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3739.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3740.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3740.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3741.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3741.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3742.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3742.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3743.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3743.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3744.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3744.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3745.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3745.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3746.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3746.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3747.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3747.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3748.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3748.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3749.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward2/crab_ppref2024/250129_075322/0003/HiForestMiniAOD_3749.root to the chains
+Total number of events in those files: 2274
+
+-------------------------------------------------
+0 events passed 
+finished

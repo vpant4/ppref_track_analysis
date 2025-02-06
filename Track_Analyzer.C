@@ -269,7 +269,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
  
       	if(nTrk <= 0) continue; // if there are no tracks in the event
 
-	if(!HLT_ZeroBias_v13) continue; //Trigger cut
+	if(!HLT_AK4PFJet120_v8) continue; //Trigger cut
 	//Fill Event histograms ***************************************************
         Float_t ptHatw=1;
 	hNtrk->Fill(nTrk,ptHatw);
