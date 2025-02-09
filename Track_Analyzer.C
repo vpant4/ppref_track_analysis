@@ -1,60 +1,5 @@
-#include <TROOT.h>       // ROOT system header
-#include <TFile.h>       // ROOT file I/O
-#include <TTree.h>       // ROOT tree
-#include <TH1.h>  // ROOT 1D histograms
-#include <TH1D.h>
-#include "TH3.h"
-#include <vector>
-#include <TH2.h>         // ROOT 2D histograms
-#include <TCanvas.h>     // ROOT canvas for plotting
-#include <TGraph.h>      // ROOT graph
-#include <TGraph2D.h>    // ROOT 2D graph
-#include <TF1.h>         // ROOT 1D functions
-#include <TMath.h>       // ROOT math functions
-#include <TStyle.h>      // ROOT style settings
-#include <TLegend.h>     // ROOT legends
-#include <TPad.h>        // ROOT pads for arranging plots
-#include <TMathText.h>   // ROOT text rendering
-#include <TChain.h>      // ROOT chain for combining TTree(s)
-#include <TString.h>     // ROOT string class
-#include <iostream>      // C++ standard I/O
-#include "TROOT.h"
-#include "TTree.h"
-#include "TChain.h"
-#include "TFile.h"
-#include "TH1.h"
-#include "TH2.h"
-#include "TH3.h"
-#include "TF1.h"
-#include "TVector3.h"
-#include <TRandom1.h>
-#include <TRandom2.h>
-#include <TRandom3.h>
-#include <vector>
-#include <TLorentzVector.h>
-#include "THnSparse.h"
-#include <cstring>
-#include <ctime>
-#include <iostream>
-#include <cmath>
-#include <math.h>
-#include <fstream>
-#include <vector>
-#include <map>
-#include "TFrame.h"
-#include "TBenchmark.h"
-#include "TSystem.h"
-#include "TGraph.h"
-#include "TGraphErrors.h"
-#include "TProfile2D.h"
-#include "TDatime.h"
-#include <stdlib.h>
-#include <algorithm>	
-#include "TApplication.h"
-#include "Rtypes.h"
-#include "TObject.h"
-#include "TDirectoryFile.h"
-using namespace std;
+#include "include_libraries.h" //header file with important libraries
+
 
 
 void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t pthat_value)
@@ -111,6 +56,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
     double pTbins[]={0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2,1.3,1.4,1.6,1.8,2.0,2.2,2.4,3.2,4.0,4.8,5.6,6.4,7.2,9.6,12.,14.4,19.2,24.,28.8,35.2,41.6,48,60.8,73.6,86.4,103.6,120.8,140.,165.,250.,400.,600.,1000.};
     int nptbins=sizeof(pTbins) / sizeof(pTbins[0]) - 1;
     //Event level histograms
+    TH1D* hEventsnoCuts= new TH1D("hEventsnoCuts","",10,0,10);
     TH1D* hEvents = new TH1D("hEvents", "", 10, 0, 10);
     TH1D* hpthat = new TH1D("hpthat", "", 200, 0, 600.);
     TH1D* hpthatW = new TH1D("hpthatW", "", 200, 0, 600.);
@@ -134,7 +80,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 	
     for(int i = 0; i < nevents; i++)
       {
-	
+	hEventsnoCuts->Fill(1);
 	if (i%100000==0) cout<<i<<" events passed "<<endl;    
 	
 
@@ -269,7 +215,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
  
       	if(nTrk <= 0) continue; // if there are no tracks in the event
 
-	if(!HLT_AK4PFJet120_v8) continue; //Trigger cut
+	//	if(!HLT_AK4PFJet120_v8) continue; //Trigger cut
 	//Fill Event histograms ***************************************************
         Float_t ptHatw=1;
 	hNtrk->Fill(nTrk,ptHatw);
@@ -323,7 +269,8 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 	
    
     TFile *fout = new TFile(outputFileName, "RECREATE");
-        
+
+    hEventsnoCuts->Write();    
     hEvents->Write();
     hNtrk->Write();
     hZvtx->Write();
