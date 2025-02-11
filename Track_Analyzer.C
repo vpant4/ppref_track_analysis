@@ -68,12 +68,15 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
     TH1D* hZvtx = new TH1D("hZvtx", "", 80, -20, 20);
 
     // 1-d and 2-d histograms to store trk info
-    TH2D* htrkpteta = new TH2D("htrkpteta","htrkpteta",1000,0.,500.,50,-1.,1.);
-    TH1D* hinvyield = new TH1D("hinvyield","hinvyield",nptbins,pTbins);
+    TH2D* htrkpteta = new TH2D("htrkpteta","htrkpteta",1000,0.,1000.,50,-2.,2.);
+    TH1D* htrkpt    = new TH1D("htrkpt","htrkpt",nptbins,pTbins);
+    TH1D* htrkinvyield = new TH1D("htrkinvyield","htrkinvyield",nptbins,pTbins);
     TH1D* hNtrk     = new TH1D("hNtrk","hNtrk",nptbins,pTbins);
 
     //Histograms to store jet information
-    TH1D *hjtpt     = new TH1D("hjtpt","hjtpt",1000,0.,1000.);
+    TH2D *hjtpteta  = new TH2D("hjtpteta","hjtpteta",1000,0.,1000.,50,-2.,2.);
+    TH1D *hjtpt     = new TH1D("hjtpt","hjtpt",nptbins,pTbins);
+    TH1D *hjtinvyield=new TH1D("hjtinvyield","hjtinvyield",nptbins,pTbins);
     TH1D *hjteta    = new TH1D("hjteta","hjteta",1000,-2.,2.);
     TH1D *hjtphi    = new TH1D("hjtphi","hjtphi",1000,-TMath::Pi(),TMath::Pi());
 
@@ -127,19 +130,20 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 	    Float_t trk_dxyerror= trkDxyErrAssociatedVtx->at(j);
 
 	    
-	    Float_t invyield_wt= (1./(4*TMath::Pi()*trk_pt)); //weight for the invariant yield
+	    Float_t invyield_wt= (1./(4*2*TMath::Pi()*trk_pt)); //weight for the invariant yield
 
 	    
 	    //    return;
 	    // Apply track cuts***************************************************
             if(!isHighPurity) continue;
-	    if(abs(trk_eta) > 1.0) continue;
+	    if(abs(trk_eta) > 2.0) continue;
 	    if(trk_pt<0.1) continue;
 	    if(trk_dzerror > 3.0) continue;
 	    if(trk_dxyerror > 3.0) continue;
 
 	    htrkpteta->Fill(trk_pt,trk_eta);
-	    hinvyield->Fill(trk_pt,invyield_wt);
+	    htrkinvyield->Fill(trk_pt,invyield_wt);
+	    htrkpt->Fill(trk_pt);
 	    
 	  } // events loop end
 
@@ -156,13 +160,15 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 	    float jet_phi = jtphi[j];
 
 	    if (abs(jet_eta)>2) continue;
-
+            Float_t hjtinvyieldwt=(1/(4*2*TMath::Pi()))*jet_rawpt;
+	    hjtpteta->Fill(jet_rawpt,jet_eta);
+	    hjtinvyield->Fill(jet_rawpt,hjtinvyieldwt);
 	    hjtpt->Fill(jet_rawpt);
 	    hjteta->Fill(jet_eta);
 	    hjtphi->Fill(jet_phi);
 	    
 	    
-	  }
+	  }//jet loop ends
 	
 	
       }		
@@ -180,10 +186,15 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
     hEvents->Write();
     hNtrk->Write();
     hZvtx->Write();
+
+    htrkpt->Write();
     htrkpteta->Write();
-    hinvyield->Write();
-    
+    htrkinvyield->Write();
+
     hjtpt->Write();
+    hjtpteta->Write();
+    hjtinvyield->Write();
+    
     hjtphi->Write();
     hjteta->Write();
   

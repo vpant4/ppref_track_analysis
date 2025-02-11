@@ -1,0 +1,30 @@
+000 (16580838.018.000) 02/10 06:01:56 Job submitted from host: <188.185.72.155:9618?addrs=188.185.72.155-9618+[2001-1458-d00-8--100-95]-9618&alias=bigbird08.cern.ch&noUDP&sock=schedd_862983_22fa>
+...
+040 (16580838.018.000) 02/10 06:03:30 Started transferring input files
+	Transferring to host: <188.185.195.184:9618?addrs=188.185.195.184-9618+[2001-1458-303-22--100-b4]-9618&alias=b9p17p5043.cern.ch&noUDP&sock=slot1_3_7694_de72_110652>
+...
+040 (16580838.018.000) 02/10 06:03:30 Finished transferring input files
+...
+001 (16580838.018.000) 02/10 06:03:31 Job executing on host: <188.185.195.184:9618?addrs=188.185.195.184-9618+[2001-1458-303-22--100-b4]-9618&alias=b9p17p5043.cern.ch&noUDP&sock=startd_6944_95bb>
+	SlotName: slot1_3@b9p17p5043.cern.ch
+	CondorScratchDir = "/pool/condor/dir_3645545"
+	Cpus = 1
+	Disk = 3806
+	GPUs = 0
+	Memory = 3000
+...
+006 (16580838.018.000) 02/10 06:03:40 Image size of job updated: 332988
+	326  -  MemoryUsage of job (MB)
+	332988  -  ResidentSetSize of job (KB)
+...
+006 (16580838.018.000) 02/10 06:08:41 Image size of job updated: 356088
+	348  -  MemoryUsage of job (MB)
+	356088  -  ResidentSetSize of job (KB)
+...
+040 (16580838.018.000) 02/10 08:03:52 Started transferring output files
+...
+040 (16580838.018.000) 02/10 08:03:52 Finished transferring output files
+...
+009 (16580838.018.000) 02/10 08:03:52 Job was aborted.
+	Job removed by SYSTEM_PERIODIC_REMOVE due to wall time exceeded allowed max.
+...

@@ -1,8 +1,0 @@
-universe = vanilla
-executable = /afs/cern.ch/user/v/vpant/pprefanalysis/sub.sh
-+JobFlavour           = "longlunch"
-getenv     = True
-requirements =((OpSysAndVer =?= "AlmaLinux9") && (CERNEnvironment =?= "qa"))
-RequestCpus = 1
-transfer_input_files  = voms_proxy.txt
-environment = "X509_USER_PROXY=voms_proxy.txt"

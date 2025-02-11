@@ -46,7 +46,9 @@ void read_trees(TChain *tree,bool is_MC){
 
  
 	//reading event information from trees
-        
+
+
+        tree->SetBranchStatus("*",0);
 	
 	tree->SetBranchStatus("vz", 1);
 	tree->SetBranchAddress("vz", &vz);
