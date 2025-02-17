@@ -19,7 +19,7 @@ sample_prefix=$(basename "$input_file_list" | sed 's/\.[^.]*$//')
 
 
 # Specify number of files per list to split
-files_per_job=50
+files_per_job=2
 #input_file_list=$HOME/filelists/test_list.t
 
 echo -e "Splitting input file list: ${input_file_list}"

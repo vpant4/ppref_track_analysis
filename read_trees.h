@@ -4,6 +4,7 @@
         Float_t vz;
 	Float_t weight;
 	Float_t pthat;
+        Int_t nVtx;
 
 	//Trigger variables
 	Int_t HLT_AK4PFJet120_v8; //Flag for Jet120 trigger
@@ -32,6 +33,9 @@
 	std::vector<Float_t>*    pfHcal= nullptr;
 	std::vector<Float_t>*    trkDzErrAssociatedVtx= nullptr;
 	std::vector<Float_t>*    trkDxyErrAssociatedVtx= nullptr;
+        std::vector<Float_t>*    trkDzAssociatedVtx;
+        std::vector<Float_t>*    trkDxyAssociatedVtx;
+
 
 	//jet info variables
 	Int_t nref;         // number of jets
@@ -53,6 +57,8 @@ void read_trees(TChain *tree,bool is_MC){
 	tree->SetBranchStatus("vz", 1);
 	tree->SetBranchAddress("vz", &vz);
 
+	tree->SetBranchStatus("nVtx",1);
+	tree->SetBranchAddress("nVtx",&nVtx);
 	if(is_MC)
 	  {
 	    tree->SetBranchStatus("weight", 1);
@@ -131,6 +137,11 @@ void read_trees(TChain *tree,bool is_MC){
 	tree->SetBranchStatus("trkDxyErrAssociatedVtx",1);
         tree->SetBranchAddress("trkDxyErrAssociatedVtx",&trkDxyErrAssociatedVtx);
 
+	tree->SetBranchStatus("trkDzAssociatedVtx",1);
+	tree->SetBranchAddress("trkDzAssociatedVtx",&trkDzAssociatedVtx);
+
+	tree->SetBranchStatus("trkDxyAssociatedVtx",1);
+	tree->SetBranchAddress("trkDxyAssociatedVtx",&trkDxyAssociatedVtx);
 	//jet tree information
 	tree->SetBranchStatus("nref", 1);
 	tree->SetBranchAddress("nref",&nref);

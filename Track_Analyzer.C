@@ -10,6 +10,17 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
     TH3::SetDefaultSumw2();
 
 
+    //Read the track efficiency file
+
+    //    TFile *feff= TFile::Open("/afs/cern.ch/user/v/vpant/pprefanalysis/filelists/Eff/ppref_2024_Pythia_minBias_NopU_2D_Nominla.root","READ");
+
+    TFile *feff = TFile::Open("/afs/cern.ch/user/v/vpant/pprefanalysis/filelists/Eff/ppref_2024_Pythia_QCDptHat15_NopU_2D_Nominla.root");
+    //Read the efficiency histograms
+    TH2F *hEff_2D = (TH2F*) feff->Get("hEff_2D");
+    TH2F *hMul_2D = (TH2F*) feff->Get("hMul_2D");
+    TH2F *hFak_2D = (TH2F*) feff->Get("hFak_2D");
+    TH2F *hSec_2D = (TH2F*) feff->Get("hSec_2D");
+    
  
     // Read the input files********************************************************
     fstream inputfile;
@@ -58,12 +69,13 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
     //Define the relevant histograms*********************************************
 
     //variable pT bins
-    double pTbins[]={0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2,1.3,1.4,1.6,1.8,2.0,2.2,2.4,3.2,4.0,4.8,5.6,6.4,7.2,9.6,12.,14.4,19.2,24.,28.8,35.2,41.6,48,60.8,73.6,86.4,103.6,120.8,140.,165.,250.,400.,600.,1000.};
+    double pTbins[]={0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2,1.4,1.6,1.8,2.0,2.2,2.4,3.2,4.0,4.8,5.6,6.4,7.2,9.6,12.,14.4,19.2,24.,28.8,35.2,41.6,48.,60.8,73.6,86.4,103.6,120.8,140.,165.,250.,400.,600.,1000.};
     int nptbins=sizeof(pTbins) / sizeof(pTbins[0]) - 1;
     //Event level histograms
     TH1D* hEventsnoCuts= new TH1D("hEventsnoCuts","",10,0,10);
+    TH1D* hnVtx         = new TH1D("hnVtx","hnVtx",500,0,20);
+    
     TH1D* hEvents = new TH1D("hEvents", "", 10, 0, 10);
-    TH1D* hpthat = new TH1D("hpthat", "", 200, 0, 600.);
     TH1D* hpthatW = new TH1D("hpthatW", "", 200, 0, 600.);
     TH1D* hZvtx = new TH1D("hZvtx", "", 80, -20, 20);
 
@@ -73,6 +85,11 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
     TH1D* htrkinvyield = new TH1D("htrkinvyield","htrkinvyield",nptbins,pTbins);
     TH1D* hNtrk     = new TH1D("hNtrk","hNtrk",nptbins,pTbins);
 
+    //Histograms with track corrections
+    TH2D* htrkpteta_corr = new TH2D("htrkpteta_corr","htrkpteta_corr",1000,0.,1000.,50,-2.,2.);
+    TH1D* htrkpt_corr    = new TH1D("htrkpt_corr","htrkpt_corr",nptbins,pTbins);
+    TH1D* htrkinvyield_corr = new TH1D("htrkinvyield_corr","htrkinvyield_corr",nptbins,pTbins);
+    
     //Histograms to store jet information
     TH2D *hjtpteta  = new TH2D("hjtpteta","hjtpteta",1000,0.,1000.,50,-2.,2.);
     TH1D *hjtpt     = new TH1D("hjtpt","hjtpt",nptbins,pTbins);
@@ -92,7 +109,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
     for(int i = 0; i < nevents; i++)
       {
 	hEventsnoCuts->Fill(1);
-	if (i%100000==0) cout<<i<<" events passed "<<endl;    
+	if (i%10000==0) cout<<i<<" events passed "<<endl;    
 	
 
 	//Read trees******************************************************
@@ -109,45 +126,73 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
  
       	if(nTrk <= 0) continue; // if there are no tracks in the event
 
-	//	if(!HLT_AK4PFJet120_v8) continue; //Trigger cut
+	//if(!HLT_AK4PFJet120_v8) continue; //Trigger cut
 	//Fill Event histograms ***************************************************
         Float_t ptHatw=1;
 	hNtrk->Fill(nTrk,ptHatw);
 	hZvtx->Fill(vz,ptHatw);
 	hEvents->Fill(1,ptHatw);
+	hnVtx->Fill(nVtx,ptHatw);
 
 	//Start Analyzing tracks *************************************************
 	for (int j = 0; j < nTrk; j++)  // Track loop start
 	  {
-	    //return;
-	    Float_t trk_pt  =  trkPt->at(j);
-	    Float_t trk_eta =  trkEta->at(j);
-	    Float_t trk_phi =  trkPhi->at(j);
-	    //Int_t   trk_NHits=  trkNHits->at(j);
-	    Bool_t  isHighPurity= highPurity->at(j);
-	    Float_t trk_pt_error= trkPtError->at(j);
-	    Float_t trk_dzerror= trkDzErrAssociatedVtx->at(j);
-	    Float_t trk_dxyerror= trkDxyErrAssociatedVtx->at(j);
-
+	    //Read the required track variables
+	    Float_t trk_pt      =  trkPt->at(j);
+	    Float_t trk_eta     =  trkEta->at(j);
+	    Float_t trk_phi     =  trkPhi->at(j);
+	    Bool_t  isHighPurity=  highPurity->at(j);
+	    Float_t trk_pt_error=  trkPtError->at(j);
+	    Float_t trk_dxy     =  trkDxyAssociatedVtx->at(j);
+	    Float_t trk_dxyerror=  trkDxyErrAssociatedVtx->at(j);
+	    Float_t trk_dz      =  trkDzAssociatedVtx->at(j);
+	    Float_t trk_dzerror =  trkDzErrAssociatedVtx->at(j);
+	   
 	    
-	    Float_t invyield_wt= (1./(4*2*TMath::Pi()*trk_pt)); //weight for the invariant yield
+
 
 	    
 	    //    return;
 	    // Apply track cuts***************************************************
             if(!isHighPurity) continue;
-	    if(abs(trk_eta) > 2.0) continue;
+	    if(abs(trk_eta) > 1.0) continue;
 	    if(trk_pt<0.1) continue;
-	    if(trk_dzerror > 3.0) continue;
-	    if(trk_dxyerror > 3.0) continue;
+	    if(abs(trk_dxy/trk_dxyerror) >= 3.0) continue;
+	    if(abs(trk_dz/trk_dzerror)   >= 3.0) continue;
+	    if(trk_pt>10 && abs(trk_pt_error/trk_pt)>=0.1) continue;
+	    
+	    	    //Read the values from efficiency histograms
+	    Float_t eff = hEff_2D->GetBinContent(hEff_2D->GetXaxis()->FindBin(trk_eta),hEff_2D->GetYaxis()->FindBin(trk_pt));
+	    Float_t fak = hFak_2D->GetBinContent(hFak_2D->GetXaxis()->FindBin(trk_eta),hFak_2D->GetYaxis()->FindBin(trk_pt));
+	    Float_t sec = hSec_2D->GetBinContent(hSec_2D->GetXaxis()->FindBin(trk_eta),hSec_2D->GetYaxis()->FindBin(trk_pt));
+	    Float_t mul = hMul_2D->GetBinContent(hMul_2D->GetXaxis()->FindBin(trk_eta),hMul_2D->GetYaxis()->FindBin(trk_pt));
+
+	    //Correction factors for tracks
+	    Float_t corr_wt=((1.0 - fak)*(1.0 - sec))/(eff*(1.0 + mul));
+
+	    Float_t weight=1.;
+	    weight=corr_wt;
+	    //if (trk_pt>50)
+	    
+	    //if (std::isfinite(corr_wt)) weight=corr_wt;
+
+	    //if (trk_pt>10)
+	    //cout<<trk_pt<<" "<<trk_eta<<" "<<"Eff.."<<eff<<"Sec...."<<sec<<"fak...."<<fak<<"mul....."<<mul<<" Correction factor is:  "<<weight<<endl;
+	    //Weight for the invariant yield 
+	    Float_t invyield_wt= (1./(2*2*TMath::Pi()*trk_pt)); 
+
+	    
 
 	    htrkpteta->Fill(trk_pt,trk_eta);
 	    htrkinvyield->Fill(trk_pt,invyield_wt);
 	    htrkpt->Fill(trk_pt);
-	    
+
+	    htrkpteta_corr->Fill(trk_pt,trk_eta,weight);
+            htrkinvyield_corr->Fill(trk_pt,invyield_wt*weight);
+            htrkpt_corr->Fill(trk_pt,weight);
 	  } // events loop end
 
-	//jet loop starts
+	/*	//jet loop starts
 	int njets=(int) nref;
 	for (int j=0; j<njets; j++)
 	  {
@@ -170,7 +215,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 	    
 	  }//jet loop ends
 	
-	
+	*/
       }		
 
     delete hea_tree;      
@@ -186,10 +231,15 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
     hEvents->Write();
     hNtrk->Write();
     hZvtx->Write();
+    hnVtx->Write();
 
     htrkpt->Write();
     htrkpteta->Write();
     htrkinvyield->Write();
+
+    htrkpt_corr->Write();
+    htrkpteta_corr->Write();
+    htrkinvyield_corr->Write();
 
     hjtpt->Write();
     hjtpteta->Write();

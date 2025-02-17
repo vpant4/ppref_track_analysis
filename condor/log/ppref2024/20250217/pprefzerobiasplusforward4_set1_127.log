@@ -1,0 +1,97 @@
+000 (16626177.126.000) 02/17 00:58:07 Job submitted from host: <188.185.72.155:9618?addrs=188.185.72.155-9618+[2001-1458-d00-8--100-95]-9618&alias=bigbird08.cern.ch&noUDP&sock=schedd_862983_22fa>
+...
+040 (16626177.126.000) 02/17 00:58:55 Started transferring input files
+	Transferring to host: <128.142.33.14:9618?addrs=128.142.33.14-9618+[2001-1458-301-53--100-b]-9618&alias=b9g34p3197.cern.ch&noUDP&sock=slot1_12_600466_5e1b_4100>
+...
+040 (16626177.126.000) 02/17 00:58:55 Finished transferring input files
+...
+001 (16626177.126.000) 02/17 00:58:56 Job executing on host: <128.142.33.14:9618?addrs=128.142.33.14-9618+[2001-1458-301-53--100-b]-9618&alias=b9g34p3197.cern.ch&noUDP&sock=startd_3010_3028>
+	SlotName: slot1_12@b9g34p3197.cern.ch
+	CondorScratchDir = "/pool/condor/dir_1224592"
+	Cpus = 1
+	Disk = 3776
+	GPUs = 0
+	Memory = 3000
+...
+006 (16626177.126.000) 02/17 00:59:05 Image size of job updated: 165860
+	162  -  MemoryUsage of job (MB)
+	165860  -  ResidentSetSize of job (KB)
+...
+006 (16626177.126.000) 02/17 01:04:06 Image size of job updated: 198104
+	194  -  MemoryUsage of job (MB)
+	198104  -  ResidentSetSize of job (KB)
+...
+006 (16626177.126.000) 02/17 01:09:07 Image size of job updated: 235684
+	231  -  MemoryUsage of job (MB)
+	235684  -  ResidentSetSize of job (KB)
+...
+006 (16626177.126.000) 02/17 01:14:07 Image size of job updated: 236272
+	231  -  MemoryUsage of job (MB)
+	236272  -  ResidentSetSize of job (KB)
+...
+006 (16626177.126.000) 02/17 01:19:07 Image size of job updated: 239544
+	234  -  MemoryUsage of job (MB)
+	239544  -  ResidentSetSize of job (KB)
+...
+006 (16626177.126.000) 02/17 01:24:08 Image size of job updated: 240240
+	235  -  MemoryUsage of job (MB)
+	240240  -  ResidentSetSize of job (KB)
+...
+006 (16626177.126.000) 02/17 01:29:08 Image size of job updated: 240780
+	236  -  MemoryUsage of job (MB)
+	240780  -  ResidentSetSize of job (KB)
+...
+006 (16626177.126.000) 02/17 01:34:08 Image size of job updated: 243136
+	238  -  MemoryUsage of job (MB)
+	243136  -  ResidentSetSize of job (KB)
+...
+006 (16626177.126.000) 02/17 01:39:09 Image size of job updated: 243300
+	238  -  MemoryUsage of job (MB)
+	243300  -  ResidentSetSize of job (KB)
+...
+006 (16626177.126.000) 02/17 01:59:12 Image size of job updated: 243312
+	238  -  MemoryUsage of job (MB)
+	243312  -  ResidentSetSize of job (KB)
+...
+006 (16626177.126.000) 02/17 02:04:12 Image size of job updated: 243476
+	238  -  MemoryUsage of job (MB)
+	243476  -  ResidentSetSize of job (KB)
+...
+006 (16626177.126.000) 02/17 02:09:13 Image size of job updated: 243656
+	238  -  MemoryUsage of job (MB)
+	243656  -  ResidentSetSize of job (KB)
+...
+006 (16626177.126.000) 02/17 02:14:14 Image size of job updated: 244492
+	239  -  MemoryUsage of job (MB)
+	244492  -  ResidentSetSize of job (KB)
+...
+006 (16626177.126.000) 02/17 02:19:14 Image size of job updated: 245384
+	240  -  MemoryUsage of job (MB)
+	245384  -  ResidentSetSize of job (KB)
+...
+006 (16626177.126.000) 02/17 02:24:14 Image size of job updated: 246024
+	241  -  MemoryUsage of job (MB)
+	246024  -  ResidentSetSize of job (KB)
+...
+040 (16626177.126.000) 02/17 02:26:09 Started transferring output files
+...
+040 (16626177.126.000) 02/17 02:26:09 Finished transferring output files
+...
+005 (16626177.126.000) 02/17 02:26:09 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 01:16:22, Sys 0 00:00:04  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 01:16:22, Sys 0 00:00:04  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	8155  -  Run Bytes Sent By Job
+	10428  -  Run Bytes Received By Job
+	8155  -  Total Bytes Sent By Job
+	10428  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.82        1         1 
+	   Disk (KB)            :    43          12      3776 
+	   GPUs                 :                           0 
+	   Memory (MB)          :   241        3000      3000 
+
+	Job terminated of its own accord at 2025-02-17T01:26:09Z with exit-code 0.
+...
