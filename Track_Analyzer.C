@@ -2,12 +2,12 @@
 #include "read_trees.h"
 
 
-void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t pthat_value)
+void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Float_t pthat_value)
 {
   
-    TH1::SetDefaultSumw2();
-    TH2::SetDefaultSumw2();
-    TH3::SetDefaultSumw2();
+  TH1::SetDefaultSumw2();
+  TH2::SetDefaultSumw2();
+  TH3::SetDefaultSumw2();
 
 
     //Read the track efficiency file
@@ -34,7 +34,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
     string file_chain;
     while(getline(inputfile, file_chain)){file_name_vector.push_back(file_chain.c_str());}
     inputfile.close();
-
+    
 
     // Read the trees to be added in the Chain************************************
     TChain *hlt_tree = new TChain("hltanalysis/HltTree");
@@ -42,34 +42,49 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
     TChain *hea_tree = new TChain("hiEvtAnalyzer/HiTree");
     TChain *ski_tree = new TChain("skimanalysis/HltTree");
     TChain *trk_tree = new TChain("ppTracks/trackTree");
+    TChain *gen_tree;
+    if (is_MC)
+      {gen_tree = new TChain("HiGenParticleAna/hi");}
 
 
     // add all the trees to the chain**********************************************
+
     for (std::vector<TString>::iterator listIterator = file_name_vector.begin(); listIterator != file_name_vector.end(); listIterator++){
       cout<<"list operator is "<<*listIterator<<endl;          
+
       TFile *testfile = TFile::Open(*listIterator);
+
       if (!testfile) cout<<"file not found";
       if(!testfile || testfile->IsZombie() || testfile->TestBit(TFile::kRecovered)) cout << "File: " << *listIterator << " failed to open" << endl;
       if(!testfile || testfile->IsZombie() || testfile->TestBit(TFile::kRecovered)) continue;
+
+
       cout << "Adding file " << *listIterator << " to the chains" << endl;
+
+
       hlt_tree->Add(*listIterator);
       hea_tree->Add(*listIterator);
       jet_tree->Add(*listIterator);
       ski_tree->Add(*listIterator);
-      trk_tree->Add(*listIterator);	    
-
+      trk_tree->Add(*listIterator);
+      if (is_MC)
+	{gen_tree->Add(*listIterator);}
+      
     }
 
+    
     hlt_tree->AddFriend(trk_tree);
     hlt_tree->AddFriend(hea_tree);
     hlt_tree->AddFriend(jet_tree);
     hlt_tree->AddFriend(ski_tree);
-  	
+    if (is_MC)
+      {hlt_tree->AddFriend(gen_tree);}
+
 
     //Define the relevant histograms*********************************************
 
     //variable pT bins
-    double pTbins[]={0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2,1.4,1.6,1.8,2.0,2.2,2.4,3.2,4.0,4.8,5.6,6.4,7.2,9.6,12.,14.4,19.2,24.,28.8,35.2,41.6,48.,60.8,73.6,86.4,103.6,120.8,140.,165.,250.,400.,600.,1000.};
+    double pTbins[]={0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2,1.4,1.6,1.8,2.0,2.2,2.4,3.2,4.0,4.8,5.6,6.4,7.2,9.6,12.,14.4,19.2,24.,28.8,35.2,41.6,48.,60.8,73.6,86.4,103.6,120.8,140.,165.,250.,400.};
     int nptbins=sizeof(pTbins) / sizeof(pTbins[0]) - 1;
     //Event level histograms
     TH1D* hEventsnoCuts= new TH1D("hEventsnoCuts","",10,0,10);
@@ -85,6 +100,12 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
     TH1D* htrkinvyield = new TH1D("htrkinvyield","htrkinvyield",nptbins,pTbins);
     TH1D* hNtrk     = new TH1D("hNtrk","hNtrk",nptbins,pTbins);
 
+    //Histograms to store gen track information (for MC)
+    TH2D* hgentrkpteta = new TH2D("hgentrkpteta","hgentrkpteta",1000,0.,1000.,50,-2.,2.);
+    TH1D *hgentrkpt = new TH1D("hgentrkpt","hgentrkpt",nptbins,pTbins);
+    TH1D* hgenNtrk     = new TH1D("hgenNtrk","hgenNtrk",nptbins,pTbins);
+
+    
     //Histograms with track corrections
     TH2D* htrkpteta_corr = new TH2D("htrkpteta_corr","htrkpteta_corr",1000,0.,1000.,50,-2.,2.);
     TH1D* htrkpt_corr    = new TH1D("htrkpt_corr","htrkpt_corr",nptbins,pTbins);
@@ -121,8 +142,10 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 	
 	//Event Cuts ***************************************************************
 	if(vz <= -15. || vz >= 15.) continue; // vertex cut
-	          
-	if(pprimaryVertexFilter != 1) continue; //apply the skimmed event filters
+
+	cout<<"here  "<<endl;
+	//if(pprimaryVertexFilter != 1) continue; //apply the skimmed event filters
+	cout<<"here 1  "<<endl;
  
       	if(nTrk <= 0) continue; // if there are no tracks in the event
 
@@ -133,8 +156,9 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 	hZvtx->Fill(vz,ptHatw);
 	hEvents->Fill(1,ptHatw);
 	hnVtx->Fill(nVtx,ptHatw);
+	
 
-	//Start Analyzing tracks *************************************************
+	//Start Analyzing reco tracks *************************************************
 	for (int j = 0; j < nTrk; j++)  // Track loop start
 	  {
 	    //Read the required track variables
@@ -147,9 +171,6 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 	    Float_t trk_dxyerror=  trkDxyErrAssociatedVtx->at(j);
 	    Float_t trk_dz      =  trkDzAssociatedVtx->at(j);
 	    Float_t trk_dzerror =  trkDzErrAssociatedVtx->at(j);
-	   
-	    
-
 
 	    
 	    //    return;
@@ -172,16 +193,10 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 
 	    Float_t weight=1.;
 	    weight=corr_wt;
-	    //if (trk_pt>50)
-	    
-	    //if (std::isfinite(corr_wt)) weight=corr_wt;
-
-	    //if (trk_pt>10)
-	    //cout<<trk_pt<<" "<<trk_eta<<" "<<"Eff.."<<eff<<"Sec...."<<sec<<"fak...."<<fak<<"mul....."<<mul<<" Correction factor is:  "<<weight<<endl;
+	    cout<<trk_pt<<" "<<trk_eta<<" "<<"Eff.."<<eff<<"Sec...."<<sec<<"fak...."<<fak<<"mul....."<<mul<<" Correction factor is:  "<<weight<<endl;
 	    //Weight for the invariant yield 
 	    Float_t invyield_wt= (1./(2*2*TMath::Pi()*trk_pt)); 
-
-	    
+	      
 
 	    htrkpteta->Fill(trk_pt,trk_eta);
 	    htrkinvyield->Fill(trk_pt,invyield_wt);
@@ -190,7 +205,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 	    htrkpteta_corr->Fill(trk_pt,trk_eta,weight);
             htrkinvyield_corr->Fill(trk_pt,invyield_wt*weight);
             htrkpt_corr->Fill(trk_pt,weight);
-	  } // events loop end
+	  }//Reco track loop end
 
 	/*	//jet loop starts
 	int njets=(int) nref;
@@ -216,15 +231,40 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
 	  }//jet loop ends
 	
 	*/
-      }		
 
+	//Gen loop starts (Only for MC) **************************************
+	Int_t gentrksize;
+        
+	if (is_MC)
+	  {gentrksize = gentrkPt->size();
+	    for (int j=0;j<gentrksize;j++)
+	      {
+	       
+		//if (!gentrkPt->size()||!gentrkEta->size()||!gentrkPhi->size()) continue;
+	 	Float_t gentrk_pt = gentrkPt->at(j);
+		Float_t gentrk_eta= gentrkEta->at(j);
+		Float_t gentrk_phi= gentrkPhi->at(j);
+	      
+		//cout<<gentrk_pt<<endl;
+	      
+		//Track cuts on gen tracks
+		if(abs(gentrk_eta) > 1.0) continue;
+		if(gentrk_pt<0.1) continue;
+	    
+		hgentrkpteta->Fill(gentrk_pt,gentrk_eta);
+		hgentrkpt->Fill(gentrk_pt);
+	      }//gen trk loop ends	
+	  }
+      }
+	
+		
     delete hea_tree;      
     delete hlt_tree;      
     delete ski_tree;
     delete jet_tree;
     delete trk_tree;
 	
-   
+
     TFile *fout = new TFile(outputFileName, "RECREATE");
 
     hEventsnoCuts->Write();    
@@ -247,6 +287,9 @@ void Track_Analyzer(TString input_file, TString outputFileName,int is_MC,Float_t
     
     hjtphi->Write();
     hjteta->Write();
+
+    hgentrkpteta->Write();
+    hgentrkpt->Write();
   
     fout->Write();
     fout->Close();

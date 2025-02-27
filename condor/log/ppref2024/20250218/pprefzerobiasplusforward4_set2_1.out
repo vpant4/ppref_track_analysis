@@ -1,0 +1,16 @@
+Submit jobs at 
+PWD: /afs/cern.ch/user/v/vpant/pprefanalysis
+
+Processing Track_Analyzer.C("input/ppref2024/20250218/pprefzerobiasplusforward4_set2_1.txt","/eos/user/v/vpant/ppref2024/ppref2024outputfiles/pprefzerobiasplusforward4_set2_1.root",0,0)...
+List of input files founded! --> input/ppref2024/20250218/pprefzerobiasplusforward4_set2_1.txt
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward4/crab_ppref2024/250213_054928/0001/HiForestMiniAOD_1000.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward4/crab_ppref2024/250213_054928/0001/HiForestMiniAOD_1000.root to the chains
+Total number of events in those files: 45031
+
+-------------------------------------------------
+0 events passed 
+10000 events passed 
+20000 events passed 
+30000 events passed 
+40000 events passed 
+finished

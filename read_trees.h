@@ -19,6 +19,15 @@
 	Int_t pVertexFilterCutGplus;
 	Int_t pVertexFilterCutVtx1;
 
+        //Gen info variables
+        Int_t Ncoll; 
+        Int_t Npart;
+        
+        std::vector<Float_t>*    gentrkPt = nullptr;
+        std::vector<Float_t>*    gentrkEta= nullptr;
+        std::vector<Float_t>*    gentrkPhi= nullptr;
+
+
 	//Track info variables
         Int_t nTrk=0;
 	std::vector<Float_t>*    trkPt = nullptr;
@@ -66,6 +75,22 @@ void read_trees(TChain *tree,bool is_MC){
 	  
 	    tree->SetBranchStatus("pthat", 1);
 	    tree->SetBranchAddress("pthat", &pthat);
+
+	    tree->SetBranchStatus("pt",1);
+	    tree->SetBranchAddress("pt",&gentrkPt);
+
+	    tree->SetBranchStatus("eta",1);
+            tree->SetBranchAddress("eta",&gentrkEta);
+
+	    tree->SetBranchStatus("phi",1);
+            tree->SetBranchAddress("phi",&gentrkPhi);
+
+	    //tree->SetBranchStatus("ncoll",1);
+	    //tree->SetBranchAddress("ncoll",&Ncoll);
+
+	    //tree->SetBranchStatus("npart",1);
+            //tree->SetBranchAddress("npart",&Npart);
+	    
 	  } 
 	    
 	//reading HLT information from trees
