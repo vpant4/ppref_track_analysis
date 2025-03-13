@@ -1,0 +1,14 @@
+Submit jobs at 
+PWD: /afs/cern.ch/user/v/vpant/pprefanalysis
+
+Processing Track_Analyzer.C("input/ppref2024/20250313/Pythiapthat15_39.txt","/eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_39.root",1,0)...
+List of input files founded! --> input/ppref2024/20250313/Pythiapthat15_39.txt
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/Pythia8_NoPU_0p5MEvents_TuneCP5_QCD_ptHat15_5360GeV/crab_ppref2024/250303_053315/0000/HiForestMiniAOD_78.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/Pythia8_NoPU_0p5MEvents_TuneCP5_QCD_ptHat15_5360GeV/crab_ppref2024/250303_053315/0000/HiForestMiniAOD_78.root to the chains
+list operator is /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/Pythia8_NoPU_0p5MEvents_TuneCP5_QCD_ptHat15_5360GeV/crab_ppref2024/250303_053315/0000/HiForestMiniAOD_79.root
+Adding file /eos/cms/store/group/phys_heavyions/vpant/ppref2024output/Pythia8_NoPU_0p5MEvents_TuneCP5_QCD_ptHat15_5360GeV/crab_ppref2024/250303_053315/0000/HiForestMiniAOD_79.root to the chains
+Total number of events in those files: 10000
+
+-------------------------------------------------
+0 events passed 
+finished

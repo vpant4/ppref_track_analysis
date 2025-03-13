@@ -12,7 +12,7 @@
 
 	//skim filters
 	Int_t HBHENoiseFilterResultRun2Loose;
-	Int_t pprimaryVertexFilter;
+	Int_t pprimaryVertexFilter=1;
 	Int_t pBeamScrapingFilter;
 	Int_t phfCoincFilter;
 	Int_t pVertexFilterCutdz1p0;
@@ -22,7 +22,9 @@
         //Gen info variables
         Int_t Ncoll; 
         Int_t Npart;
-        
+
+        std::vector <Int_t>*     gentrkpdg=nullptr;
+        std::vector<Int_t>*      gentrkchg=nullptr;
         std::vector<Float_t>*    gentrkPt = nullptr;
         std::vector<Float_t>*    gentrkEta= nullptr;
         std::vector<Float_t>*    gentrkPhi= nullptr;
@@ -30,6 +32,8 @@
 
 	//Track info variables
         Int_t nTrk=0;
+        std::vector<Int_t>*      trkPDGId=nullptr ;
+        std::vector<char>*      trkchg=nullptr;
 	std::vector<Float_t>*    trkPt = nullptr;
         std::vector<Float_t>* 	 trkPtError= nullptr;
 	std::vector<Float_t>*    trkEta= nullptr;
@@ -85,6 +89,11 @@ void read_trees(TChain *tree,bool is_MC){
 	    tree->SetBranchStatus("phi",1);
             tree->SetBranchAddress("phi",&gentrkPhi);
 
+	    tree->SetBranchStatus("chg",1);
+	    tree->SetBranchAddress("chg",&gentrkchg);
+
+	    tree->SetBranchStatus("pdg",1);
+	    tree->SetBranchAddress("pdg",&gentrkpdg);
 	    //tree->SetBranchStatus("ncoll",1);
 	    //tree->SetBranchAddress("ncoll",&Ncoll);
 
@@ -95,11 +104,11 @@ void read_trees(TChain *tree,bool is_MC){
 	    
 	//reading HLT information from trees
 	
-	tree->SetBranchStatus("HLT_ZeroBias_v13", 1);
-        tree->SetBranchAddress("HLT_ZeroBias_v13", &HLT_ZeroBias_v13);
+	//tree->SetBranchStatus("HLT_ZeroBias_v13", 1);
+        //tree->SetBranchAddress("HLT_ZeroBias_v13", &HLT_ZeroBias_v13);
 
-	tree->SetBranchStatus("HLT_AK4PFJet120_v8", 1);
-        tree->SetBranchAddress("HLT_AK4PFJet120_v8", &HLT_AK4PFJet120_v8);
+	//tree->SetBranchStatus("HLT_AK4PFJet120_v8", 1);
+        //tree->SetBranchAddress("HLT_AK4PFJet120_v8", &HLT_AK4PFJet120_v8);
 
 	//reading skim tree information
 
@@ -109,9 +118,10 @@ void read_trees(TChain *tree,bool is_MC){
 	//	tree->SetBranchStatus("HBHENoiseFilterResultRun2Loose", 1);
 	//tree->SetBranchAddress("HBHENoiseFilterResultRun2Loose", &HBHENoiseFilterResultRun2Loose);
 
+	if (!is_MC){
 	tree->SetBranchStatus("pprimaryVertexFilter", 1);
 	tree->SetBranchAddress("pprimaryVertexFilter", &pprimaryVertexFilter);
-
+	}
 	//tree->SetBranchStatus("pBeamScrapingFilter", 1);
 	//tree->SetBranchAddress("pBeamScrapingFilter", &pBeamScrapingFilter);
 
@@ -135,6 +145,11 @@ void read_trees(TChain *tree,bool is_MC){
 	
 	int nmax = 10000;
 
+	
+	
+	tree->SetBranchStatus("trkPDGId",1);
+	tree->SetBranchAddress("trkPDGId",&trkPDGId);
+	
 	tree->SetBranchStatus("trkPt", 1);
 	tree->SetBranchAddress("trkPt", &trkPt);    
 
@@ -143,6 +158,9 @@ void read_trees(TChain *tree,bool is_MC){
 
 	tree->SetBranchStatus("trkPhi", 1);
         tree->SetBranchAddress("trkPhi", &trkPhi);
+
+	tree->SetBranchStatus("trkCharge",1);
+	tree->SetBranchAddress("trkCharge",&trkchg);
 
 	tree->SetBranchStatus("nTrk", 1);
         tree->SetBranchAddress("nTrk", &nTrk);
@@ -156,17 +174,18 @@ void read_trees(TChain *tree,bool is_MC){
 	tree->SetBranchStatus("trkPtError",1);
 	tree->SetBranchAddress("trkPtError",&trkPtError);
 
-	tree->SetBranchStatus("trkDzErrAssociatedVtx",1);
-        tree->SetBranchAddress("trkDzErrAssociatedVtx",&trkDzErrAssociatedVtx);
+	tree->SetBranchStatus("trkDzErrFirstVtx",1);
+        tree->SetBranchAddress("trkDzErrFirstVtx",&trkDzErrAssociatedVtx);
 
-	tree->SetBranchStatus("trkDxyErrAssociatedVtx",1);
-        tree->SetBranchAddress("trkDxyErrAssociatedVtx",&trkDxyErrAssociatedVtx);
+	tree->SetBranchStatus("trkDxyErrFirstVtx",1);
+        tree->SetBranchAddress("trkDxyErrFirstVtx",&trkDxyErrAssociatedVtx);
 
-	tree->SetBranchStatus("trkDzAssociatedVtx",1);
-	tree->SetBranchAddress("trkDzAssociatedVtx",&trkDzAssociatedVtx);
+	tree->SetBranchStatus("trkDzFirstVtx",1);
+	tree->SetBranchAddress("trkDzFirstVtx",&trkDzAssociatedVtx);
 
-	tree->SetBranchStatus("trkDxyAssociatedVtx",1);
-	tree->SetBranchAddress("trkDxyAssociatedVtx",&trkDxyAssociatedVtx);
+	tree->SetBranchStatus("trkDxyFirstVtx",1);
+	tree->SetBranchAddress("trkDxyFirstVtx",&trkDxyAssociatedVtx);
+
 	//jet tree information
 	tree->SetBranchStatus("nref", 1);
 	tree->SetBranchAddress("nref",&nref);

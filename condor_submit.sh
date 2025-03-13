@@ -62,7 +62,7 @@ EOF
 
 for ((jobId = 1; jobId <= $n_sublists; jobId++)); do
     cat <<EOF >>condor/sub/ppref2024/${formatted_date}/ppref2024_${sample_prefix}.sub
-arguments             = input/ppref2024/${formatted_date}/${sample_prefix}_$jobId.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/${sample_prefix}_$jobId.root 0 0
+arguments             = input/ppref2024/${formatted_date}/${sample_prefix}_$jobId.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/${sample_prefix}_$jobId.root 1 0
 output                = condor/log/ppref2024/${formatted_date}/${sample_prefix}_$jobId.out
 error                 = condor/log/ppref2024/${formatted_date}/${sample_prefix}_$jobId.err
 log                   = condor/log/ppref2024/${formatted_date}/${sample_prefix}_$jobId.log
