@@ -1,0 +1,4 @@
+/eos/cms/store/group/phys_heavyions/vpant/ppref2024output/Pythia8_NoPU_0p5MEvents_TuneCP5_QCD_ptHat15_5360GeV/crab_ppref2024/250303_053315/0000/HiForestMiniAOD_30.root
+/eos/cms/store/group/phys_heavyions/vpant/ppref2024output/Pythia8_NoPU_0p5MEvents_TuneCP5_QCD_ptHat15_5360GeV/crab_ppref2024/250303_053315/0000/HiForestMiniAOD_31.root
+/eos/cms/store/group/phys_heavyions/vpant/ppref2024output/Pythia8_NoPU_0p5MEvents_TuneCP5_QCD_ptHat15_5360GeV/crab_ppref2024/250303_053315/0000/HiForestMiniAOD_32.root
+/eos/cms/store/group/phys_heavyions/vpant/ppref2024output/Pythia8_NoPU_0p5MEvents_TuneCP5_QCD_ptHat15_5360GeV/crab_ppref2024/250303_053315/0000/HiForestMiniAOD_33.root

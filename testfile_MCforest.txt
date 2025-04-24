@@ -1,0 +1,1 @@
+/afs/cern.ch/user/v/vpant/CMSSW_14_1_6/src/HeavyIonsAnalysis/Configuration/test/HiForestMiniAOD.root

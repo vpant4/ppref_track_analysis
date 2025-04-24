@@ -1,0 +1,296 @@
+   ------------------------------------------------------------------
+  | Welcome to ROOT 6.34.04                        https://root.cern |
+  | (c) 1995-2024, The ROOT Team; conception: R. Brun, F. Rademakers |
+  | Built for linuxx8664gcc on Feb 14 2025, 00:00:00                 |
+  | From tags/6-34-04@6-34-04                                        |
+  | With g++ (GCC) 11.5.0 20240719 (Red Hat 11.5.0-5)                |
+  | Try '.help'/'.?', '.demo', '.license', '.credits', '.quit'/'.q'  |
+   ------------------------------------------------------------------
+
+
+Processing Track_Analyzer.C("testfile_datacheck.txt","out_test.root",0,0)...
+List of input files founded! --> testfile_datacheck.txt
+list operator is /afs/cern.ch/user/v/vpant/pprefanalysis/HiForestMiniAOD.root
+Adding file /afs/cern.ch/user/v/vpant/pprefanalysis/HiForestMiniAOD.root to the chains
+Total number of events in those files: 10
+
+-------------------------------------------------
+0 events passed 
+Event 0
+ reco pt 0.495361 reco eta 0.980193 reco phi -2.22272 eff correction 1.14935 Ntrks 86
+ reco pt 0.668457 reco eta 0.822169 reco phi 2.54891 eff correction 1.10098 Ntrks 86
+ reco pt 0.337646 reco eta 0.756066 reco phi 2.33747 eff correction 1.2648 Ntrks 86
+ reco pt 0.5625 reco eta 0.649495 reco phi 0.85588 eff correction 1.08433 Ntrks 86
+ reco pt 0.868652 reco eta 0.453017 reco phi 2.15808 eff correction 1.07868 Ntrks 86
+ reco pt 0.372314 reco eta 0.319895 reco phi 2.79325 eff correction 1.23408 Ntrks 86
+ reco pt 0.159912 reco eta 0.0309458 reco phi 1.20306 eff correction 1.93049 Ntrks 86
+ reco pt 0.197266 reco eta 0.0113529 reco phi -1.05208 eff correction 1.93049 Ntrks 86
+ reco pt 0.714355 reco eta -0.0986969 reco phi 1.86304 eff correction 1.07969 Ntrks 86
+ reco pt 0.278076 reco eta -0.12067 reco phi -3.03241 eff correction 1.37535 Ntrks 86
+ reco pt 0.927246 reco eta -0.201056 reco phi 2.46071 eff correction 1.07904 Ntrks 86
+ reco pt 0.685059 reco eta -0.218268 reco phi -0.791912 eff correction 1.08174 Ntrks 86
+ reco pt 0.800293 reco eta -0.246834 reco phi -0.872089 eff correction 1.07798 Ntrks 86
+ reco pt 0.19104 reco eta -0.320444 reco phi -0.99886 eff correction 2.04193 Ntrks 86
+ reco pt 0.52832 reco eta -0.330515 reco phi -0.0469793 eff correction 1.10889 Ntrks 86
+ reco pt 0.381836 reco eta -0.338206 reco phi -2.8497 eff correction 1.27026 Ntrks 86
+ reco pt 0.684082 reco eta -0.365673 reco phi -0.444636 eff correction 1.08174 Ntrks 86
+ reco pt 0.231567 reco eta -0.425733 reco phi -1.58676 eff correction 1.75066 Ntrks 86
+ reco pt 0.739746 reco eta -0.548418 reco phi 1.52826 eff correction 1.08543 Ntrks 86
+ reco pt 0.330078 reco eta -0.591449 reco phi -1.22572 eff correction 1.36931 Ntrks 86
+ reco pt 0.413818 reco eta -0.779138 reco phi 3.11699 eff correction 1.19719 Ntrks 86
+ reco pt 0.279541 reco eta -0.871242 reco phi 2.71229 eff correction 2.00741 Ntrks 86
+ reco pt 0.631348 reco eta -0.883877 reco phi -2.70681 eff correction 1.11696 Ntrks 86
+ reco pt 0.577637 reco eta -0.896329 reco phi -0.546311 eff correction 1.12503 Ntrks 86
+ reco pt 0.493896 reco eta -0.944304 reco phi 0.42033 eff correction 1.18437 Ntrks 86
+ reco pt 1.1543 reco eta -0.125614 reco phi 2.97625 eff correction 1.0788 Ntrks 86
+ reco pt 2.79492 reco eta -0.168462 reco phi -0.215049 eff correction 1.08101 Ntrks 86
+ reco pt 1.94922 reco eta -0.556291 reco phi -0.198839 eff correction 1.08975 Ntrks 86
+ reco pt 1.89941 reco eta -0.61269 reco phi 2.94472 eff correction 1.08803 Ntrks 86
+ reco pt 3.00781 reco eta -0.664693 reco phi -0.323835 eff correction 1.08634 Ntrks 86
+ reco pt 1.14844 reco eta -0.713401 reco phi 2.35885 eff correction 1.08728 Ntrks 86
+ reco pt 1.17773 reco eta -0.735923 reco phi 2.54196 eff correction 1.08523 Ntrks 86
+Event 1
+ reco pt 0.606445 reco eta 0.986785 reco phi -3.07714 eff correction 1.10154 Ntrks 62
+ reco pt 0.280029 reco eta 0.750023 reco phi -0.299323 eff correction 1.35911 Ntrks 62
+ reco pt 0.41748 reco eta 0.672933 reco phi -2.4321 eff correction 1.14942 Ntrks 62
+ reco pt 0.446533 reco eta 0.599506 reco phi 1.95377 eff correction 1.14942 Ntrks 62
+ reco pt 0.442871 reco eta 0.558306 reco phi 0.591819 eff correction 1.14942 Ntrks 62
+ reco pt 0.236694 reco eta 0.404675 reco phi -0.763595 eff correction 1.53398 Ntrks 62
+ reco pt 0.538086 reco eta -0.00842311 reco phi 0.952563 eff correction 1.10889 Ntrks 62
+ reco pt 0.367432 reco eta -0.046144 reco phi 1.92086 eff correction 1.27026 Ntrks 62
+ reco pt 0.619141 reco eta -0.178899 reco phi 1.34653 eff correction 1.08655 Ntrks 62
+ reco pt 0.313477 reco eta -0.218085 reco phi -0.932551 eff correction 1.30643 Ntrks 62
+ reco pt 0.400635 reco eta -0.242805 reco phi -1.56811 eff correction 1.18989 Ntrks 62
+ reco pt 0.59668 reco eta -0.254341 reco phi 1.66587 eff correction 1.09243 Ntrks 62
+ reco pt 2.39648 reco eta 0.0992462 reco phi 1.55532 eff correction 1.07805 Ntrks 62
+ reco pt 1.69141 reco eta 0.0822169 reco phi 1.7816 eff correction 1.07644 Ntrks 62
+ reco pt 1.98145 reco eta -0.520768 reco phi 1.43686 eff correction 1.08975 Ntrks 62
+Event 2
+ reco pt 0.61084 reco eta 0.216803 reco phi 1.22504 eff correction 1.0832 Ntrks 37
+ reco pt 0.448242 reco eta -0.164434 reco phi -0.728241 eff correction 1.18989 Ntrks 37
+ reco pt 0.541016 reco eta -0.744346 reco phi 2.72771 eff correction 1.1033 Ntrks 37
+ reco pt 0.830078 reco eta -0.887173 reco phi 2.27312 eff correction 1.11068 Ntrks 37
+Event 3
+ reco pt 0.476807 reco eta 0.593829 reco phi -2.48542 eff correction 1.1117 Ntrks 66
+ reco pt 0.405762 reco eta 0.127079 reco phi 2.7372 eff correction 1.17264 Ntrks 66
+ reco pt 0.263916 reco eta 0.109867 reco phi -0.0029272 eff correction 1.3322 Ntrks 66
+ reco pt 0.803711 reco eta -0.00292978 reco phi 2.54999 eff correction 1.07798 Ntrks 66
+ reco pt 0.416016 reco eta -0.275582 reco phi -1.53149 eff correction 1.18989 Ntrks 66
+ reco pt 0.256836 reco eta -0.719443 reco phi -1.49584 eff correction 1.49899 Ntrks 66
+ reco pt 0.588379 reco eta 0.100711 reco phi -2.58163 eff correction 1.08893 Ntrks 66
+ reco pt 0.41333 reco eta -0.0179449 reco phi 1.76695 eff correction 1.18989 Ntrks 66
+ reco pt 0.283447 reco eta -0.158208 reco phi -2.75233 eff correction 1.37535 Ntrks 66
+ reco pt 0.692871 reco eta -0.918119 reco phi -1.61772 eff correction 1.11455 Ntrks 66
+ reco pt 1.10156 reco eta -0.583941 reco phi -0.986953 eff correction 1.08728 Ntrks 66
+ reco pt 1.24707 reco eta -0.727317 reco phi -1.65473 eff correction 1.08946 Ntrks 66
+ reco pt 13.6094 reco eta -0.853114 reco phi -1.04573 eff correction 1.12997 Ntrks 66
+ reco pt 3.76172 reco eta -0.898892 reco phi -1.10092 eff correction 1.10413 Ntrks 66
+ reco pt 2.27734 reco eta -0.920316 reco phi -1.11985 eff correction 1.10623 Ntrks 66
+ reco pt 1.1084 reco eta 0.709372 reco phi -0.107336 eff correction 1.08091 Ntrks 66
+Event 4
+ reco pt 0.541016 reco eta 0.905118 reco phi -0.727664 eff correction 1.11952 Ntrks 58
+ reco pt 0.836426 reco eta 0.865383 reco phi -0.790641 eff correction 1.09411 Ntrks 58
+ reco pt 0.535156 reco eta 0.618 reco phi 1.95933 eff correction 1.09112 Ntrks 58
+ reco pt 0.371338 reco eta 0.449721 reco phi -3.12402 eff correction 1.2088 Ntrks 58
+ reco pt 0.224365 reco eta 0.409436 reco phi 0.12276 eff correction 1.53398 Ntrks 58
+ reco pt 0.722168 reco eta 0.388562 reco phi 2.11558 eff correction 1.07527 Ntrks 58
+ reco pt 0.320557 reco eta 0.168645 reco phi 1.57915 eff correction 1.26774 Ntrks 58
+ reco pt 0.598633 reco eta 0.121952 reco phi -2.90625 eff correction 1.08893 Ntrks 58
+ reco pt 0.604492 reco eta -0.189337 reco phi 1.90163 eff correction 1.08655 Ntrks 58
+ reco pt 0.473877 reco eta -0.695456 reco phi -0.883909 eff correction 1.13449 Ntrks 58
+ reco pt 1.09961 reco eta 0.92819 reco phi 1.4688 eff correction 1.09649 Ntrks 58
+ reco pt 1.61621 reco eta 0.858974 reco phi 2.6246 eff correction 1.09796 Ntrks 58
+ reco pt 1.8916 reco eta 0.858058 reco phi 1.57212 eff correction 1.09744 Ntrks 58
+ reco pt 10.5469 reco eta 0.822352 reco phi 2.54881 eff correction 1.11017 Ntrks 58
+ reco pt 1.99023 reco eta 0.809717 reco phi 2.6616 eff correction 1.09605 Ntrks 58
+ reco pt 0.945312 reco eta 0.485061 reco phi 1.35325 eff correction 1.08038 Ntrks 58
+ reco pt 2.79297 reco eta 0.438185 reco phi 1.7603 eff correction 1.08167 Ntrks 58
+ reco pt 4.91797 reco eta 0.193548 reco phi -0.221298 eff correction 1.07996 Ntrks 58
+ reco pt 3.87891 reco eta 0.167913 reco phi -0.218559 eff correction 1.07882 Ntrks 58
+ reco pt 1.70508 reco eta 0.133305 reco phi -0.375115 eff correction 1.07393 Ntrks 58
+ reco pt 3.39648 reco eta 0.0465102 reco phi -0.378237 eff correction 1.07882 Ntrks 58
+ reco pt 6.08594 reco eta 0.0287484 reco phi -0.33956 eff correction 1.0812 Ntrks 58
+ reco pt 2.42773 reco eta -0.00915555 reco phi -0.359187 eff correction 1.08113 Ntrks 58
+ reco pt 1.10059 reco eta -0.551897 reco phi 1.66889 eff correction 1.08728 Ntrks 58
+Event 5
+ reco pt 0.228271 reco eta 0.905301 reco phi 0.845829 eff correction 1.91626 Ntrks 137
+ reco pt 0.265381 reco eta 0.885342 reco phi -2.95673 eff correction 1.79759 Ntrks 137
+ reco pt 0.311035 reco eta 0.883328 reco phi 0.455382 eff correction 1.43198 Ntrks 137
+ reco pt 0.236328 reco eta 0.83755 reco phi -2.40154 eff correction 1.91626 Ntrks 137
+ reco pt 0.67627 reco eta 0.778588 reco phi 1.27407 eff correction 1.07933 Ntrks 137
+ reco pt 0.407471 reco eta 0.687765 reco phi 0.576779 eff correction 1.14942 Ntrks 137
+ reco pt 0.693848 reco eta 0.680624 reco phi 2.52108 eff correction 1.07933 Ntrks 137
+ reco pt 0.756348 reco eta 0.637043 reco phi -2.73837 eff correction 1.07479 Ntrks 137
+ reco pt 0.532715 reco eta 0.566729 reco phi 2.41472 eff correction 1.09112 Ntrks 137
+ reco pt 0.819336 reco eta 0.468032 reco phi -2.01314 eff correction 1.07749 Ntrks 137
+ reco pt 0.460205 reco eta 0.446974 reco phi -2.60672 eff correction 1.1117 Ntrks 137
+ reco pt 0.457764 reco eta 0.438551 reco phi -2.27917 eff correction 1.1117 Ntrks 137
+ reco pt 0.379395 reco eta 0.416211 reco phi -0.576779 eff correction 1.2088 Ntrks 137
+ reco pt 0.202148 reco eta 0.301218 reco phi -1.72779 eff correction 1.45682 Ntrks 137
+ reco pt 0.448242 reco eta 0.157109 reco phi -2.27516 eff correction 1.17264 Ntrks 137
+ reco pt 0.702637 reco eta 0.0291147 reco phi 2.10133 eff correction 1.07527 Ntrks 137
+ reco pt 0.388184 reco eta -0.0836818 reco phi 0.360163 eff correction 1.27026 Ntrks 137
+ reco pt 0.743652 reco eta -0.326487 reco phi 1.07932 eff correction 1.07969 Ntrks 137
+ reco pt 0.189819 reco eta -0.378124 reco phi 3.05234 eff correction 2.04193 Ntrks 137
+ reco pt 0.22522 reco eta -0.408338 reco phi 2.69364 eff correction 1.75066 Ntrks 137
+ reco pt 0.513184 reco eta -0.517106 reco phi -2.82304 eff correction 1.1033 Ntrks 137
+ reco pt 0.582031 reco eta -0.630268 reco phi -0.0939539 eff correction 1.09567 Ntrks 137
+ reco pt 0.45752 reco eta -0.703513 reco phi -2.90311 eff correction 1.13449 Ntrks 137
+ reco pt 0.501953 reco eta -0.747459 reco phi 1.20804 eff correction 1.1033 Ntrks 137
+ reco pt 0.35498 reco eta -0.844874 reco phi -0.283118 eff correction 1.42798 Ntrks 137
+ reco pt 0.794922 reco eta -0.937895 reco phi 0.224023 eff correction 1.11192 Ntrks 137
+ reco pt 1.50879 reco eta 0.653706 reco phi 0.263478 eff correction 1.0804 Ntrks 137
+ reco pt 2.3125 reco eta 0.605365 reco phi 0.490929 eff correction 1.08083 Ntrks 137
+ reco pt 1.42871 reco eta 0.43086 reco phi 0.81927 eff correction 1.07896 Ntrks 137
+ reco pt 4.29297 reco eta 0.417859 reco phi 0.589766 eff correction 1.08322 Ntrks 137
+ reco pt 7.28125 reco eta 0.369518 reco phi 0.604903 eff correction 1.0812 Ntrks 137
+ reco pt 5.61719 reco eta 0.350108 reco phi 0.455289 eff correction 1.0812 Ntrks 137
+ reco pt 16.3594 reco eta 0.337107 reco phi 0.587322 eff correction 1.10711 Ntrks 137
+ reco pt 4.28516 reco eta 0.333995 reco phi 0.613986 eff correction 1.07996 Ntrks 137
+ reco pt 2.01562 reco eta 0.330515 reco phi 0.524142 eff correction 1.07805 Ntrks 137
+ reco pt 3.90234 reco eta 0.328684 reco phi 0.621794 eff correction 1.07882 Ntrks 137
+ reco pt 16.2656 reco eta 0.319895 reco phi 0.606855 eff correction 1.10711 Ntrks 137
+ reco pt 9.86719 reco eta 0.309641 reco phi 0.575605 eff correction 1.08672 Ntrks 137
+ reco pt 17.8906 reco eta 0.297189 reco phi 0.540154 eff correction 1.10711 Ntrks 137
+ reco pt 8.02344 reco eta 0.290414 reco phi 0.47941 eff correction 1.08672 Ntrks 137
+ reco pt 4.29297 reco eta 0.260933 reco phi 0.642405 eff correction 1.07996 Ntrks 137
+ reco pt 2.02734 reco eta 0.232917 reco phi 1.55435 eff correction 1.07805 Ntrks 137
+ reco pt 3.5 reco eta 0.186224 reco phi 0.701288 eff correction 1.07882 Ntrks 137
+ reco pt 3.51758 reco eta 0.147588 reco phi 0.605094 eff correction 1.07882 Ntrks 137
+ reco pt 1.59766 reco eta 0.114261 reco phi -0.340446 eff correction 1.07563 Ntrks 137
+ reco pt 2.57031 reco eta -0.601886 reco phi -3.1334 eff correction 1.08626 Ntrks 137
+ reco pt 1.94043 reco eta -0.603717 reco phi -3.12676 eff correction 1.08975 Ntrks 137
+ reco pt 3.10156 reco eta -0.992828 reco phi -0.631077 eff correction 1.10413 Ntrks 137
+Event 6
+ reco pt 0.381836 reco eta 0.62624 reco phi -1.84176 eff correction 1.2088 Ntrks 55
+ reco pt 0.54541 reco eta 0.575884 reco phi -1.32114 eff correction 1.09112 Ntrks 55
+ reco pt 0.379883 reco eta 0.388195 reco phi 0.490148 eff correction 1.23408 Ntrks 55
+ reco pt 0.541504 reco eta 0.0893582 reco phi 1.94566 eff correction 1.10232 Ntrks 55
+ reco pt 0.211548 reco eta 0.0155644 reco phi 1.88356 eff correction 1.45682 Ntrks 55
+ reco pt 0.73291 reco eta -0.289315 reco phi 0.423541 eff correction 1.07969 Ntrks 55
+ reco pt 0.451172 reco eta -0.300851 reco phi -0.235843 eff correction 1.13844 Ntrks 55
+ reco pt 0.601562 reco eta -0.551347 reco phi -1.32738 eff correction 1.08838 Ntrks 55
+ reco pt 0.189087 reco eta -0.60152 reco phi 1.28431 eff correction 2.94589 Ntrks 55
+ reco pt 0.711914 reco eta -0.664327 reco phi -1.65064 eff correction 1.08543 Ntrks 55
+ reco pt 0.932617 reco eta -0.705161 reco phi -0.970937 eff correction 1.08515 Ntrks 55
+ reco pt 0.404297 reco eta -0.901639 reco phi -2.02945 eff correction 1.27836 Ntrks 55
+ reco pt 0.382812 reco eta -0.903653 reco phi -1.85514 eff correction 1.42798 Ntrks 55
+ reco pt 0.570312 reco eta -0.959685 reco phi 1.35834 eff correction 1.12503 Ntrks 55
+ reco pt 1.16895 reco eta 0.421522 reco phi 2.33415 eff correction 1.07958 Ntrks 55
+ reco pt 3.35938 reco eta 0.42024 reco phi 2.7491 eff correction 1.08138 Ntrks 55
+ reco pt 19.0938 reco eta 0.357433 reco phi 2.89071 eff correction 1.10711 Ntrks 55
+ reco pt 5.45703 reco eta 0.318064 reco phi 2.97128 eff correction 1.0812 Ntrks 55
+ reco pt 1.61426 reco eta 0.18128 reco phi 3.04121 eff correction 1.07644 Ntrks 55
+ reco pt 2.28711 reco eta 0.176702 reco phi 3.02383 eff correction 1.07805 Ntrks 55
+ reco pt 1.7832 reco eta 0.134404 reco phi 0.949926 eff correction 1.07393 Ntrks 55
+ reco pt 2.01562 reco eta -0.907132 reco phi 2.3992 eff correction 1.10623 Ntrks 55
+ reco pt 1.23828 reco eta -0.960418 reco phi -0.525692 eff correction 1.10726 Ntrks 55
+Event 7
+ reco pt 0.611816 reco eta 0.745445 reco phi 0.739579 eff correction 1.08077 Ntrks 76
+ reco pt 0.512695 reco eta 0.732078 reco phi -0.844757 eff correction 1.09112 Ntrks 76
+ reco pt 0.543945 reco eta 0.725303 reco phi -2.20632 eff correction 1.09112 Ntrks 76
+ reco pt 0.373535 reco eta 0.718894 reco phi 2.9663 eff correction 1.2088 Ntrks 76
+ reco pt 0.374023 reco eta 0.703879 reco phi -1.51206 eff correction 1.2088 Ntrks 76
+ reco pt 0.178223 reco eta 0.596942 reco phi 2.18424 eff correction 2.43929 Ntrks 76
+ reco pt 0.553711 reco eta 0.305063 reco phi 1.35189 eff correction 1.08893 Ntrks 76
+ reco pt 0.655273 reco eta 0.0829493 reco phi -2.60212 eff correction 1.07627 Ntrks 76
+ reco pt 0.895508 reco eta -0.12067 reco phi -1.65229 eff correction 1.07551 Ntrks 76
+ reco pt 0.327148 reco eta -0.570391 reco phi 0.432139 eff correction 1.36931 Ntrks 76
+ reco pt 2.16992 reco eta 0.943205 reco phi 1.94293 eff correction 1.09798 Ntrks 76
+ reco pt 2.61523 reco eta 0.914457 reco phi 0.750027 eff correction 1.09371 Ntrks 76
+ reco pt 2.51758 reco eta 0.910977 reco phi 1.98385 eff correction 1.09371 Ntrks 76
+ reco pt 2.7793 reco eta 0.874355 reco phi 1.89029 eff correction 1.09371 Ntrks 76
+ reco pt 1.32617 reco eta 0.852199 reco phi 1.82114 eff correction 1.09588 Ntrks 76
+ reco pt 1.76855 reco eta 0.734825 reco phi 2.15289 eff correction 1.08372 Ntrks 76
+ reco pt 0.964355 reco eta 0.54329 reco phi 1.11907 eff correction 1.0769 Ntrks 76
+ reco pt 1.99902 reco eta 0.393323 reco phi -1.70269 eff correction 1.07615 Ntrks 76
+ reco pt 2.42969 reco eta 0.389111 reco phi -1.54711 eff correction 1.07805 Ntrks 76
+ reco pt 2.18555 reco eta 0.298288 reco phi -1.70006 eff correction 1.07805 Ntrks 76
+ reco pt 1.59766 reco eta 0.258553 reco phi -1.31899 eff correction 1.07563 Ntrks 76
+ reco pt 1.88281 reco eta 0.222297 reco phi -1.62749 eff correction 1.07819 Ntrks 76
+ reco pt 1.64355 reco eta 0.221015 reco phi -1.50756 eff correction 1.07644 Ntrks 76
+ reco pt 3.58203 reco eta 0.112796 reco phi -1.76138 eff correction 1.07882 Ntrks 76
+ reco pt 2.10352 reco eta 0.00311289 reco phi -1.35092 eff correction 1.07805 Ntrks 76
+ reco pt 1.23926 reco eta -0.0867946 reco phi -1.16458 eff correction 1.07769 Ntrks 76
+ reco pt 2.71484 reco eta -0.279061 reco phi -1.3851 eff correction 1.08101 Ntrks 76
+ reco pt 1.30176 reco eta -0.38197 reco phi -2.80605 eff correction 1.07821 Ntrks 76
+ reco pt 1.59766 reco eta -0.420423 reco phi -2.30232 eff correction 1.08634 Ntrks 76
+ reco pt 1.86719 reco eta -0.676595 reco phi -2.1065 eff correction 1.08803 Ntrks 76
+ reco pt 1.93848 reco eta -0.722922 reco phi -1.75563 eff correction 1.08975 Ntrks 76
+ reco pt 19.7812 reco eta -0.746178 reco phi -2.04596 eff correction 1.11784 Ntrks 76
+ reco pt 2.34961 reco eta -0.813013 reco phi -1.85963 eff correction 1.10623 Ntrks 76
+ reco pt 3.77734 reco eta -0.822901 reco phi -1.95807 eff correction 1.10413 Ntrks 76
+ reco pt 2.87109 reco eta -0.843043 reco phi -2.16178 eff correction 1.10634 Ntrks 76
+ reco pt 3.03516 reco eta -0.855861 reco phi -2.03297 eff correction 1.10413 Ntrks 76
+ reco pt 4.95703 reco eta -0.94998 reco phi -2.04821 eff correction 1.10375 Ntrks 76
+Event 8
+ reco pt 0.592285 reco eta -0.828028 reco phi -1.07816 eff correction 1.12503 Ntrks 82
+ reco pt 0.516113 reco eta 0.999603 reco phi -1.75758 eff correction 1.11952 Ntrks 82
+ reco pt 0.168945 reco eta 0.828761 reco phi 1.92515 eff correction 3.82606 Ntrks 82
+ reco pt 0.372803 reco eta 0.536149 reco phi -1.79039 eff correction 1.2088 Ntrks 82
+ reco pt 0.625977 reco eta 0.42262 reco phi -0.865059 eff correction 1.08077 Ntrks 82
+ reco pt 0.392822 reco eta 0.114811 reco phi -1.89069 eff correction 1.23408 Ntrks 82
+ reco pt 0.91748 reco eta -0.163884 reco phi 3.13651 eff correction 1.07904 Ntrks 82
+ reco pt 0.44751 reco eta -0.220649 reco phi -0.652945 eff correction 1.18989 Ntrks 82
+ reco pt 0.448242 reco eta -0.258919 reco phi 2.9458 eff correction 1.18989 Ntrks 82
+ reco pt 0.944336 reco eta -0.55153 reco phi -0.101868 eff correction 1.08515 Ntrks 82
+ reco pt 0.603027 reco eta -0.67568 reco phi -1.47299 eff correction 1.08838 Ntrks 82
+ reco pt 0.516602 reco eta -0.706809 reco phi -0.42951 eff correction 1.1033 Ntrks 82
+ reco pt 0.260986 reco eta -0.857143 reco phi 1.46557 eff correction 2.00741 Ntrks 82
+ reco pt 0.713379 reco eta -0.888821 reco phi 1.61713 eff correction 1.11523 Ntrks 82
+ reco pt 0.750977 reco eta -0.947233 reco phi -1.07631 eff correction 1.11192 Ntrks 82
+ reco pt 1.11133 reco eta -0.957854 reco phi 0.60206 eff correction 1.11058 Ntrks 82
+Event 9
+ reco pt 0.333008 reco eta 0.990997 reco phi -2.11608 eff correction 1.43198 Ntrks 138
+ reco pt 0.22522 reco eta 0.920316 reco phi -2.70008 eff correction 1.91626 Ntrks 138
+ reco pt 0.234985 reco eta 0.707907 reco phi -0.728828 eff correction 1.53398 Ntrks 138
+ reco pt 0.938477 reco eta 0.618732 reco phi -1.86257 eff correction 1.08038 Ntrks 138
+ reco pt 0.26416 reco eta 0.235847 reco phi -1.91666 eff correction 1.3322 Ntrks 138
+ reco pt 0.441162 reco eta 0.0203253 reco phi 1.74293 eff correction 1.17264 Ntrks 138
+ reco pt 0.717773 reco eta -0.0981475 reco phi 0.919748 eff correction 1.07969 Ntrks 138
+ reco pt 0.328857 reco eta -0.24189 reco phi 0.0631823 eff correction 1.30643 Ntrks 138
+ reco pt 0.372803 reco eta -0.388379 reco phi 2.47888 eff correction 1.27026 Ntrks 138
+ reco pt 0.611328 reco eta -0.533403 reco phi 1.94333 eff correction 1.08838 Ntrks 138
+ reco pt 0.333496 reco eta -0.586505 reco phi 1.80718 eff correction 1.36931 Ntrks 138
+ reco pt 0.170898 reco eta -0.726585 reco phi -1.22201 eff correction 2.94589 Ntrks 138
+ reco pt 3.58594 reco eta 0.940458 reco phi -0.738697 eff correction 1.096 Ntrks 138
+ reco pt 1.13477 reco eta 0.930204 reco phi -1.45718 eff correction 1.0948 Ntrks 138
+ reco pt 4.54688 reco eta 0.906949 reco phi -0.621408 eff correction 1.09314 Ntrks 138
+ reco pt 2.82031 reco eta 0.860988 reco phi -0.295611 eff correction 1.09371 Ntrks 138
+ reco pt 5.39062 reco eta 0.860256 reco phi -2.8954 eff correction 1.09638 Ntrks 138
+ reco pt 10.6172 reco eta 0.826746 reco phi -2.82421 eff correction 1.11017 Ntrks 138
+ reco pt 1.24902 reco eta 0.805139 reco phi -3.00633 eff correction 1.09606 Ntrks 138
+ reco pt 1.01367 reco eta 0.803491 reco phi -2.70173 eff correction 1.09819 Ntrks 138
+ reco pt 2.89648 reco eta 0.769616 reco phi -2.89091 eff correction 1.08167 Ntrks 138
+ reco pt 9.6875 reco eta 0.741417 reco phi -2.69901 eff correction 1.0914 Ntrks 138
+ reco pt 13.3516 reco eta 0.737938 reco phi -2.69627 eff correction 1.10372 Ntrks 138
+ reco pt 7.60156 reco eta 0.699301 reco phi -2.59568 eff correction 1.0914 Ntrks 138
+ reco pt 18.3438 reco eta 0.673299 reco phi -2.71424 eff correction 1.11719 Ntrks 138
+ reco pt 24.2031 reco eta 0.65389 reco phi -2.57781 eff correction 1.12705 Ntrks 138
+ reco pt 72.75 reco eta 0.641987 reco phi -2.57537 eff correction 1.19978 Ntrks 138
+ reco pt 6.50781 reco eta 0.640522 reco phi -2.7035 eff correction 1.08517 Ntrks 138
+ reco pt 73.5 reco eta 0.633015 reco phi -2.57498 eff correction 1.19978 Ntrks 138
+ reco pt 20.6406 reco eta 0.626606 reco phi -2.57459 eff correction 1.12705 Ntrks 138
+ reco pt 0.443604 reco eta 0.610492 reco phi -1.87984 eff correction 1.14942 Ntrks 138
+ reco pt 2.86523 reco eta 0.574053 reco phi -1.54223 eff correction 1.08167 Ntrks 138
+ reco pt 5.62109 reco eta 0.536699 reco phi -2.53367 eff correction 1.08517 Ntrks 138
+ reco pt 6.37109 reco eta 0.535051 reco phi -2.58416 eff correction 1.08517 Ntrks 138
+ reco pt 5.72266 reco eta 0.498428 reco phi -2.60155 eff correction 1.08517 Ntrks 138
+ reco pt 2.72266 reco eta 0.472976 reco phi -2.76024 eff correction 1.08167 Ntrks 138
+ reco pt 2.5 reco eta 0.424635 reco phi -2.79355 eff correction 1.08167 Ntrks 138
+ reco pt 10.7969 reco eta 0.408338 reco phi -2.68583 eff correction 1.09498 Ntrks 138
+ reco pt 16.625 reco eta 0.407605 reco phi -2.66141 eff correction 1.11719 Ntrks 138
+ reco pt 13.3828 reco eta 0.397717 reco phi -2.66659 eff correction 1.09853 Ntrks 138
+ reco pt 42.0312 reco eta 0.379406 reco phi -2.66219 eff correction 1.1388 Ntrks 138
+ reco pt 2.82422 reco eta 0.374096 reco phi 0.437224 eff correction 1.07803 Ntrks 138
+ reco pt 0.913574 reco eta 0.298471 reco phi -1.86354 eff correction 1.07234 Ntrks 138
+ reco pt 1.18164 reco eta 0.113346 reco phi -2.85869 eff correction 1.07434 Ntrks 138
+ reco pt 1.12012 reco eta 0.0569475 reco phi 2.45934 eff correction 1.07442 Ntrks 138
+ reco pt 6.20312 reco eta -0.0454115 reco phi 0.498845 eff correction 1.08462 Ntrks 138
+ reco pt 299.5 reco eta -0.133122 reco phi 0.493374 eff correction 1.34138 Ntrks 138
+ reco pt 120.188 reco eta -0.135319 reco phi 0.494156 eff correction 1.26922 Ntrks 138
+ reco pt 1.72461 reco eta -0.216071 reco phi 0.459383 eff correction 1.07615 Ntrks 138
+ reco pt 2.94141 reco eta -0.26075 reco phi 0.689178 eff correction 1.08101 Ntrks 138
+ reco pt 1.44336 reco eta -0.266976 reco phi 0.48469 eff correction 1.07559 Ntrks 138
+ reco pt 1.25977 reco eta -0.966277 reco phi -2.48376 eff correction 1.10726 Ntrks 138
+finished

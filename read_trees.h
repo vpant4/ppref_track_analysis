@@ -46,8 +46,8 @@
 	std::vector<Float_t>*    pfHcal= nullptr;
 	std::vector<Float_t>*    trkDzErrAssociatedVtx= nullptr;
 	std::vector<Float_t>*    trkDxyErrAssociatedVtx= nullptr;
-        std::vector<Float_t>*    trkDzAssociatedVtx;
-        std::vector<Float_t>*    trkDxyAssociatedVtx;
+        std::vector<Float_t>*    trkDzAssociatedVtx=nullptr;
+        std::vector<Float_t>*    trkDxyAssociatedVtx=nullptr;
 
 
 	//jet info variables
@@ -174,17 +174,17 @@ void read_trees(TChain *tree,bool is_MC){
 	tree->SetBranchStatus("trkPtError",1);
 	tree->SetBranchAddress("trkPtError",&trkPtError);
 
-	tree->SetBranchStatus("trkDzErrFirstVtx",1);
-        tree->SetBranchAddress("trkDzErrFirstVtx",&trkDzErrAssociatedVtx);
+	tree->SetBranchStatus("trkDzErrAssociatedVtx",1);
+        tree->SetBranchAddress("trkDzErrAssociatedVtx",&trkDzErrAssociatedVtx);
 
-	tree->SetBranchStatus("trkDxyErrFirstVtx",1);
-        tree->SetBranchAddress("trkDxyErrFirstVtx",&trkDxyErrAssociatedVtx);
+	tree->SetBranchStatus("trkDxyErrAssociatedVtx",1);
+        tree->SetBranchAddress("trkDxyErrAssociatedVtx",&trkDxyErrAssociatedVtx);
 
-	tree->SetBranchStatus("trkDzFirstVtx",1);
-	tree->SetBranchAddress("trkDzFirstVtx",&trkDzAssociatedVtx);
+	tree->SetBranchStatus("trkDzAssociatedVtx",1);
+	tree->SetBranchAddress("trkDzAssociatedVtx",&trkDzAssociatedVtx);
 
-	tree->SetBranchStatus("trkDxyFirstVtx",1);
-	tree->SetBranchAddress("trkDxyFirstVtx",&trkDxyAssociatedVtx);
+	tree->SetBranchStatus("trkDxyAssociatedVtx",1);
+	tree->SetBranchAddress("trkDxyAssociatedVtx",&trkDxyAssociatedVtx);
 
 	//jet tree information
 	tree->SetBranchStatus("nref", 1);

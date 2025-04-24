@@ -1,0 +1,608 @@
+universe = vanilla
+executable = /afs/cern.ch/user/v/vpant/pprefanalysis/sub.sh
++JobFlavour           = "longlunch"
+getenv     = True
+requirements =((OpSysAndVer =?= "AlmaLinux9") && (CERNEnvironment =?= "qa"))
+RequestCpus = 1
+transfer_input_files  = voms_proxy.txt
+environment = "X509_USER_PROXY=voms_proxy.txt"
+arguments             = input/ppref2024/20250424/Pythiapthat15_1.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_1.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_1.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_1.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_1.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_2.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_2.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_2.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_2.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_2.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_3.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_3.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_3.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_3.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_3.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_4.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_4.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_4.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_4.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_4.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_5.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_5.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_5.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_5.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_5.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_6.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_6.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_6.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_6.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_6.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_7.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_7.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_7.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_7.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_7.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_8.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_8.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_8.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_8.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_8.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_9.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_9.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_9.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_9.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_9.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_10.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_10.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_10.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_10.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_10.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_11.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_11.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_11.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_11.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_11.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_12.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_12.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_12.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_12.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_12.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_13.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_13.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_13.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_13.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_13.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_14.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_14.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_14.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_14.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_14.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_15.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_15.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_15.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_15.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_15.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_16.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_16.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_16.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_16.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_16.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_17.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_17.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_17.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_17.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_17.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_18.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_18.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_18.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_18.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_18.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_19.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_19.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_19.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_19.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_19.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_20.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_20.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_20.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_20.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_20.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_21.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_21.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_21.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_21.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_21.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_22.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_22.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_22.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_22.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_22.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_23.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_23.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_23.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_23.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_23.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_24.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_24.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_24.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_24.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_24.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_25.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_25.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_25.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_25.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_25.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_26.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_26.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_26.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_26.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_26.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_27.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_27.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_27.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_27.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_27.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_28.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_28.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_28.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_28.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_28.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_29.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_29.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_29.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_29.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_29.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_30.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_30.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_30.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_30.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_30.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_31.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_31.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_31.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_31.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_31.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_32.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_32.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_32.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_32.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_32.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_33.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_33.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_33.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_33.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_33.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_34.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_34.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_34.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_34.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_34.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_35.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_35.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_35.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_35.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_35.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_36.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_36.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_36.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_36.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_36.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_37.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_37.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_37.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_37.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_37.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_38.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_38.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_38.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_38.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_38.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_39.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_39.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_39.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_39.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_39.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_40.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_40.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_40.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_40.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_40.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_41.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_41.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_41.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_41.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_41.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_42.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_42.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_42.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_42.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_42.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_43.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_43.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_43.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_43.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_43.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_44.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_44.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_44.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_44.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_44.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_45.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_45.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_45.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_45.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_45.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_46.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_46.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_46.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_46.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_46.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_47.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_47.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_47.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_47.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_47.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_48.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_48.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_48.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_48.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_48.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_49.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_49.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_49.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_49.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_49.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_50.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_50.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_50.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_50.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_50.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_51.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_51.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_51.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_51.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_51.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_52.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_52.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_52.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_52.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_52.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_53.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_53.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_53.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_53.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_53.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_54.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_54.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_54.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_54.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_54.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_55.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_55.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_55.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_55.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_55.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_56.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_56.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_56.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_56.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_56.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_57.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_57.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_57.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_57.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_57.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_58.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_58.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_58.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_58.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_58.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_59.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_59.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_59.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_59.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_59.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_60.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_60.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_60.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_60.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_60.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_61.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_61.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_61.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_61.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_61.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_62.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_62.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_62.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_62.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_62.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_63.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_63.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_63.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_63.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_63.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_64.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_64.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_64.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_64.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_64.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_65.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_65.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_65.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_65.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_65.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_66.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_66.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_66.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_66.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_66.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_67.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_67.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_67.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_67.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_67.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_68.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_68.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_68.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_68.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_68.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_69.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_69.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_69.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_69.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_69.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_70.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_70.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_70.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_70.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_70.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_71.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_71.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_71.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_71.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_71.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_72.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_72.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_72.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_72.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_72.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_73.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_73.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_73.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_73.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_73.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_74.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_74.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_74.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_74.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_74.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_75.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_75.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_75.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_75.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_75.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_76.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_76.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_76.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_76.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_76.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_77.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_77.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_77.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_77.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_77.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_78.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_78.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_78.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_78.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_78.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_79.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_79.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_79.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_79.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_79.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_80.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_80.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_80.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_80.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_80.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_81.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_81.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_81.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_81.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_81.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_82.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_82.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_82.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_82.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_82.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_83.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_83.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_83.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_83.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_83.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_84.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_84.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_84.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_84.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_84.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_85.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_85.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_85.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_85.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_85.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_86.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_86.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_86.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_86.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_86.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_87.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_87.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_87.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_87.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_87.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_88.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_88.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_88.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_88.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_88.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_89.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_89.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_89.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_89.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_89.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_90.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_90.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_90.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_90.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_90.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_91.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_91.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_91.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_91.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_91.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_92.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_92.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_92.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_92.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_92.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_93.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_93.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_93.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_93.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_93.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_94.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_94.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_94.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_94.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_94.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_95.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_95.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_95.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_95.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_95.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_96.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_96.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_96.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_96.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_96.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_97.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_97.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_97.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_97.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_97.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_98.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_98.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_98.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_98.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_98.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_99.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_99.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_99.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_99.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_99.log
+queue 
+
+arguments             = input/ppref2024/20250424/Pythiapthat15_100.txt /eos/user/v/vpant/ppref2024/ppref2024outputfiles/Pythiapthat15_100.root 1 0
+output                = condor/log/ppref2024/20250424/Pythiapthat15_100.out
+error                 = condor/log/ppref2024/20250424/Pythiapthat15_100.err
+log                   = condor/log/ppref2024/20250424/Pythiapthat15_100.log
+queue 
+
