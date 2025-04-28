@@ -134,6 +134,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
     TH1F* htrketa   = new TH1F("htrketa","htrketa",200,-1.,1.);
     TH1F* htrkinvyield = new TH1F("htrkinvyield","htrkinvyield",nptbins,pTbins);
     TH1F* hNtrk     = new TH1F("hNtrk","hNtrk",nptbins,pTbins);
+    TH1F* htrkspervtx=new TH1F("htrkspervtx","htrkspervtx",400,0,400.); 
 
     //Particle species correction
     TH1F *hspeciescorr= new TH1F("hspeciescorr","hspeciescorr",80,0.1,20.);
@@ -194,7 +195,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
         
     // Start loop over events ****************************************************
 	
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < 1000; i++)
       {
 	hEventsnoCuts->Fill(1);
 	if (i%10000==0) cout<<i<<" events passed "<<endl;    
@@ -229,7 +230,10 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	
 	//cout<<"Reco trk size "<<nTrk<<" trk chg size "<<trkchg->size()<<"  trk pt size "<<trkPt->size()<<endl;
 
-	cout<<"Event "<<i+1<<endl;
+	cout<<"Event "<<i+1<<" nvtx "<<nVtx<<endl;
+	
+
+	std::vector<int> tracksPerVertex(nVtx, 0); // Make a counter for trkvtxindx, 0 for each vertex
 	//Start Analyzing reco tracks *************************************************
 	for (int j = 0; j < nTrk; j++)  // Track loop start
 	  {
@@ -241,7 +245,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	    Bool_t  isHighPurity=  highPurity->at(j);
 	    Float_t trk_pt_error=  trkPtError->at(j);
 
-
+            Int_t   trk_vtxindx =  trkAssociatedVtxIndx->at(j);
 	    Float_t trk_dxy     =  trkDxyAssociatedVtx->at(j);
 	    Float_t trk_dxyerror=  trkDxyErrAssociatedVtx->at(j);
 	    Float_t trk_dz      =  trkDzAssociatedVtx->at(j);
@@ -257,7 +261,11 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	    if(fabs(trk_dxy/trk_dxyerror) > 3.0) continue;
 	    if(fabs(trk_dz/trk_dzerror)   > 3.0) continue;
 	    if(trk_pt>10 && abs(trk_pt_error/trk_pt) > 0.1) continue;
-	    cout<<" Trk pt "<<trk_pt<<" Trk eta "<<trk_eta<<" Trk phi "<<trk_phi<<endl;
+            if (trk_vtxindx >= 0 && trk_vtxindx < nVtx) {
+	      tracksPerVertex[trk_vtxindx]++; // Increase track count for that vertex
+	    }
+	    
+	    cout<<" Trk pt "<<trk_pt<<" Trk eta "<<trk_eta<<" Trk phi "<<trk_phi<<" trk vtx indx "<<trk_vtxindx<<endl;
 	    cout<<" Trk_dxy "<<trk_dxy<<" Trk dz "<<trk_dz<<" pthatw "<<ptHatw<<endl<<endl; 
 	
 	    htrkDCAz->Fill(trk_dz,ptHatw);
@@ -284,6 +292,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	     //Weight for the invariant yield 
 	    Float_t invyield_wt= (1./(2*2*TMath::Pi()*trk_pt)); 
 
+	    if (is_MC) {
 	    //Read values from particle species correction histograms
 	    Float_t protonpythiafrac= hpythiaprotonfraction->GetBinContent(hpythiaprotonfraction->GetXaxis()->FindBin(trk_pt));
 	    Float_t pionpythiafrac= hpythiapionfraction->GetBinContent(hpythiapionfraction->GetXaxis()->FindBin(trk_pt));
@@ -307,12 +316,9 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 		//cout<<"pub pion fraction "<<pionpubfrac<<endl<<endl;
 		
 	      }
-	   
+	    }
 
-	    
-
-	    //	    cout<<"Event "<<i<<endl;
-	    //cout<<"trk pt "<<trk_pt<<endl;
+    
 	    htrkpteta->Fill(trk_pt,trk_eta,ptHatw);
 	    htrkinvyield->Fill(trk_pt,invyield_wt*ptHatw);
 	    htrkpt->Fill(trk_pt,ptHatw);
@@ -327,6 +333,10 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	    
 	  }//Reco track loop end
 
+	for (size_t vtx = 0; vtx < tracksPerVertex.size(); ++vtx) {
+	  cout<<"Tracks per vtx"<<tracksPerVertex[vtx]<<endl;
+	  htrkspervtx->Fill(tracksPerVertex[vtx], ptHatw); // Fill how many tracks in this vertex
+	}
 	
 	//Gen loop starts (Only for MC) **************************************
 	Int_t gentrksize;
@@ -472,7 +482,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
     htrkDCAxy->Write();
     htrknoPUevtDCAz->Write();
     htrknoPUevtDCAxy->Write();
-              
+    htrkspervtx->Write();
 
 
     

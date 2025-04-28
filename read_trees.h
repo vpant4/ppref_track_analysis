@@ -44,6 +44,7 @@
 	std::vector<Float_t>*    pfEnergy= nullptr;
 	std::vector<Float_t>*    pfEcal= nullptr;
 	std::vector<Float_t>*    pfHcal= nullptr;
+        std::vector<Int_t>*      trkAssociatedVtxIndx=nullptr;
 	std::vector<Float_t>*    trkDzErrAssociatedVtx= nullptr;
 	std::vector<Float_t>*    trkDxyErrAssociatedVtx= nullptr;
         std::vector<Float_t>*    trkDzAssociatedVtx=nullptr;
@@ -171,6 +172,9 @@ void read_trees(TChain *tree,bool is_MC){
 	tree->SetBranchStatus("highPurity", 1);
         tree->SetBranchAddress("highPurity", &highPurity);
 
+	tree->SetBranchStatus("trkAssociatedVtxIndx",1);
+	tree->SetBranchAddress("trkAssociatedVtxIndx",&trkAssociatedVtxIndx);
+	
 	tree->SetBranchStatus("trkPtError",1);
 	tree->SetBranchAddress("trkPtError",&trkPtError);
 
