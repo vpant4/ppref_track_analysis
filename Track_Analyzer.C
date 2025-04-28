@@ -194,7 +194,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
         
     // Start loop over events ****************************************************
 	
-    for(int i = 0; i < nevents; i++)
+    for(int i = 0; i < 10; i++)
       {
 	hEventsnoCuts->Fill(1);
 	if (i%10000==0) cout<<i<<" events passed "<<endl;    
@@ -229,7 +229,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	
 	//cout<<"Reco trk size "<<nTrk<<" trk chg size "<<trkchg->size()<<"  trk pt size "<<trkPt->size()<<endl;
 
-	//cout<<"Event "<<i+1<<endl;
+	cout<<"Event "<<i+1<<endl;
 	//Start Analyzing reco tracks *************************************************
 	for (int j = 0; j < nTrk; j++)  // Track loop start
 	  {
@@ -252,14 +252,14 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	    // Apply track cuts***************************************************
 	    if (trk_charge==0) continue;
 	    if(!isHighPurity) continue;
-	    //  cout<<" Trk pt "<<trk_pt<<" Trk eta "<<trk_eta<<" Trk phi "<<trk_phi<<endl;
-	    //cout<<" Trk_dxy "<<trk_dxy<<" Trk dz "<<trk_dz<<" pthatw "<<ptHatw<<endl<<endl; 
 	    if(fabs(trk_eta) >= 1.0) continue;
 	    if(trk_pt<0.1) continue;
 	    if(fabs(trk_dxy/trk_dxyerror) > 3.0) continue;
 	    if(fabs(trk_dz/trk_dzerror)   > 3.0) continue;
 	    if(trk_pt>10 && abs(trk_pt_error/trk_pt) > 0.1) continue;
-	    
+	    cout<<" Trk pt "<<trk_pt<<" Trk eta "<<trk_eta<<" Trk phi "<<trk_phi<<endl;
+	    cout<<" Trk_dxy "<<trk_dxy<<" Trk dz "<<trk_dz<<" pthatw "<<ptHatw<<endl<<endl; 
+	
 	    htrkDCAz->Fill(trk_dz,ptHatw);
 	    htrkDCAxy->Fill(trk_dz,ptHatw);
 	    if (nVtx==1)
@@ -296,18 +296,17 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	    Float_t effkaon= hkaoneff->GetBinContent(hkaoneff->GetXaxis()->FindBin(trk_pt));
 	    
 	    Float_t corr_species=1.;
-	    for (int k=1; k <= hspeciescorr->GetNbinsX() ; k++)
-	      {  Float_t bincenter= hspecies->GetBinCenter(k);
+	    
 		
-	if (trk_pt < 20.)
-	  {
-	    corr_species= eff/(effproton*protonpubfrac+effpion*pionpubfrac+effkaon*kaonpubfrac);
+	    if (trk_pt < 20.)
+	      {
+		corr_species= eff/(effproton*protonpubfrac+effpion*pionpubfrac+effkaon*kaonpubfrac);
 		
-	    cout<<"Track pT "<<trk_pt<<" Particle species corr factor "<<corr_species<<endl;
-	    //cout<<"abs eff "<<eff<<" eff pion "<<effpion<<endl;
-	    //cout<<"pub pion fraction "<<pionpubfrac<<endl<<endl;
+		cout<<"Track pT "<<trk_pt<<" Particle species corr factor "<<corr_species<<endl;
+		//cout<<"abs eff "<<eff<<" eff pion "<<effpion<<endl;
+		//cout<<"pub pion fraction "<<pionpubfrac<<endl<<endl;
 		
-	  }
+	      }
 	   
 
 	    
