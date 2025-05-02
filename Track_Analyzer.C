@@ -153,14 +153,18 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
     TH2F* hpionmatchedpteta=new TH2F("hpionmatchedpteta","hpionmatchedpteta",nptbins,pTbins,200,-1.,1.);
     TH2F* hKmatchedpteta=new TH2F("hKmatchedpteta","hKmatchedpteta",nptbins,pTbins,200,-1.,1.);
     TH2F* hpapmatchedpteta=new TH2F("hpapmatchedpteta","hpapmatchedpteta",nptbins,pTbins,200,-1.,1.);
-
-   
+    TH2F* hsigmaplusmatchedgenpteta=new TH2F("hsigmaplusmatchedgenpteta","hsigmaplusmatchedgenpteta",nptbins,pTbins,200,-1.,1.);
+    TH2F* hsigmaminusmatchedgenpteta=new TH2F("hsigmaminusmatchedgenpteta","hsigmaminusmatchedgenpteta",nptbins,pTbins,200,-1.,1.);
+    TH2F* homegaminusmatchedgenpteta=new TH2F("homegaminusmatchedgenpteta","homegaminusmatchedgenpteta",nptbins,pTbins,200,-1.,1.);
+    
     TH2F* hpgenpteta=new TH2F("hpgenpteta","hpgenpteta",nptbins,pTbins,200,-1.,1.);
     TH2F* hapgenpteta=new TH2F("hapgenpteta","hapgenpteta",nptbins,pTbins,200,-1.,1.);
     TH2F* hpapgenpteta=new TH2F("hpapgenpteta","hpapgenpteta",nptbins,pTbins,200,-1.,1.);
     TH2F* hpiongenpteta=new TH2F("hpiongenpteta","hpiongenpteta",nptbins,pTbins,200,-1.,1.);
     TH2F* hKgenpteta=new TH2F("hKgenpteta","hKgenpteta",nptbins,pTbins,200,-1.,1.);
-
+    TH2F* hsigmaplusgenpteta=new TH2F("hsigmaplusgenpteta","hsigmaplusgenpteta",nptbins,pTbins,200,-1.,1.);
+    TH2F* hsigmaminusgenpteta=new TH2F("hsigmaminusgenpteta","hsigmaminusgenpteta",nptbins,pTbins,200,-1.,1.);
+    TH2F* homegaminusgenpteta=new TH2F("homegaminusgenpteta","homegaminusgenpteta",nptbins,pTbins,200,-1.,1.);
 
 
     //Histograms to store gen track information (for MC)
@@ -195,7 +199,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
         
     // Start loop over events ****************************************************
 	
-    for(int i = 0; i < 1000; i++)
+    for(int i = 0; i < nevents; i++)
       {
 	hEventsnoCuts->Fill(1);
 	if (i%10000==0) cout<<i<<" events passed "<<endl;    
@@ -220,7 +224,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	//if(!HLT_AK4PFJet120_v8) continue; //Trigger cut
 	//Fill Event histograms ***************************************************
         Float_t ptHatw=1.;
-	//if (is_MC) ptHatw=weight;
+	if (is_MC) ptHatw=weight;
 
 	hpthatW->Fill(ptHatw);
 	hNtrk->Fill(nTrk,ptHatw);
@@ -230,7 +234,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	
 	//cout<<"Reco trk size "<<nTrk<<" trk chg size "<<trkchg->size()<<"  trk pt size "<<trkPt->size()<<endl;
 
-	cout<<"Event "<<i+1<<" nvtx "<<nVtx<<endl;
+	//	cout<<"Event "<<i+1<<" nvtx "<<nVtx<<endl;
 	
 
 	std::vector<int> tracksPerVertex(nVtx, 0); // Make a counter for trkvtxindx, 0 for each vertex
@@ -254,7 +258,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	    
 	    
 	    // Apply track cuts***************************************************
-	    if (trk_charge==0) continue;
+	    if (abs(trk_charge)!=1) continue;
 	    if(!isHighPurity) continue;
 	    if(fabs(trk_eta) >= 1.0) continue;
 	    if(trk_pt<0.1) continue;
@@ -265,8 +269,8 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	      tracksPerVertex[trk_vtxindx]++; // Increase track count for that vertex
 	    }
 	    
-	    cout<<" Trk pt "<<trk_pt<<" Trk eta "<<trk_eta<<" Trk phi "<<trk_phi<<" trk vtx indx "<<trk_vtxindx<<endl;
-	    cout<<" Trk_dxy "<<trk_dxy<<" Trk dz "<<trk_dz<<" pthatw "<<ptHatw<<endl<<endl; 
+	    //cout<<" Trk pt "<<trk_pt<<" Trk eta "<<trk_eta<<" Trk phi "<<trk_phi<<" trk vtx indx "<<trk_vtxindx<<endl;
+	    //   cout<<" Trk_dxy "<<trk_dxy<<" Trk dz "<<trk_dz<<" pthatw "<<ptHatw<<endl<<endl; 
 	
 	    htrkDCAz->Fill(trk_dz,ptHatw);
 	    htrkDCAxy->Fill(trk_dz,ptHatw);
@@ -311,7 +315,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	      {
 		corr_species= eff/(effproton*protonpubfrac+effpion*pionpubfrac+effkaon*kaonpubfrac);
 		
-		cout<<"Track pT "<<trk_pt<<" Particle species corr factor "<<corr_species<<endl;
+		//cout<<"Track pT "<<trk_pt<<" Particle species corr factor "<<corr_species<<endl;
 		//cout<<"abs eff "<<eff<<" eff pion "<<effpion<<endl;
 		//cout<<"pub pion fraction "<<pionpubfrac<<endl<<endl;
 		
@@ -334,12 +338,13 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	  }//Reco track loop end
 
 	for (size_t vtx = 0; vtx < tracksPerVertex.size(); ++vtx) {
-	  cout<<"Tracks per vtx"<<tracksPerVertex[vtx]<<endl;
+	  //cout<<"Tracks per vtx"<<tracksPerVertex[vtx]<<endl;
 	  htrkspervtx->Fill(tracksPerVertex[vtx], ptHatw); // Fill how many tracks in this vertex
 	}
 	
 	//Gen loop starts (Only for MC) **************************************
 	Int_t gentrksize;
+	std::vector<Int_t> genmatchedindx={-9};
        
 	if (is_MC)
 	  { gentrksize = gentrkPt->size();
@@ -356,7 +361,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 		//cout<<gentrk_pt<<endl;
 	      
 		//Track cuts on gen tracks
-		if (gentrk_chg==0) continue;
+		if (abs(gentrk_chg)!=1) continue;
 		if(fabs(gentrk_eta) >= 1.0) continue;
 		if(gentrk_pt<0.1) continue;
 
@@ -369,12 +374,14 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 		//	cout<<"Event "<<i<<endl;
 		//cout<<" gen pt "<<gentrk_pt<<" gen eta "<<gentrk_eta<<" gen phi "<<gentrk_phi<<endl;
 
-		if (gentrk_pdg==2212) hpgenpteta->Fill(gentrk_pt,gentrk_eta,ptHatw);
-		if (gentrk_pdg==-2212) hapgenpteta->Fill(gentrk_pt,gentrk_eta,ptHatw);
+		if (gentrk_pdg==2212)      hpgenpteta->Fill(gentrk_pt,gentrk_eta,ptHatw);
+		if (gentrk_pdg==-2212)     hapgenpteta->Fill(gentrk_pt,gentrk_eta,ptHatw);
 		if (abs(gentrk_pdg)==2212) hpapgenpteta->Fill(gentrk_pt,gentrk_eta,ptHatw);
-		if (abs(gentrk_pdg)==211) hpiongenpteta->Fill(gentrk_pt,gentrk_eta,ptHatw);
-		if (abs(gentrk_pdg)==321) hKgenpteta->Fill(gentrk_pt,gentrk_eta,ptHatw);
-
+		if (abs(gentrk_pdg)==211)  hpiongenpteta->Fill(gentrk_pt,gentrk_eta,ptHatw);
+		if (abs(gentrk_pdg)==321)  hKgenpteta->Fill(gentrk_pt,gentrk_eta,ptHatw);
+		if (abs(gentrk_pdg)==3222) hsigmaplusgenpteta->Fill(gentrk_pt,gentrk_eta,ptHatw);
+		if (abs(gentrk_pdg)==3112) hsigmaminusgenpteta->Fill(gentrk_pt,gentrk_eta,ptHatw);
+		if (abs(gentrk_pdg)==3334) homegaminusgenpteta->Fill(gentrk_pt,gentrk_eta,ptHatw);
 		
                 Float_t mindeltaR=999.0;
 		Float_t matchedgenpt=-999;
@@ -382,10 +389,20 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 		Float_t matchedrecopt=-999;
                 Float_t matchedrecoeta=-999.;
 		Int_t matchedpdg=-999;
+		Int_t matchedindx=-999;
+	       
 		// Reco loop for gen matching
+		
 		for (int k=0;k<nTrk;k++)
-		  {
+		  { Bool_t ismatched=0;
+		    for (int l=0;l<genmatchedindx.size();l++)
+		      { if (k==genmatchedindx.at(l)) 
+			  {ismatched=1;
+			    continue;
+			  }
+		      }
 
+		    if (ismatched) continue;
 		    Int_t recotrk_chg       =  trkchg->at(k);
 		    Float_t recotrk_pt      =  trkPt->at(k);
 		    Float_t recotrk_eta     =  trkEta->at(k);
@@ -402,7 +419,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 
 
 		    // Apply track cuts***************************************************
-		    if (recotrk_chg==0) continue;
+		    if (abs(recotrk_chg)!=1) continue;
 		    if(!recoisHighPurity) continue;
 		    if(fabs(recotrk_eta) >= 1.0) continue;
 		    if(recotrk_pt<0.1) continue;
@@ -420,7 +437,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 		    hDeltapT->Fill(DeltapT,ptHatw);
 		    hDeltaR->Fill(DeltaR,ptHatw);
 
-		    //		    cout<<"Deta "<<Deta<<"  Dphi  "<<Dphi<<"  DR  "<<DeltaR<<" Delta pT "<<DeltapT<<"  gentrk pt "<<gentrk_pt<<endl;
+		    //cout<<"Deta "<<Deta<<"  Dphi  "<<Dphi<<"  DR  "<<DeltaR<<" Delta pT "<<DeltapT<<"  gentrk pt "<<gentrk_pt<<endl;
 		    if (DeltaR < 0.02 && DeltapT < 0.04)
 		      //&& (0.96*gentrk_pt)<recotrk_pt && recotrk_pt<(1.04*gentrk_pt))
 		      {if (DeltaR < mindeltaR)
@@ -431,6 +448,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 			    matchedrecopt=recotrk_pt;
                             matchedrecoeta=recotrk_eta;
                             matchedpdg=gentrk_pdg;
+			    matchedindx=k;
 			   }
 		      }
 		    
@@ -439,6 +457,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 
 		if (mindeltaR<999 ){
 		  //cout<<"***  Matched delta R *** "<<mindeltaR<<" matched gen pt "<<matchedgenpt<<" matched gen pdg "<<matchedpdg<<" matched reco pt" <<matchedrecopt<<endl;
+		  genmatchedindx.push_back(matchedindx);
 		  hgenmatchedpteta->Fill(matchedgenpt,matchedgeneta,ptHatw);
 		  hgenmatchedpt->Fill(matchedgenpt,ptHatw);
 		  hgenmatchedeta->Fill(matchedgeneta,ptHatw);
@@ -447,14 +466,20 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 		  if (abs(matchedpdg)==2212) hpapmatchedpteta->Fill(matchedgenpt,matchedgeneta,ptHatw);
 		  if (abs(matchedpdg)==211) hpionmatchedpteta->Fill(matchedgenpt,matchedgeneta,ptHatw);
 		  if (abs(matchedpdg)==321) hKmatchedpteta->Fill(matchedgenpt,matchedgeneta,ptHatw);
-		  
-
+		  if (abs(matchedpdg)==3222) hsigmaplusmatchedgenpteta->Fill(matchedgenpt,matchedgeneta,ptHatw);
+		  if (abs(matchedpdg)==3112) hsigmaminusmatchedgenpteta->Fill(matchedgenpt,matchedgeneta,ptHatw);
+		  if (abs(matchedpdg)==3334) homegaminusmatchedgenpteta->Fill(matchedgenpt,matchedgeneta,ptHatw);
+		  			   
 		}
 		//else cout<<"matched gen not found "<<endl;
 
 		
 	      }//gen trk loop ends	
 	  }
+	//for (int i=0;i<genmatchedindx.size();i++)
+	  // cout<<"/t vector "<<genmatchedindx.at(i);
+
+	//cout<<"gentrksize "<<gentrksize<<"rec trk size "<<nTrk<<endl<<endl;
       }
 	
 		
@@ -505,8 +530,11 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
     hpapmatchedpteta->Write();
     hKmatchedpteta->Write();
     hpionmatchedpteta->Write();
+    hsigmaplusmatchedgenpteta->Write();
+    hsigmaminusmatchedgenpteta->Write();
+    homegaminusmatchedgenpteta->Write();
 
-
+    
     hspeciescorr->Write();
 
     
@@ -515,7 +543,9 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
     hapgenpteta->Write();
     hKgenpteta->Write();
     hpiongenpteta->Write();
-
+    hsigmaplusgenpteta->Write();
+    hsigmaminusgenpteta->Write();
+    homegaminusgenpteta->Write();
     
     hjtpt->Write();
     hjtpteta->Write();
