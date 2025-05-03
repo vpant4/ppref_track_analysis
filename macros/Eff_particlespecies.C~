@@ -1,0 +1,186 @@
+void rescaleHist(TH1* h) {
+  for (Int_t iBin=1; iBin<=h->GetNbinsX(); iBin++) {
+    Double_t val = h->GetBinContent( iBin );
+    Double_t valErr = h->GetBinError( iBin );
+    Double_t binWidth = h->GetBinWidth( iBin );
+    h->SetBinContent( iBin, val / binWidth );
+    h->SetBinError( iBin, valErr / binWidth );
+  }                                                                     
+  //  h->Scale( 1. / h->Integral() );
+}
+
+void set1DStyle(TH1 *h, Int_t type = 0) {
+    Int_t markerStyle = 20; // Full circle
+    Double_t markerSize = 1.4;
+    Int_t lineWidth = 2;
+    Int_t color = 2;
+    if (type == 0) {
+        color = 1;        // red
+	markerStyle = 20; // filled circle
+    }
+
+    else if (type == 1) {
+      color = 2;        // blue
+      markerStyle = 20; // open circle
+    }
+    else if (type == 2) {
+      color = 3;        // black
+      markerStyle = 20; // filled triangle
+    }
+    else if (type == 3) {
+      color = 4;        // red
+      markerStyle = 20; // open circle
+    }
+    else if (type == 4) {
+      color = 6;        // blue
+      markerStyle = 20; // filled circle
+    }
+    else {
+      color = 6;        // magenta
+      markerStyle = 20; // open star
+    }
+
+h->SetLineWidth( lineWidth );
+h->SetLineColor( color );
+
+h->SetMarkerStyle( markerStyle );
+h->SetMarkerColor( color );
+h->SetMarkerSize( markerSize );
+//h->SetStats(kFALSE);
+h->SetTitle("");
+h->GetYaxis()->SetTitleSize(0.03);
+h->GetYaxis()->SetLabelSize(0.03);
+h->GetXaxis()->SetTitleSize(0.03);
+h->GetXaxis()->SetLabelSize(0.03);
+h->GetXaxis()->SetNdivisions(208);
+h->GetYaxis()->SetNdivisions(208);
+h->GetYaxis()->SetTitleOffset(1.3);
+h->GetXaxis()->SetTitleOffset(1.3);
+h->GetYaxis()->CenterTitle();
+h->GetXaxis()->CenterTitle();
+}
+
+
+void Eff_particlespecies()
+{
+  TFile *f1=TFile::Open("/Users/vipulpant/cernbox/ppref2024/pprefMCpthat15_forest.root","READ");
+ 
+  TH2F *htotgenpteta           =  (TH2F*) f1->Get("htotalgenpteta");
+  TH2F *hpapgenpteta            =  (TH2F*) f1->Get("hpapgenpteta");
+  TH2F *hpiongenpteta          =  (TH2F*) f1->Get("hpiongenpteta");
+  TH2F *hKgenpteta             =  (TH2F*) f1->Get("hKgenpteta");
+  TH2F *hsigmaplusgenpteta     =  (TH2F*) f1->Get("hsigmaplusgenpteta");
+  TH2F *hsigmaminusgenpteta     =  (TH2F*) f1->Get("hsigmaminusgenpteta");
+  TH2F *homegaminusgenpteta     =  (TH2F*) f1->Get("homegaminusgenpteta");
+
+
+  TH2F *hincgenmatchedpteta    =  (TH2F*) f1->Get("hgenmatchedpteta");
+  TH2F *hpapmatchedpteta        =  (TH2F*) f1->Get("hpapmatchedpteta");
+  TH2F *hpionmatchedpteta      =  (TH2F*) f1->Get("hpionmatchedpteta");
+  TH2F *hKmatchedpteta	       =  (TH2F*) f1->Get("hKmatchedpteta");
+  TH2F *hsigmaplusmatchedpteta     =  (TH2F*) f1->Get("hsigmaplusmatchedgenpteta");
+  TH2F *hsigmaminusmatchedpteta     =  (TH2F*) f1->Get("hsigmaminusmatchedgenpteta");
+  TH2F *homegaminusmatchedpteta     =  (TH2F*) f1->Get("homegaminusmatchedgenpteta");
+
+  //  return;
+  TH1F *htotgenpt   = (TH1F*) htotgenpteta->ProjectionX("htotgenpt");
+  TH1F *hpapgenpt = (TH1F*) hpapgenpteta->ProjectionX("hpapgenpt");
+  TH1F *hpiongenpt = (TH1F*) hpiongenpteta->ProjectionX("hpiongenpt");
+  TH1F *hKgenpt = (TH1F*) hKgenpteta->ProjectionX("hKgenpt");
+  TH1F *hsigmaplusgenpt = (TH1F*) hsigmaplusgenpteta->ProjectionX("hsigmaplusgenpt");
+  TH1F *hsigmaminusgenpt= (TH1F*) hsigmaminusgenpteta->ProjectionX("hsigmaminusgenpt");
+  TH1F *homegaminusgenpt= (TH1F*) homegaminusgenpteta->ProjectionX("homegaminusgenpt");
+  
+  TH1F *hincmatchedpt = (TH1F*) hincgenmatchedpteta->ProjectionX("hincgenmatchedpt");
+  TH1F *hpapmatchedpt = (TH1F*) hpapmatchedpteta->ProjectionX("hpapgenmatchedpt");
+  TH1F *hpionmatchedpt = (TH1F*) hpionmatchedpteta->ProjectionX("hpiongenmatchedpt");
+  TH1F *hKmatchedpt = (TH1F*) hKmatchedpteta->ProjectionX("hKgenmatchedpt");
+  //  return;
+  TH1F *hsigmaplusmatchedpt = (TH1F*) hsigmaplusmatchedpteta->ProjectionX("hsigmaplusgenmatchedpt");
+  // return;
+  TH1F *hsigmaminusmatchedpt = (TH1F*) hsigmaminusmatchedpteta->ProjectionX("hsigmaminusgenmatchedpt");
+  TH1F *homegaminusmatchedpt = (TH1F*) homegaminusmatchedpteta->ProjectionX("homegaminusgenmatchedpt");
+
+  //  return;
+  //rescaleHist(htotgenpt);
+  //rescaleHist(hincmatchedpt);
+  //rescaleHist(hpmatchedpt);
+  //rescaleHist(hapmatchedpt);
+  //rescaleHist(hpionmatchedpt);
+  //rescaleHist(hKmatchedpt);
+
+ 
+  TH1F *inceff = (TH1F*) hincmatchedpt->Clone("hincmatchedpt");
+  TH1F *papeff = (TH1F*) hpapmatchedpt->Clone("hpapmatchedpt");
+  TH1F *pioneff = (TH1F*) hpionmatchedpt->Clone("hpionmatchedpt");
+  TH1F *Keff = (TH1F*) hKmatchedpt->Clone("hKmatchedpt");
+  TH1F *sigmaplus = (TH1F*) hsigmaplusmatchedpt->Clone("hsigmaplusmatchedpt");
+  TH1F *sigmaminus = (TH1F*) hsigmaminusmatchedpt->Clone("hsigmaminusmatchedpt");
+  TH1F *omegaminus = (TH1F*) homegaminusmatchedpt->Clone("homegaminusmatchedpt");
+ 
+  inceff->Divide(htotgenpt);
+  papeff->Divide(hpapgenpt);
+  pioneff->Divide(hpiongenpt);
+  Keff->Divide(hKgenpt);
+  sigmaplus->Divide(hsigmaplusgenpt);
+  sigmaminus->Divide(hsigmaminusgenpt);
+  omegaminus->Divide(homegaminusgenpt);
+
+  
+
+  TLatex t;
+  TCanvas *c2 = new TCanvas("c2","c2",800,800);
+  c2->SetLogx(1);
+  
+                                                                          
+  inceff->GetXaxis()->SetTitle("Track p_{T} (GeV)");
+  inceff->GetYaxis()->SetTitle("Efficiency");
+
+  set1DStyle(inceff,0);
+  set1DStyle(papeff,2);
+  set1DStyle(pioneff,3);
+  set1DStyle(Keff,4);
+  set1DStyle(sigmaplus,5);
+  set1DStyle(sigmaminus,6);
+  //  set1DStyle(omegaminus,7);
+
+ 
+  //  inceff->GetXaxis()->SetRangeUser(0.4,200.);
+  inceff->GetYaxis()->SetRangeUser(0.2,1.);
+  inceff->Draw("p hist");
+  papeff->Draw("p hist same");
+  pioneff->Draw("p hist same");
+  Keff->Draw("p hist same");
+  //  sigmaplus->Draw("p hist same");
+  // sigmaminus->Draw("p hist same");
+  //omegaminus->Draw("p hist same");
+
+  inceff->SetName("Inclusiveeffpythia");
+  papeff->SetName("Protoneffpythia");
+  pioneff->SetName("Pioneffpythia");
+  Keff->SetName("Kaoneffpythia");
+  
+  TFile *fout = new TFile("Particlespecieseff.root","RECREATE");
+  inceff->Write();
+  papeff->Write();
+  pioneff->Write();
+  Keff->Write();
+  
+  TLegend *legend1 = new TLegend(0.35,0.52,0.57,0.66);
+  legend1->AddEntry(inceff,"Inclusive","p");
+  legend1->AddEntry(papeff,"p + #bar{p}","p");
+  //legend1->AddEntry(peff,"p","p");
+  //legend1->AddEntry(apeff,"#bar{p}","p");
+  legend1->AddEntry(pioneff,"#pi^{+} & #pi^{-}","p");
+  legend1->AddEntry(Keff,"K^{+} & K^{-}","p");
+
+  legend1->SetBorderSize(0);
+  legend1->SetTextSize(0.04);
+  legend1->Draw();
+  t.DrawLatexNDC(0.15, 0.93, "#bf{CMS} #it{Simulation}");
+  t.DrawLatexNDC(0.6, 0.93, "pp 5.36 TeV");
+
+  c2->SaveAs("/Users/vipulpant/ppref2024analysis/ppref_track_analysis/Plots/Effparticlespecies.pdf");
+
+
+}

@@ -1,0 +1,85 @@
+void Calculate_species_corr_factor()
+{
+
+  TFile *fpartfrac=TFile::Open("Particlefractionfile.root");
+  TFile *fparteff=TFile::Open("Particlespecieseff.root");
+
+  //Read the particle species histograms                                                                                   
+  TH1F *hpythiaprotonfraction = (TH1F*) fpartfrac->Get("Pythiaprotonfraction");
+  TH1F *hpythiapionfraction = (TH1F*) fpartfrac->Get("Pythiapionfraction");
+  TH1F *hpythiakaonfraction = (TH1F*) fpartfrac->Get("Pythiakaonfraction");
+
+  TH1F *hpubprotonfraction = (TH1F*) fpartfrac->Get("Publishedprotonfraction");
+  TH1F *hpubpionfraction = (TH1F*) fpartfrac->Get("Publishedpionfraction");
+  TH1F *hpubkaonfraction = (TH1F*) fpartfrac->Get("Publishedkaonfraction");
+
+  TH1F *hinceff = (TH1F*) fparteff->Get("Inclusiveeffpythia");
+  TH1F *hprotoneff = (TH1F*) fparteff->Get("Protoneffpythia");
+  TH1F *hpioneff = (TH1F*) fparteff->Get("Pioneffpythia");
+  TH1F *hkaoneff = (TH1F*) fparteff->Get("Kaoneffpythia");
+
+  (Double_t[])(Double_t[])
+  TH1F *hspeciescorr= new TH1F("hspeciescorr","hspeciescorr",42 ,;
+
+  for (int k=1; k <= hspeciescorr->GetNbinsX() ; k++)
+      
+    {Float_t corr_species=1;
+      Float_t trk_pt= hspeciescorr->GetBinCenter(k);
+
+      Float_t protonpythiafrac= hpythiaprotonfraction->GetBinContent(hpythiaprotonfraction->GetXaxis()->FindBin(trk_pt));
+      Float_t pionpythiafrac= hpythiapionfraction->GetBinContent(hpythiapionfraction->GetXaxis()->FindBin(trk_pt));
+      Float_t kaonpythiafrac= hpythiakaonfraction->GetBinContent(hpythiakaonfraction->GetXaxis()->FindBin(trk_pt));
+      Float_t protonpubfrac= hpubprotonfraction->GetBinContent(hpubprotonfraction->GetXaxis()->FindBin(trk_pt));
+      Float_t pionpubfrac= hpubpionfraction->GetBinContent(hpubpionfraction->GetXaxis()->FindBin(trk_pt));
+      Float_t kaonpubfrac= hpubkaonfraction->GetBinContent(hpubkaonfraction->GetXaxis()->FindBin(trk_pt));
+      Float_t effproton= hprotoneff->GetBinContent(hprotoneff->GetXaxis()->FindBin(trk_pt));
+      Float_t effpion= hpioneff->GetBinContent(hpioneff->GetXaxis()->FindBin(trk_pt));
+      Float_t effkaon= hkaoneff->GetBinContent(hkaoneff->GetXaxis()->FindBin(trk_pt));
+      Float_t eff=hinceff->GetBinContent(hinceff->GetXaxis()->FindBin(trk_pt));
+					   
+
+       
+      corr_species= eff/(effproton*protonpubfrac+effpion*pionpubfrac+effkaon*kaonpubfrac);
+      cout<<" pt "<<trk_pt<<" inc eff "<<eff<<" corr factor "<<corr_species<<endl;
+      cout<<" proton eff "<<effproton<<" pion eff "<<effpion<<" kaon eff "<<effkaon<<endl;
+      cout<<" proton frac "<<protonpubfrac<<" pion frac "<<pionpubfrac<<" kaon frac "<<kaonpubfrac<<endl<<endl;
+      hspeciescorr->SetBinContent(k,(effproton*protonpubfrac+effpion*pionpubfrac+effkaon*kaonpubfrac));
+    }
+
+  TCanvas *c= new TCanvas("c","c",800,800);
+  hspeciescorr->GetXaxis()->SetTitle("Track pT");
+  hspeciescorr->GetYaxis()->SetTitle("Corr factor");
+  hspeciescorr->SetMarkerColor(kRed);
+  hspeciescorr->SetMarkerSize(1.2);
+  hspeciescorr->SetMarkerStyle(20);
+  hspeciescorr->SetLineColor(kRed);
+  hspeciescorr->SetStats(kFALSE);
+  hspeciescorr->Draw("p hist");                                                                       
+  c->SaveAs("/Users/vipulpant/ppref2024analysis/ppref_track_analysis/Plots/Speciescorrfactor.pdf");
+}
+
+
+
+
+
+
+
+
+
+     
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+

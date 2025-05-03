@@ -1,0 +1,134 @@
+void Calculate_species_corr_factor()
+{
+
+  TFile *fpartfrac=TFile::Open("Particlefractionfile.root");
+  TFile *fparteff=TFile::Open("Particlespecieseff.root");
+
+  //Read the particle species histograms                                                                                   
+  TH1F *hpythiaprotonfraction = (TH1F*) fpartfrac->Get("Pythiaprotonfraction");
+  TH1F *hpythiapionfraction = (TH1F*) fpartfrac->Get("Pythiapionfraction");
+  TH1F *hpythiakaonfraction = (TH1F*) fpartfrac->Get("Pythiakaonfraction");
+
+  TH1F *hpubprotonfraction = (TH1F*) fpartfrac->Get("Publishedprotonfraction");
+  TH1F *hpubpionfraction = (TH1F*) fpartfrac->Get("Publishedpionfraction");
+  TH1F *hpubkaonfraction = (TH1F*) fpartfrac->Get("Publishedkaonfraction");
+
+  TH1F *hinceff = (TH1F*) fparteff->Get("Inclusiveeffpythia");
+  TH1F *hprotoneff = (TH1F*) fparteff->Get("Protoneffpythia");
+  TH1F *hpioneff = (TH1F*) fparteff->Get("Pioneffpythia");
+  TH1F *hkaoneff = (TH1F*) fparteff->Get("Kaoneffpythia");
+  Double_t pTbins[]={0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45,0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95,1.0, 1.05, 1.1, 1.15, 1.2,1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0,2.5, 3.0, 4.0, 5.0, 7.5, 10.0, 12.0, 15.0,20.0};
+  TH1F *hspeciescorr= new TH1F("hspeciescorr","hspeciescorr",38 ,pTbins);
+  TH1F *hnum	= new TH1F("hnum","hnum",38,pTbins);
+  TH1F *hdeno1  = new TH1F("hdeno1","hdeno1",38,pTbins);
+  TH1F *hdeno2	= new TH1F("hdeno2","hdeno2",38,pTbins);
+  TH1F *hdeno3	= new TH1F("hdeno3","hdeno3",38,pTbins);
+
+  for (int k=1; k <= hspeciescorr->GetNbinsX() ; k++)
+      
+    {Float_t corr_species=1;
+      Float_t trk_pt= hspeciescorr->GetBinCenter(k);
+
+      Float_t protonpythiafrac= hpythiaprotonfraction->GetBinContent(hpythiaprotonfraction->GetXaxis()->FindBin(trk_pt));
+      Float_t pionpythiafrac= hpythiapionfraction->GetBinContent(hpythiapionfraction->GetXaxis()->FindBin(trk_pt));
+      Float_t kaonpythiafrac= hpythiakaonfraction->GetBinContent(hpythiakaonfraction->GetXaxis()->FindBin(trk_pt));
+      Float_t protonpubfrac= hpubprotonfraction->GetBinContent(hpubprotonfraction->GetXaxis()->FindBin(trk_pt));
+      Float_t pionpubfrac= hpubpionfraction->GetBinContent(hpubpionfraction->GetXaxis()->FindBin(trk_pt));
+      Float_t kaonpubfrac= hpubkaonfraction->GetBinContent(hpubkaonfraction->GetXaxis()->FindBin(trk_pt));
+      Float_t effproton= hprotoneff->GetBinContent(hprotoneff->GetXaxis()->FindBin(trk_pt));
+      Float_t effpion= hpioneff->GetBinContent(hpioneff->GetXaxis()->FindBin(trk_pt));
+      Float_t effkaon= hkaoneff->GetBinContent(hkaoneff->GetXaxis()->FindBin(trk_pt));
+      Float_t eff=hinceff->GetBinContent(hinceff->GetXaxis()->FindBin(trk_pt));
+					   
+
+       
+      corr_species= eff/(effproton*protonpubfrac+effpion*pionpubfrac+effkaon*kaonpubfrac);
+      cout<<" pt "<<trk_pt<<" inc eff "<<eff<<" corr factor "<<corr_species<<endl;
+      cout<<" proton eff "<<effproton<<" pion eff "<<effpion<<" kaon eff "<<effkaon<<endl;
+      cout<<" proton frac "<<protonpubfrac<<" pion frac "<<pionpubfrac<<" kaon frac "<<kaonpubfrac<<endl<<endl;
+      hnum->SetBinContent(k,eff);
+      hdeno1->SetBinContent(k,effproton*protonpubfrac);
+      hdeno2->SetBinContent(k,effpion*pionpubfrac);
+      hdeno3->SetBinContent(k,effkaon*kaonpubfrac);
+      hspeciescorr->SetBinContent(k,corr_species);
+    }
+
+  TCanvas *c= new TCanvas("c","c",800,800);
+  c->SetLogx();
+  hspeciescorr->GetXaxis()->SetTitle("Track pT");
+  hspeciescorr->GetYaxis()->SetTitle("Corr factor");
+  hspeciescorr->SetMarkerColor(kRed);
+  hspeciescorr->SetMarkerSize(1.2);
+  hspeciescorr->SetMarkerStyle(20);
+  hspeciescorr->Draw("p hist");
+  
+  
+  TCanvas *c1= new TCanvas("c1","c1",800,800);
+  c1->SetLogx();
+  hnum->GetYaxis()->SetRangeUser(0.,1.);
+  hnum->GetXaxis()->SetTitle("Track pT");
+  hnum->SetTitle("");
+  hnum->SetMarkerColor(kGreen);
+  hnum->SetMarkerSize(1.2);
+  hnum->SetMarkerStyle(20);
+  hnum->SetStats(kFALSE);
+ 
+  hdeno1->SetMarkerColor(kBlack);
+  hdeno1->SetTitle("");
+  hdeno1->SetMarkerSize(1.2);
+  hdeno1->SetMarkerStyle(20);
+  hdeno1->SetStats(kFALSE);
+
+  hdeno2->SetMarkerColor(kBlue);
+  hdeno2->SetTitle("");
+  hdeno2->SetMarkerSize(1.2);
+  hdeno2->SetMarkerStyle(20);
+  hdeno2->SetStats(kFALSE);
+
+  hdeno3->SetMarkerColor(kMagenta);
+  hdeno3->SetTitle("");
+  hdeno3->SetMarkerSize(1.2);
+  hdeno3->SetMarkerStyle(20);
+  hdeno3->SetStats(kFALSE);
+
+
+  hnum->Draw("phist ");
+  hdeno1->Draw(" p hist same");
+  hdeno2->Draw("p hist same");
+  hdeno3->Draw(" p hist same");
+
+  TLegend *l = new TLegend(0.17,0.25,0.4,0.42);
+  l->AddEntry(hnum,"numerator","p");
+  l->AddEntry(hdeno1, "Deno (proton part)","p");
+  l->AddEntry(hdeno2,"Deno (pion part)","p");
+  l->AddEntry(hdeno3,"Deno (kaon part)","p");
+  l->SetBorderSize(0);
+  l->Draw();
+  c->SaveAs("/Users/vipulpant/ppref2024analysis/ppref_track_analysis/Plots/Speciescorrfactor.pdf");
+  c1->SaveAs("/Users/vipulpant/ppref2024analysis/ppref_track_analysis/Plots/Speciescorrfactorchecks.pdf");
+}
+
+
+
+
+
+
+
+
+     
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
