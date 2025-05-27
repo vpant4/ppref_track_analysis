@@ -3,18 +3,18 @@
 //Define the relevant histograms*********************************************
 
 //variable pT bins
-//    double pTbins[]={0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2,1.4,1.6,1.8,2.0,2.2,2.4,3.2,4.0,4.8,5.6,6.4,7.2,9.6,12.,14.4,19.2,24.,28.8,35.2,41.6,48.,60.8,73.6,86.4,103.6,120.8,140.,165.,250.,400.};
+double pTbins[]={0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2,1.4,1.6,1.8,2.0,2.2,2.4,3.2,4.0,4.8,5.6,6.4,7.2,9.6,12.,14.4,19.2,24.,28.8,35.2,41.6,48.,60.8,73.6,86.4,103.6,120.8,140.,165.,250.,400.};
 //    double pTbins[]={4.8,5.6,6.4,7.2,9.6,12.,14.4,19.2,24.,28.8,35.2,41.6,48.,60.8,73.6,86.4,103.6,120.8,140.,165.,250.,400.};
 
 
-double pTbins[]={0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45,
+/*double pTbins[]={0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45,
   0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95,
   1.0, 1.05, 1.1, 1.15, 1.2,
   1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0,
   2.5, 3.0, 4.0, 5.0, 7.5, 10.0, 12.0, 15.0,
   20.0, 25.0, 30.0, 45.0, 60.0, 90.0, 120.0, 
   180.0, 300.0, 500.0};
-    
+*/  
     
 int nptbins=sizeof(pTbins) / sizeof(pTbins[0]) - 1;
 //Event level histograms
@@ -58,7 +58,7 @@ TH2F* hKmatchedpteta=new TH2F("hKmatchedpteta","hKmatchedpteta",nptbins,pTbins,2
 TH2F* hpapmatchedpteta=new TH2F("hpapmatchedpteta","hpapmatchedpteta",nptbins,pTbins,200,-1.,1.);
 TH2F* hsigmaplusmatchedgenpteta=new TH2F("hsigmaplusmatchedgenpteta","hsigmaplusmatchedgenpteta",nptbins,pTbins,200,-1.,1.);
 TH2F* hsigmaminusmatchedgenpteta=new TH2F("hsigmaminusmatchedgenpteta","hsigmaminusmatchedgenpteta",nptbins,pTbins,200,-1.,1.);
-TH2F* homegaminusmatchedgenpteta=new TH2F("homegaminusmatchedgenpteta","homegaminusmatchedgenpteta",nptbins,pTbins,200,-1.,1.);
+TH2F* hremaindermatchedgenpteta=new TH2F("hremaindermatchedgenpteta","hremaindermatchedgenpteta",nptbins,pTbins,200,-1.,1.);
     
 TH2F* hpgenpteta=new TH2F("hpgenpteta","hpgenpteta",nptbins,pTbins,200,-1.,1.);
 TH2F* hapgenpteta=new TH2F("hapgenpteta","hapgenpteta",nptbins,pTbins,200,-1.,1.);
@@ -67,8 +67,8 @@ TH2F* hpiongenpteta=new TH2F("hpiongenpteta","hpiongenpteta",nptbins,pTbins,200,
 TH2F* hKgenpteta=new TH2F("hKgenpteta","hKgenpteta",nptbins,pTbins,200,-1.,1.);
 TH2F* hsigmaplusgenpteta=new TH2F("hsigmaplusgenpteta","hsigmaplusgenpteta",nptbins,pTbins,200,-1.,1.);
 TH2F* hsigmaminusgenpteta=new TH2F("hsigmaminusgenpteta","hsigmaminusgenpteta",nptbins,pTbins,200,-1.,1.);
-TH2F* homegaminusgenpteta=new TH2F("homegaminusgenpteta","homegaminusgenpteta",nptbins,pTbins,200,-1.,1.);
 
+TH2F* hremaindergenpteta=new TH2F("hremaindergenpteta","hremaindergenpteta",nptbins,pTbins,200,-1.,1.);
 
 //Histograms to store gen track information (for MC)
 TH2F* hgentrkpteta = new TH2F("hgentrkpteta","hgentrkpteta",nptbins,pTbins,200,-1.,1.);
@@ -82,6 +82,10 @@ TH2F* htrkpteta_corr = new TH2F("htrkpteta_corr","htrkpteta_corr",1000,0.,1000.,
 TH1F* htrkpt_corr    = new TH1F("htrkpt_corr","htrkpt_corr",nptbins,pTbins);
 TH1F* htrketa_corr    = new TH1F("htrketa_corr","htrketa_corr",200,-1.,1.);
 TH1F* htrkinvyield_corr = new TH1F("htrkinvyield_corr","htrkinvyield_corr",nptbins,pTbins);
+
+//Systematics-specific histograms
+TH1F* htrkinvyieldhighPU = new TH1F("htrkinvyieldhighPU","htrkinvyieldhighPU",nptbins,pTbins);
+TH1F* htrkinvyieldlowPU = new TH1F("htrkinvyieldlowPU","htrkinvyieldlowPU",nptbins,pTbins);
     
 //Histograms to store jet information
 TH2F *hjtpteta  = new TH2F("hjtpteta","hjtpteta",1000,0.,1000.,200,-1.,1.);
@@ -118,6 +122,11 @@ void WriteHistograms()
   htrketa_corr->Write();
   htrkpteta_corr->Write();
   htrkinvyield_corr->Write();
+
+  //systematics-specific histograms:
+  htrkinvyieldhighPU->Write();
+  htrkinvyieldlowPU->Write();
+
   
   htotalgenpteta->Write();
   hgenmatchedpt->Write();
@@ -130,7 +139,8 @@ void WriteHistograms()
   hpionmatchedpteta->Write();
   hsigmaplusmatchedgenpteta->Write();
   hsigmaminusmatchedgenpteta->Write();
-  homegaminusmatchedgenpteta->Write();
+  
+  hremaindermatchedgenpteta->Write();
   
   
   hspeciescorr->Write();
@@ -143,7 +153,8 @@ void WriteHistograms()
   hpiongenpteta->Write();
   hsigmaplusgenpteta->Write();
   hsigmaminusgenpteta->Write();
-  homegaminusgenpteta->Write();
+
+  hremaindergenpteta->Write();
   
   hjtpt->Write();
   hjtpteta->Write();
