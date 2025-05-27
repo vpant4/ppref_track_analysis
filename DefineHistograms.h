@@ -4,6 +4,7 @@
 
 //variable pT bins
 double pTbins[]={0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2,1.4,1.6,1.8,2.0,2.2,2.4,3.2,4.0,4.8,5.6,6.4,7.2,9.6,12.,14.4,19.2,24.,28.8,35.2,41.6,48.,60.8,73.6,86.4,103.6,120.8,140.,165.,250.,400.};
+double pTbins1[]={0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2,1.4,1.6,1.8,2.0,2.2,2.4,3.2,4.0,4.8,5.6,6.4,7.2,8.4,9.6,10.8,12.,14.4,15.8,17.6,19.2,22.,24.,26.2,28.8,32.0,35.2,38.0,41.6,43.6,48.,54.,60.8,73.6,86.4,103.6,120.8,140.,165.,250.,400.};
 //    double pTbins[]={4.8,5.6,6.4,7.2,9.6,12.,14.4,19.2,24.,28.8,35.2,41.6,48.,60.8,73.6,86.4,103.6,120.8,140.,165.,250.,400.};
 
 
@@ -86,7 +87,14 @@ TH1F* htrkinvyield_corr = new TH1F("htrkinvyield_corr","htrkinvyield_corr",nptbi
 //Systematics-specific histograms
 TH1F* htrkinvyieldhighPU = new TH1F("htrkinvyieldhighPU","htrkinvyieldhighPU",nptbins,pTbins);
 TH1F* htrkinvyieldlowPU = new TH1F("htrkinvyieldlowPU","htrkinvyieldlowPU",nptbins,pTbins);
-    
+TH1F* htrkinvyieldeffsyst[2];
+for (int i = 0; i < 2; ++i)
+  {
+    htrkinvyieldeffsyst[i] = new TH1F(Form("htrkinvyieldeffsyst_%i",i),Form("htrkinvyieldeffsyst_%i",i), nptbins, pTbins);
+  }
+TH1F* htrkinvyieldsmeared= new TH1F("htrkinvyieldsmeared","htrkinvyieldsmeared",nptbins,pTbins);
+
+
 //Histograms to store jet information
 TH2F *hjtpteta  = new TH2F("hjtpteta","hjtpteta",1000,0.,1000.,200,-1.,1.);
 TH1F *hjtpt     = new TH1F("hjtpt","hjtpt",nptbins,pTbins);
@@ -126,6 +134,11 @@ void WriteHistograms()
   //systematics-specific histograms:
   htrkinvyieldhighPU->Write();
   htrkinvyieldlowPU->Write();
+  for (int i = 0; i < 2; ++i)
+  {
+    htrkinvyieldeffsyst[i]->Write();
+  }
+  htrkinvyieldsmeared->Write();
 
   
   htotalgenpteta->Write();

@@ -14,16 +14,49 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 
     //Read the track efficiency file
 
-  
+    Inputparameters(input_file,is_MC);
     TFile *feff = TFile::Open(trkefffile.Data());
 
-    Inputparameters(input_file,is_MC);
-    //Read the efficiency histograms
+    //Read the nominal efficiency histograms
     TH2F *hEff_2D = (TH2F*) feff->Get("hEff_2D");
     TH2F *hMul_2D = (TH2F*) feff->Get("hMul_2D");
     TH2F *hFak_2D = (TH2F*) feff->Get("hFak_2D");
     TH2F *hSec_2D = (TH2F*) feff->Get("hSec_2D");
 
+    //Read Tight and loose efficiency histograms (for systematics)
+    TFile* feffsyst[2];
+    TH2F* hEff_2Dsyst[2];
+    TH2F* hMul_2Dsyst[2];
+    TH2F* hFak_2Dsyst[2];
+    TH2F* hSec_2Dsyst[2];
+    
+    for (int k = 0; k < 2; ++k) {
+      feffsyst[k] = TFile::Open(trkeffsystfiles[k].Data());
+      hEff_2Dsyst[k] = (TH2F*) feffsyst[k]->Get("hEff_2D");
+      hMul_2Dsyst[k] = (TH2F*) feffsyst[k]->Get("hMul_2D");
+      hFak_2Dsyst[k] = (TH2F*) feffsyst[k]->Get("hFak_2D");
+      hSec_2Dsyst[k] = (TH2F*) feffsyst[k]->Get("hSec_2D");
+    }
+
+    //Function to calculate efficiency factor
+    auto GetTrkCorr=[](float trk_eta, float trk_pt,
+                    TH2F* hEff, TH2F* hFak, TH2F* hSec, TH2F* hMul)->Float_t
+    {
+      int bin_eta = hEff->GetXaxis()->FindBin(trk_eta);
+      int bin_pt  = hEff->GetYaxis()->FindBin(trk_pt);
+
+      float eff = hEff->GetBinContent(bin_eta, bin_pt);
+      float fak = hFak->GetBinContent(bin_eta, bin_pt);
+      float sec = hSec->GetBinContent(bin_eta, bin_pt);
+      float mul = hMul->GetBinContent(bin_eta, bin_pt);
+
+      if (eff <= 0) return 0; // prevent divide-by-zero
+
+      float corr = ((1.0 - fak)*(1.0 - sec)) / (eff * (1.0 + mul));
+      return corr;
+    };
+
+    
     
     // Read the input files********************************************************
     fstream inputfile;
@@ -130,7 +163,6 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	if (istestcheck) cout<<" Event "<<i+1<<" nvtx "<<nVtx<<" pthatw "<<ptHatw<<endl;
 	
 
-	std::vector<int> tracksPerVertex(nVtx, 0); // Make a counter for trkvtxindx, 0 for each vertex
 	//Start Analyzing reco tracks *************************************************
 	for (int j = 0; j < nTrk; j++)  // Track loop start
 	  {
@@ -159,9 +191,6 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	    if(fabs(trk_dxy/trk_dxyerror) > trkDCAxycut) continue;
 	    if(fabs(trk_dz/trk_dzerror)   > trkDCAzcut) continue;
 	    if(trk_pt>10 && abs(trk_pt_error/trk_pt) > ptresocut) continue;
-            if (trk_vtxindx >= 0 && trk_vtxindx < nVtx) {
-	      tracksPerVertex[trk_vtxindx]++; // Increase track count for that vertex
-	    }
 	    
 	    if (istestcheck)
 	      {
@@ -176,29 +205,21 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 		htrknoPUevtDCAz->Fill(trk_dz,ptHatw);
 		htrknoPUevtDCAxy->Fill(trk_dxy,ptHatw);
 	      }
-	    //Read the values from efficiency histograms
-	    Float_t eff = hEff_2D->GetBinContent(hEff_2D->GetXaxis()->FindBin(trk_eta),hEff_2D->GetYaxis()->FindBin(trk_pt));
-	    Float_t fak = hFak_2D->GetBinContent(hFak_2D->GetXaxis()->FindBin(trk_eta),hFak_2D->GetYaxis()->FindBin(trk_pt));
-	    Float_t sec = hSec_2D->GetBinContent(hSec_2D->GetXaxis()->FindBin(trk_eta),hSec_2D->GetYaxis()->FindBin(trk_pt));
-	    Float_t mul = hMul_2D->GetBinContent(hMul_2D->GetXaxis()->FindBin(trk_eta),hMul_2D->GetYaxis()->FindBin(trk_pt));
-	    
-
+	   
 	    //Correction factors for tracks
-	    Float_t corr_wt=((1.0 - fak)*(1.0 - sec))/(eff*(1.0 + mul));
-	    //Float_t corr_wt=((1.0 - fak)*(1.0 - sec))/(eff);
+	   
+	    Float_t corr_wt=GetTrkCorr(trk_eta,trk_pt,hEff_2D,hFak_2D,hSec_2D,hMul_2D);
 	    Float_t trkwt=1.;
+	    
 	    trkwt=corr_wt;
 	    //Weight for the invariant yield 
-	    Float_t invyield_wt= (1./(2*2*TMath::Pi()*trk_pt));
-	    //Float_t invyield_wt= (1./trk_pt);
-	    //Float_t speciescorrfactor = hspeciescorrfactor->GetBinContent(hspeciescorrfactor->GetYaxis()->FindBin(trk_pt));
-	    Float_t speciescorrfactor=1.0;
-            if (istestcheck)
+	    Float_t invyield_wt= (1./(2*2*trketacut*TMath::Pi()*trk_pt));
+	    if (istestcheck)
 	      {
-		cout<<" Trk corr factor "<<corr_wt<<" Part species corr factor "<<speciescorrfactor<<endl;
+		cout<<" Trk corr factor "<<corr_wt<<endl;
 	      }
 
-	    if (!islowptfile && trk_pt < 24) continue; //Making a cut for low pt file
+	    if (!islowptfile && trk_pt < 24) continue; //Making a cut for low pt files
 	    htrkpteta->Fill(trk_pt,trk_eta,ptHatw);
 	    htrkinvyield->Fill(trk_pt,invyield_wt*ptHatw);
 	    htrkpt->Fill(trk_pt,ptHatw);
@@ -213,16 +234,29 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	    if (isSystematics)
 	      {
 		//High and low PU runs
-		if (run==387590) htrkinvyieldhighPU->Fill(trk_pt,invyield_wt*trkwt*ptHatw);
-		if (run==387570) htrkinvyieldlowPU->Fill(trk_pt,invyield_wt*trkwt*ptHatw);
+		if (run==highPUrun) htrkinvyieldhighPU->Fill(trk_pt,invyield_wt*trkwt*ptHatw);
+		if (run==lowPUrun)  htrkinvyieldlowPU->Fill(trk_pt,invyield_wt*trkwt*ptHatw);
+
+
+		//Loose and tight efficiency tables
+		for (int i = 0; i < 2; ++i) {
+		  Float_t corr_wtsyst = GetTrkCorr(trk_eta,trk_pt,hEff_2Dsyst[i],hFak_2Dsyst[i],hSec_2Dsyst[i],hMul_2Dsyst[i]);
+		  Float_t trkwtsyst = corr_wtsyst;
+		  htrkinvyieldeffsyst[i]->Fill(trk_pt, invyield_wt * trkwtsyst * ptHatw);
+		}
+
+		//Gaussian pT smearing (for momentum resolution systematics)
+		Float_t smeared_pt=gRandom->Gaus(trk_pt, 0.02 * trk_pt);
+		Float_t invyield_wtsmeared=(1./(2*2*trketacut*TMath::Pi()*smeared_pt));
+		Float_t smeared_corrwt=GetTrkCorr(trk_eta,smeared_pt,hEff_2D,hFak_2D,hSec_2D,hMul_2D);
+		htrkinvyieldsmeared->Fill(smeared_pt,invyield_wtsmeared*smeared_corrwt*ptHatw);
+
+
+		
 	      }
 	    
 	  }//Reco track loop end
 
-	for (size_t vtx = 0; vtx < tracksPerVertex.size(); ++vtx) {
-	  htrkspervtx->Fill(tracksPerVertex[vtx], ptHatw); // Fill how many tracks in this vertex
-	}
-	
 	//Gen loop starts (Only for MC) **************************************
 	Int_t gentrksize;
 	std::vector<Int_t> genmatchedindx={-9};
