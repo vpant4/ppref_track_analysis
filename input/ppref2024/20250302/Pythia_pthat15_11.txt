@@ -1,2 +1,0 @@
-/eos/cms/store/group/phys_heavyions/vpant/ppref2024output/Pythia8_NoPU_0p5MEvents_TuneCP5_QCD_ptHat15_5360GeV/crab_ppref2024/250224_182313/0000/HiForestMiniAOD_27.root
-/eos/cms/store/group/phys_heavyions/vpant/ppref2024output/Pythia8_NoPU_0p5MEvents_TuneCP5_QCD_ptHat15_5360GeV/crab_ppref2024/250224_182313/0000/HiForestMiniAOD_28.root

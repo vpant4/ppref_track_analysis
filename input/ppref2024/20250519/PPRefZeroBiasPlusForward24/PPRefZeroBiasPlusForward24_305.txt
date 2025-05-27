@@ -1,0 +1,4 @@
+/eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward24/crab_ppref2024/250517_210841/0001/HiForestMiniAOD_1217.root
+/eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward24/crab_ppref2024/250517_210841/0001/HiForestMiniAOD_1218.root
+/eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward24/crab_ppref2024/250517_210841/0001/HiForestMiniAOD_1219.root
+/eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward24/crab_ppref2024/250517_210841/0001/HiForestMiniAOD_1220.root

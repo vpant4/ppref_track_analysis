@@ -1,0 +1,2 @@
+/eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward16/crab_ppref2024/250511_051727/0008/HiForestMiniAOD_8269.root
+/eos/cms/store/group/phys_heavyions/vpant/ppref2024output/PPRefZeroBiasPlusForward16/crab_ppref2024/250511_051727/0008/HiForestMiniAOD_8270.root
