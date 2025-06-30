@@ -2,7 +2,7 @@
 #include "read_trees.h"
 #include "TMath.h"
 #include "DefineHistograms.h"
-#include "InputParameters.h"
+//#include "InputParameters.h"
 
 void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Float_t pthat_value)
 {
@@ -15,6 +15,8 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
     //Read the track efficiency file
 
     Inputparameters(input_file,is_MC);
+    
+
     TFile *feff = TFile::Open(trkefffile.Data());
 
     //Read the nominal efficiency histograms
@@ -22,7 +24,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
     TH2F *hMul_2D = (TH2F*) feff->Get("hMul_2D");
     TH2F *hFak_2D = (TH2F*) feff->Get("hFak_2D");
     TH2F *hSec_2D = (TH2F*) feff->Get("hSec_2D");
-
+    
     //Read Tight and loose efficiency histograms (for systematics)
     TFile* feffsyst[2];
     TH2F* hEff_2Dsyst[2];
@@ -37,6 +39,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
       hFak_2Dsyst[k] = (TH2F*) feffsyst[k]->Get("hFak_2D");
       hSec_2Dsyst[k] = (TH2F*) feffsyst[k]->Get("hSec_2D");
     }
+    
 
     //Function to calculate efficiency factor
     auto GetTrkCorr=[](float trk_eta, float trk_pt,
@@ -59,17 +62,25 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
     
     
     // Read the input files********************************************************
-    fstream inputfile;
-    inputfile.open(Form("%s",input_file.Data()), ios::in);
-      
-    if(!inputfile.is_open()){cout << "List of input files not founded!" << endl; return;}{cout << "List of input files founded! --> " << input_file.Data() << endl;}
-    
-
-    // Make a chain and a vector of file names*************************************
     std::vector<TString> file_name_vector;
-    string file_chain;
-    while(getline(inputfile, file_chain)){file_name_vector.push_back(file_chain.c_str());}
-    inputfile.close();
+    
+    if (input_file.EndsWith(".root")) {
+      cout << "Single ROOT file detected --> " << input_file.Data() << endl;
+      file_name_vector.push_back(input_file);
+    } else {
+      fstream inputfile;
+      inputfile.open(Form("%s",input_file.Data()), ios::in);
+      
+      if(!inputfile.is_open()){cout << "List of input files not found!" << endl; return;}
+      else {cout << "List of input files found! --> " << input_file.Data() << endl;}
+      
+      // Make a chain and a vector of file names*************************************
+      string file_chain;
+      while(getline(inputfile, file_chain)) {
+	if (!file_chain.empty()) file_name_vector.push_back(file_chain.c_str());
+      }
+      inputfile.close();
+    }
     
 
     // Read the trees to be added in the Chain************************************
@@ -81,8 +92,9 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
     TChain *gen_tree;
     if (is_MC)
       {gen_tree = new TChain("HiGenParticleAna/hi");}
-
-    // add all the trees to the chain**********************************************
+    
+    
+   // add all the trees to the chain**********************************************
     
     for (std::vector<TString>::iterator listIterator = file_name_vector.begin(); listIterator != file_name_vector.end(); listIterator++){
       cout<<"list operator is "<<*listIterator<<endl;          
@@ -119,16 +131,19 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 
    
     int nevents = hea_tree->GetEntries(); // number of events
-    if (istestcheck) nevents=1000;
+    if (istestcheck) nevents=100;
     cout << "Total number of events in those files: "<< nevents << endl;
     cout << endl;
     cout << "-------------------------------------------------" << endl;
-        
+
+    std::set<std::pair<int, int>> runLumi;
+
     // Start loop over events ****************************************************
 	
     for(int i = 0; i < nevents; i++)
       {
 	hEventsnoCuts->Fill(1);
+	hEvents->Fill(1);
 	if (i%10000==0) cout<<i<<" events passed "<<endl;    
 	
 
@@ -140,13 +155,21 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	hea_tree->GetEntry(i);
 	
 	//Event Cuts ***************************************************************
-	if(abs(vz) <= vzcut) continue; // vertex cut
+	if (istestcheck) cout<<abs(vz)<<"  "<<pprimaryVertexFilter<<" "<<nTrk<<endl;
 
-	
 	if(pprimaryVertexFilter != 1) continue; //apply the skimmed event filters
+
+	hEvents->Fill(2);
+	if(abs(vz) > vzcut) continue; // vertex cut
+        
+	
+	
       
- 
+	hEvents->Fill(3);
       	if(nTrk <= 0) continue; // if there are no tracks in the event
+
+	hEvents->Fill(4);
+	runLumi.insert({run, lumi});
 
      
 	//Fill Event histograms ***************************************************
@@ -156,24 +179,27 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	hpthatW->Fill(ptHatw);
 	hNtrk->Fill(nTrk,ptHatw);
 	hZvtx->Fill(vz,ptHatw);
-	hEvents->Fill(1,ptHatw);
+	hEvents->Fill(5,ptHatw);
 	hnVtx->Fill(nVtx,ptHatw);
 	
 	
 	if (istestcheck) cout<<" Event "<<i+1<<" nvtx "<<nVtx<<" pthatw "<<ptHatw<<endl;
 	
-
+	//cout<<" size of isfake "<<sizeof(isFakeVtx)<<endl;
 	//Start Analyzing reco tracks *************************************************
 	for (int j = 0; j < nTrk; j++)  // Track loop start
 	  {
 	    //Read the required track variables
+	    htrkcounts->Fill(1);
 	    Int_t trk_charge  =  trkchg->at(j);
 	    Float_t trk_pt      =  trkPt->at(j);
 	    Float_t trk_eta     =  trkEta->at(j);
 	    Float_t trk_phi     =  trkPhi->at(j);
 	    Bool_t  isHighPurity=  highPurity->at(j);
 	    Float_t trk_pt_error=  trkPtError->at(j);
-	    
+	    Int_t   trk_nhits   =  trkNHits->at(j);
+	    Int_t   trk_chi2    =  trkNormChi->at(j);
+	     
             Int_t   trk_vtxindx =  trkAssociatedVtxIndx->at(j);
 	    Float_t trk_dxy     =  trkDxyAssociatedVtx->at(j);
 	    Float_t trk_dxyerror=  trkDxyErrAssociatedVtx->at(j);
@@ -183,73 +209,96 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	    
 	    
 	    // Apply track cuts***************************************************
+	    if (!trigger_flag) continue; //Trigger 
 	    if (trk_pt==0) continue;
 	    if (abs(trk_charge)!=1) continue;
 	    if(!isHighPurity) continue;
 	    if(fabs(trk_eta) >= trketacut) continue;
 	    if(trk_pt < trkptcut) continue;
+	    if(trk_pt>10 && abs(trk_pt_error/trk_pt) > ptresocut) continue;
+	    if (coll_system=="pp" && !islowptfile && trk_pt < 24) continue; //Making a cut for low pt files
+	    //Weight for the invariant yield 
+	    Float_t invyield_wt= (1./(2*2*trketacut*TMath::Pi()*trk_pt));
+
+	    if (isSystematics){
+	    //Loose and tight efficiency tables
+	    for (int i = 0; i < 2; ++i) {
+	      
+	      if(fabs(trk_dxy/trk_dxyerror) > trkDCAxycutsyst[i]) continue;
+	      if(fabs(trk_dz/trk_dzerror)   > trkDCAzcutsyst[i]) continue;
+	      Float_t corr_wtsyst = GetTrkCorr(trk_eta,trk_pt,hEff_2Dsyst[i],hFak_2Dsyst[i],hSec_2Dsyst[i],hMul_2Dsyst[i]);
+	      Float_t trkwtsyst = corr_wtsyst;
+
+	      
+	      htrkinvyieldeffsyst[i]->Fill(trk_pt, invyield_wt * trkwtsyst * ptHatw);
+	      htrkinvyieldspliteffsyst[i]->Fill(trk_pt, invyield_wt * trkwtsyst * ptHatw);
+	    }
+	   
+	    }
 	    if(fabs(trk_dxy/trk_dxyerror) > trkDCAxycut) continue;
 	    if(fabs(trk_dz/trk_dzerror)   > trkDCAzcut) continue;
-	    if(trk_pt>10 && abs(trk_pt_error/trk_pt) > ptresocut) continue;
+	    
 	    
 	    if (istestcheck)
 	      {
 		cout<<" Track no. "<<j+1<<" Trk pt "<<trk_pt<<" Trk eta "<<trk_eta<<" Trk phi "<<trk_phi<<endl;
 		cout<<" Trk_dxy "<<trk_dxy<<" Trk dz "<<trk_dz<<endl<<endl;
 	      }
+	    //Correction factors for tracks (nominal)
+	    Float_t corr_wt=GetTrkCorr(trk_eta,trk_pt,hEff_2D,hFak_2D,hSec_2D,hMul_2D);
+	    Float_t trkwt=1.;
+	    trkwt=corr_wt;
+	  
 	
 	    htrkDCAz->Fill(trk_dz,ptHatw);
-	    htrkDCAxy->Fill(trk_dz,ptHatw);
+	    htrkDCAxy->Fill(trk_dxy,ptHatw);
+	    htrkNhits->Fill(trk_nhits,ptHatw);
+	    htrkNormChi->Fill(trk_chi2,ptHatw);
+	    
 	    if (nVtx==1)
 	      {
 		htrknoPUevtDCAz->Fill(trk_dz,ptHatw);
 		htrknoPUevtDCAxy->Fill(trk_dxy,ptHatw);
 	      }
-	   
-	    //Correction factors for tracks
-	   
-	    Float_t corr_wt=GetTrkCorr(trk_eta,trk_pt,hEff_2D,hFak_2D,hSec_2D,hMul_2D);
-	    Float_t trkwt=1.;
-	    
-	    trkwt=corr_wt;
-	    //Weight for the invariant yield 
-	    Float_t invyield_wt= (1./(2*2*trketacut*TMath::Pi()*trk_pt));
-	    if (istestcheck)
-	      {
-		cout<<" Trk corr factor "<<corr_wt<<endl;
-	      }
 
-	    if (!islowptfile && trk_pt < 24) continue; //Making a cut for low pt files
+	    htrkcounts->Fill(2);
+	    
 	    htrkpteta->Fill(trk_pt,trk_eta,ptHatw);
 	    htrkinvyield->Fill(trk_pt,invyield_wt*ptHatw);
+	    htrkinvyield_split->Fill(trk_pt,invyield_wt*ptHatw);
 	    htrkpt->Fill(trk_pt,ptHatw);
 	    htrketa->Fill(trk_eta,ptHatw);
 
 	 
 	    htrkpteta_corr->Fill(trk_pt,trk_eta,trkwt*ptHatw);
             htrkinvyield_corr->Fill(trk_pt,invyield_wt*trkwt*ptHatw);
+	    htrkinvyield_split_corr->Fill(trk_pt,invyield_wt*trkwt*ptHatw);
             htrkpt_corr->Fill(trk_pt,trkwt*ptHatw);
 	    htrketa_corr->Fill(trk_pt,trkwt*ptHatw);
 
 	    if (isSystematics)
 	      {
 		//High and low PU runs
-		if (run==highPUrun) htrkinvyieldhighPU->Fill(trk_pt,invyield_wt*trkwt*ptHatw);
-		if (run==lowPUrun)  htrkinvyieldlowPU->Fill(trk_pt,invyield_wt*trkwt*ptHatw);
+		if (run==highPUrun)
+		  {
+		    htrkinvyieldhighPU->Fill(trk_pt,invyield_wt*trkwt*ptHatw);
+		    htrkinvyieldsplithighPU->Fill(trk_pt,invyield_wt*trkwt*ptHatw);
+		  }
+		
+		if (run==lowPUrun)
+		  {
+		    htrkinvyieldlowPU->Fill(trk_pt,invyield_wt*trkwt*ptHatw);
+		    htrkinvyieldsplitlowPU->Fill(trk_pt,invyield_wt*trkwt*ptHatw);
+		  }
 
-
-		//Loose and tight efficiency tables
-		for (int i = 0; i < 2; ++i) {
-		  Float_t corr_wtsyst = GetTrkCorr(trk_eta,trk_pt,hEff_2Dsyst[i],hFak_2Dsyst[i],hSec_2Dsyst[i],hMul_2Dsyst[i]);
-		  Float_t trkwtsyst = corr_wtsyst;
-		  htrkinvyieldeffsyst[i]->Fill(trk_pt, invyield_wt * trkwtsyst * ptHatw);
-		}
+		
 
 		//Gaussian pT smearing (for momentum resolution systematics)
 		Float_t smeared_pt=gRandom->Gaus(trk_pt, 0.02 * trk_pt);
 		Float_t invyield_wtsmeared=(1./(2*2*trketacut*TMath::Pi()*smeared_pt));
 		Float_t smeared_corrwt=GetTrkCorr(trk_eta,smeared_pt,hEff_2D,hFak_2D,hSec_2D,hMul_2D);
 		htrkinvyieldsmeared->Fill(smeared_pt,invyield_wtsmeared*smeared_corrwt*ptHatw);
+		htrkinvyieldsplitsmeared->Fill(smeared_pt,invyield_wtsmeared*smeared_corrwt*ptHatw);
 
 
 		
@@ -395,29 +444,42 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
     delete ski_tree;
     delete jet_tree;
     delete trk_tree;
+
+    // Generate lumi output file path beside ROOT file
+    TString outbasename = gSystem->BaseName(outputFileName); 
+    outbasename.ReplaceAll(".root", "");                     
     
+    TString outdir = gSystem->DirName(outputFileName);       
+    TString lumifilepath = outdir + "/runLumi_" + outbasename + ".txt";
+
+    // Write to lumi text file
+    std::ofstream lumifile(lumifilepath.Data());
+    for (const auto& entry : runLumi) {
+      lumifile << entry.first << " " << entry.second << "\n";
+    }
+    lumifile.close();
     
     
     TFile *fout = new TFile(outputFileName, "RECREATE");
-
+    
+    fout->cd();
     WriteHistograms();
-    fout->Write();
     fout->Close();
     delete fout;
     cout<<"finished";
+ 
     
-    
-    
+ 
 
     
 } // program end
 
 int main(int argc, char** argv){
-                                TString firstArgument(argv[1]);
-                                TString outfile(argv[2]);
-				int mc = atoi(argv[3]);
-                                Float_t pthat_value= atoi(argv[4]);
-				
-				Track_Analyzer(firstArgument,outfile,mc,pthat_value);
+  TString firstArgument(argv[1]);
+  TString outfile(argv[2]);
+  int mc = atoi(argv[3]);
+  Float_t pthat_value= atoi(argv[4]);
+  
+  Track_Analyzer(firstArgument,outfile,mc,pthat_value);
 }
 
