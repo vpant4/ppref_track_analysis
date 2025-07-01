@@ -18,11 +18,20 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
     
 
     TFile *feff = TFile::Open(trkefffile.Data());
-
-    //Read the nominal efficiency histograms
+    if (!feff) cout<<"pp eff file not found "<<endl;
+    TFile *feffOOfake;
+    if (coll_system=="OO"||coll_system=="pO") feffOOfake = TFile::Open(trkefffileOOfake.Data());
+    
     TH2F *hEff_2D = (TH2F*) feff->Get("hEff_2D");
     TH2F *hMul_2D = (TH2F*) feff->Get("hMul_2D");
-    TH2F *hFak_2D = (TH2F*) feff->Get("hFak_2D");
+    TH2F *hFak_2D=nullptr;
+    
+    if (coll_system=="pp")
+      { cout<<"Here............... "<<endl;
+	hFak_2D= (TH2F*) feff->Get("hFak_2D");
+      }
+    if (!hFak_2D) cout<<" Fake rate histogram not found "<<endl;
+    if (coll_system=="OO" || coll_system=="pO")  hFak_2D= (TH2F*) feffOOfake->Get("hFak_2D");
     TH2F *hSec_2D = (TH2F*) feff->Get("hSec_2D");
     
     //Read Tight and loose efficiency histograms (for systematics)
@@ -131,7 +140,7 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 
    
     int nevents = hea_tree->GetEntries(); // number of events
-    if (istestcheck) nevents=100;
+    if (istestcheck) nevents=500;
     cout << "Total number of events in those files: "<< nevents << endl;
     cout << endl;
     cout << "-------------------------------------------------" << endl;
@@ -191,32 +200,42 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	  {
 	    //Read the required track variables
 	    htrkcounts->Fill(1);
-	    Int_t trk_charge  =  trkchg->at(j);
-	    Float_t trk_pt      =  trkPt->at(j);
-	    Float_t trk_eta     =  trkEta->at(j);
-	    Float_t trk_phi     =  trkPhi->at(j);
-	    Bool_t  isHighPurity=  highPurity->at(j);
-	    Float_t trk_pt_error=  trkPtError->at(j);
-	    Int_t   trk_nhits   =  trkNHits->at(j);
-	    Int_t   trk_chi2    =  trkNormChi->at(j);
-	     
-            Int_t   trk_vtxindx =  trkAssociatedVtxIndx->at(j);
-	    Float_t trk_dxy     =  trkDxyAssociatedVtx->at(j);
-	    Float_t trk_dxyerror=  trkDxyErrAssociatedVtx->at(j);
-	    Float_t trk_dz      =  trkDzAssociatedVtx->at(j);
-	    Float_t trk_dzerror =  trkDzErrAssociatedVtx->at(j);
-
+	    Int_t   trk_charge   =  trkchg->at(j);
+	    Float_t trk_pt       =  trkPt->at(j);
+	    Float_t trk_eta      =  trkEta->at(j);
+	    Float_t trk_phi      =  trkPhi->at(j);
+	    Bool_t  isHighPurity =  highPurity->at(j);
+	    Float_t trk_pt_error =  trkPtError->at(j);
+	    Int_t   trk_nhits    =  trkNHits->at(j);
+	    Float_t trk_chi2     =  trkNormChi->at(j);
+	    
+            Int_t   trk_vtxindx  =  trkAssociatedVtxIndx->at(j);
+	    Float_t trk_dxy      =  trkDxyAssociatedVtx->at(j);
+	    Float_t trk_dxyerror =  trkDxyErrAssociatedVtx->at(j);
+	    Float_t trk_dz       =  trkDzAssociatedVtx->at(j);
+	    Float_t trk_dzerror  =  trkDzErrAssociatedVtx->at(j);
+	    Float_t trk_pfecal   =  pfEcal->at(j);
+	    Float_t trk_pfhcal   =  pfHcal->at(j);
+	    
 	    
 	    
 	    // Apply track cuts***************************************************
-	    if (!trigger_flag) continue; //Trigger 
+	    if (!trigger_flag) continue; //Trigger
+	    htrkcounts->Fill(2);
 	    if (trk_pt==0) continue;
+	    htrkcounts->Fill(3);
 	    if (abs(trk_charge)!=1) continue;
+	    htrkcounts->Fill(4);
 	    if(!isHighPurity) continue;
+	    htrkcounts->Fill(5);
 	    if(fabs(trk_eta) >= trketacut) continue;
+	    htrkcounts->Fill(6);
 	    if(trk_pt < trkptcut) continue;
+	    htrkcounts->Fill(7);
 	    if(trk_pt>10 && abs(trk_pt_error/trk_pt) > ptresocut) continue;
+	    htrkcounts->Fill(8);
 	    if (coll_system=="pp" && !islowptfile && trk_pt < 24) continue; //Making a cut for low pt files
+	    htrkcounts->Fill(9);
 	    //Weight for the invariant yield 
 	    Float_t invyield_wt= (1./(2*2*trketacut*TMath::Pi()*trk_pt));
 
@@ -235,9 +254,11 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	    }
 	   
 	    }
+	    htrkcounts->Fill(10);
 	    if(fabs(trk_dxy/trk_dxyerror) > trkDCAxycut) continue;
+	    htrkcounts->Fill(11);
 	    if(fabs(trk_dz/trk_dzerror)   > trkDCAzcut) continue;
-	    
+	    htrkcounts->Fill(12);
 	    
 	    if (istestcheck)
 	      {
@@ -248,33 +269,49 @@ void Track_Analyzer(TString input_file, TString outputFileName,Bool_t is_MC,Floa
 	    Float_t corr_wt=GetTrkCorr(trk_eta,trk_pt,hEff_2D,hFak_2D,hSec_2D,hMul_2D);
 	    Float_t trkwt=1.;
 	    trkwt=corr_wt;
-	  
-	
+	    Float_t Et=(trk_pfecal+trk_pfhcal)/TMath::CosH(trk_eta);
+	    Float_t Et_pt=(Et/trk_pt);
+	    if (istestcheck)
+	      {cout<<" PF energies "<<endl;
+		cout<<trk_pfecal<<"  "<<trk_pfhcal<<"  "<<Et<<" "<<Et_pt<<endl;
+	      }
+	    hEcal->Fill(trk_pfecal,ptHatw);
+	    hHcal->Fill(trk_pfhcal,ptHatw);
+	    hEt->Fill(Et,ptHatw);
+	    hEt_pt->Fill(Et_pt,ptHatw);
+
+	    htrkpteta->Fill(trk_pt,trk_eta,ptHatw);
+	    htrkinvyield->Fill(trk_pt,invyield_wt*ptHatw);
+	    htrkinvyield_split->Fill(trk_pt,invyield_wt*ptHatw);
+	    htrkpt->Fill(trk_pt,ptHatw);
+
+	    
+	    htrkpt_split->Fill(trk_pt,ptHatw);
+	    htrketa->Fill(trk_eta,ptHatw);
+            htrkphi->Fill(trk_phi,ptHatw);
+
+	    
+	    
 	    htrkDCAz->Fill(trk_dz,ptHatw);
 	    htrkDCAxy->Fill(trk_dxy,ptHatw);
 	    htrkNhits->Fill(trk_nhits,ptHatw);
 	    htrkNormChi->Fill(trk_chi2,ptHatw);
-	    
+	    if (istestcheck)
+	      {cout<<" Nhits "<<trk_nhits<<" Chi 2 "<<trk_chi2<<endl;}
 	    if (nVtx==1)
 	      {
 		htrknoPUevtDCAz->Fill(trk_dz,ptHatw);
 		htrknoPUevtDCAxy->Fill(trk_dxy,ptHatw);
 	      }
 
-	    htrkcounts->Fill(2);
+	  
 	    
-	    htrkpteta->Fill(trk_pt,trk_eta,ptHatw);
-	    htrkinvyield->Fill(trk_pt,invyield_wt*ptHatw);
-	    htrkinvyield_split->Fill(trk_pt,invyield_wt*ptHatw);
-	    htrkpt->Fill(trk_pt,ptHatw);
-	    htrketa->Fill(trk_eta,ptHatw);
-
-	 
+	    
 	    htrkpteta_corr->Fill(trk_pt,trk_eta,trkwt*ptHatw);
             htrkinvyield_corr->Fill(trk_pt,invyield_wt*trkwt*ptHatw);
 	    htrkinvyield_split_corr->Fill(trk_pt,invyield_wt*trkwt*ptHatw);
             htrkpt_corr->Fill(trk_pt,trkwt*ptHatw);
-	    htrketa_corr->Fill(trk_pt,trkwt*ptHatw);
+	    htrketa_corr->Fill(trk_eta,trkwt*ptHatw);
 
 	    if (isSystematics)
 	      {
